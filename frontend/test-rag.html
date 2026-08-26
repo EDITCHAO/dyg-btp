@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Moteur RAG - DYG-BTP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status.loading {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+        }
+        
+        .status.ready {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        
+        .search-section {
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .quick-queries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .quick-query {
+            padding: 6px 12px;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .quick-query:hover {
+            background: #dee2e6;
+        }
+        
+        .results {
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+        
+        .result-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .result-score {
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .result-category {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+        
+        .result-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            padding: 3px 8px;
+            background: white;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #667eea;
+        }
+        
+        .context-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .context-output {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Test Moteur RAG</h1>
+        <p class="subtitle">Moteur de recherche BM25 pour DYG-BTP</p>
+        
+        <div class="status loading" id="status">
+            <div class="spinner"></div>
+            <span>Chargement de la base de connaissances...</span>
+        </div>
+        
+        <div class="stats" id="stats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-docs">0</div>
+                <div class="stat-label">Documents</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-terms">0</div>
+                <div class="stat-label">Termes indexés</div>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <h3 style="margin-bottom: 15px;">Recherche</h3>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Ex: certification iso, domaines expertise, prix devis...">
+                <button onclick="performSearch()">Rechercher</button>
+            </div>
+            
+            <div class="quick-queries">
+                <strong style="font-size: 12px; color: #6c757d; margin-right: 10px;">Recherches rapides :</strong>
+                <span class="quick-query" onclick="quickSearch('certification iso')">certification iso</span>
+                <span class="quick-query" onclick="quickSearch('domaines expertise')">domaines expertise</span>
+                <span class="quick-query" onclick="quickSearch('prix devis')">prix devis</span>
+                <span class="quick-query" onclick="quickSearch('bâtiment construction')">bâtiment construction</span>
+                <span class="quick-query" onclick="quickSearch('agréments état')">agréments état</span>
+                <span class="quick-query" onclick="quickSearch('zones intervention')">zones intervention</span>
+            </div>
+            
+            <div class="results" id="results"></div>
+        </div>
+        
+        <div class="context-section">
+            <h3 style="margin-bottom: 15px;">Contexte pour LLM</h3>
+            <button onclick="generateContext()" style="margin-bottom: 15px;">
+                Générer contexte pour la requête actuelle
+            </button>
+            <div class="context-output" id="contextOutput">
+                Entrez une recherche et cliquez sur "Générer contexte" pour voir le contexte formaté pour un LLM.
+            </div>
+        </div>
+    </div>
+    
+    <script src="kb-search.js"></script>
+    <script>
+        let currentQuery = "";
+        
+        // Écouter le chargement de la KB
+        window.addEventListener("dyg:kb:loaded", function(e) {
+            document.getElementById("status").className = "status ready";
+            document.getElementById("status").innerHTML = "✅ Base de connaissances chargée avec succès (" + e.detail.docs + " documents)";
+            
+            // Afficher les stats
+            const stats = window.DYG_KB.stats();
+            document.getElementById("stat-docs").textContent = stats.docs;
+            document.getElementById("stat-terms").textContent = stats.terms;
+            document.getElementById("stats").style.display = "grid";
+        });
+        
+        // Vérifier le statut après 3 secondes (fallback si événement raté)
+        setTimeout(function() {
+            if (window.DYG_KB && window.DYG_KB.isReady()) {
+                const stats = window.DYG_KB.stats();
+                document.getElementById("status").className = "status ready";
+                document.getElementById("status").innerHTML = "✅ Base de connaissances chargée (" + stats.docs + " documents)";
+                document.getElementById("stat-docs").textContent = stats.docs;
+                document.getElementById("stat-terms").textContent = stats.terms;
+                document.getElementById("stats").style.display = "grid";
+            } else {
+                document.getElementById("status").className = "status error";
+                document.getElementById("status").innerHTML = "❌ Échec du chargement. Vérifiez que data/dyg-kb.json existe.";
+            }
+        }, 3000);
+        
+        // Recherche au Enter
+        document.getElementById("searchInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                performSearch();
+            }
+        });
+        
+        function quickSearch(query) {
+            document.getElementById("searchInput").value = query;
+            performSearch();
+        }
+        
+        function performSearch() {
+            const query = document.getElementById("searchInput").value.trim();
+            if (!query) return;
+            
+            currentQuery = query;
+            
+            if (!window.DYG_KB || !window.DYG_KB.isReady()) {
+                alert("La base de connaissances n'est pas encore chargée. Veuillez patienter.");
+                return;
+            }
+            
+            const results = window.DYG_KB.search(query, { topK: 10, minScore: 0.3 });
+            
+            const resultsDiv = document.getElementById("results");
+            
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results">Aucun résultat trouvé pour "' + query + '".<br>Essayez avec d\'autres mots-clés.</div>';
+                return;
+            }
+            
+            let html = '<h4 style="margin-bottom: 15px; color: #2c3e50;">' + results.length + ' résultat(s) trouvé(s)</h4>';
+            
+            results.forEach(function(r) {
+                const doc = r.doc;
+                const score = r.score.toFixed(2);
+                
+                html += '<div class="result-item">';
+                html += '<div class="result-header">';
+                html += '<div class="result-title">' + doc.title + '</div>';
+                html += '<div class="result-score">Score: ' + score + '</div>';
+                html += '</div>';
+                html += '<div class="result-category">' + doc.category + '</div>';
+                html += '<div class="result-text">' + doc.text.substring(0, 300);
+                if (doc.text.length > 300) html += '...';
+                html += '</div>';
+                
+                if (doc.tags && doc.tags.length > 0) {
+                    html += '<div class="result-tags">';
+                    doc.tags.forEach(function(tag) {
+                        html += '<span class="tag">' + tag + '</span>';
+                    });
+                    html += '</div>';
+                }
+                
+                html += '</div>';
+            });
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        function generateContext() {
+            const query = currentQuery || document.getElementById("searchInput").value.trim();
+            
+            if (!query) {
+                alert("Veuillez d'abord effectuer une recherche.");
+                return;
+            }
+            
+            if (!window.DYG_KB || !window.DYG_KB.isReady()) {
+                alert("La base de connaissances n'est pas encore chargée.");
+                return;
+            }
+            
+            const context = window.DYG_KB.getContext(query, 800);
+            
+            if (!context) {
+                document.getElementById("contextOutput").textContent = "Aucun contexte trouvé pour cette requête.";
+                return;
+            }
+            
+            document.getElementById("contextOutput").textContent = context;
+        }
+    </script>
+</body>
+</html>

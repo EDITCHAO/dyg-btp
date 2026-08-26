@@ -1,0 +1,7 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#7a9aba"/>
+  <circle cx="200" cy="150" r="50" fill="#ffffff"/>
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">Chef de Projet</text>
+  <text x="200" y="310" font-family="Arial, sans-serif" font-size="14" fill="#d4af37" text-anchor="middle">Photo équipe</text>
+  <text x="200" y="340" font-family="Arial, sans-serif" font-size="12" fill="#cccccc" text-anchor="middle">400x400px</text>
+</svg>

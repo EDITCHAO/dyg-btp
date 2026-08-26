@@ -1,0 +1,202 @@
+═══════════════════════════════════════════════════════════════
+   🚀 TÉLÉCHARGER VOS 15 IMAGES MAINTENANT - GUIDE SIMPLE
+═══════════════════════════════════════════════════════════════
+
+📍 SITE À UTILISER : https://www.pexels.com
+
+⏱️  TEMPS : 5 minutes par image = 75 minutes total
+
+═══════════════════════════════════════════════════════════════
+
+🎯 ÉTAPE 1 : OUVRIR PEXELS
+───────────────────────────────────────────────────────────────
+
+1. Ouvrez votre navigateur (Chrome, Firefox, Edge...)
+2. Allez sur : https://www.pexels.com
+3. Vous êtes prêt !
+
+═══════════════════════════════════════════════════════════════
+
+🔍 ÉTAPE 2 : CHERCHER UNE IMAGE (Exemple)
+───────────────────────────────────────────────────────────────
+
+EXEMPLE : Pour "hero-construction-pont.jpg"
+
+1. Dans la barre de recherche Pexels, tapez :
+   → "bridge construction"
+
+2. Appuyez sur Entrée
+
+3. Vous verrez des dizaines de photos de ponts !
+
+4. Cliquez sur une photo qui vous plaît
+
+5. Cliquez sur le bouton vert "Download"
+
+6. Choisissez "Large" (2000px)
+
+7. Le fichier se télécharge dans votre dossier Téléchargements
+
+═══════════════════════════════════════════════════════════════
+
+✏️  ÉTAPE 3 : RENOMMER LE FICHIER
+───────────────────────────────────────────────────────────────
+
+1. Allez dans votre dossier Téléchargements
+
+2. Trouvez le fichier (exemple : pexels-john-123456.jpg)
+
+3. Clic droit → Renommer
+
+4. Tapez le nouveau nom : hero-construction-pont.jpg
+
+5. Appuyez sur Entrée
+
+═══════════════════════════════════════════════════════════════
+
+📂 ÉTAPE 4 : DÉPLACER DANS LE BON DOSSIER
+───────────────────────────────────────────────────────────────
+
+1. Sélectionnez le fichier renommé
+
+2. Appuyez sur Ctrl+X (pour couper)
+
+3. Ouvrez ce dossier :
+   c:\PROJET\dyg-BTP\DYG-BTP\frontend\public\images\
+
+4. Appuyez sur Ctrl+V (pour coller)
+
+5. ✅ Première image terminée !
+
+═══════════════════════════════════════════════════════════════
+
+📝 LISTE COMPLÈTE DES 15 IMAGES + MOTS-CLÉS
+───────────────────────────────────────────────────────────────
+
+🏗️ SECTION HERO
+───────────────────────────────────────────────────────────────
+☐ 1. hero-construction-pont.jpg
+   Cherchez : "bridge construction"
+
+☐ 2. hero-route.jpg
+   Cherchez : "highway"
+
+☐ 3. hero-batiment.jpg
+   Cherchez : "building construction"
+
+═══════════════════════════════════════════════════════════════
+
+👥 SECTION À PROPOS
+───────────────────────────────────────────────────────────────
+☐ 4. about-equipe.jpg
+   Cherchez : "construction team"
+
+☐ 5. about-chantier.jpg
+   Cherchez : "construction site"
+
+═══════════════════════════════════════════════════════════════
+
+🎯 SECTION DOMAINES
+───────────────────────────────────────────────────────────────
+☐ 6. domaine-batiments.jpg
+   Cherchez : "modern building"
+
+☐ 7. domaine-routes.jpg
+   Cherchez : "highway aerial"
+
+☐ 8. domaine-topographie.jpg
+   Cherchez : "construction equipment"
+
+═══════════════════════════════════════════════════════════════
+
+📁 SECTION PROJETS
+───────────────────────────────────────────────────────────────
+☐ 9. projet-pont.jpg
+   Cherchez : "modern bridge"
+
+☐ 10. projet-immeuble.jpg
+    Cherchez : "glass building"
+
+☐ 11. projet-autoroute.jpg
+    Cherchez : "highway"
+
+═══════════════════════════════════════════════════════════════
+
+👔 SECTION ÉQUIPE (PORTRAITS)
+───────────────────────────────────────────────────────────────
+☐ 12. team-directeur.jpg
+    Cherchez : "businessman portrait"
+
+☐ 13. team-directrice.jpg
+    Cherchez : "businesswoman portrait"
+
+☐ 14. team-chef-projet.jpg
+    Cherchez : "engineer portrait"
+
+☐ 15. team-topographe.jpg
+    Cherchez : "female engineer"
+
+═══════════════════════════════════════════════════════════════
+
+🔄 RÉPÉTEZ POUR CHAQUE IMAGE
+───────────────────────────────────────────────────────────────
+
+Pour chaque image de la liste :
+
+1. Allez sur Pexels.com
+2. Cherchez avec le mot-clé indiqué
+3. Téléchargez une photo
+4. Renommez avec le nom exact
+5. Déplacez dans le dossier images/
+6. Cochez ☑ dans la liste ci-dessus
+
+═══════════════════════════════════════════════════════════════
+
+✅ APRÈS AVOIR TÉLÉCHARGÉ TOUTES LES IMAGES
+───────────────────────────────────────────────────────────────
+
+Dites-moi :
+
+"J'ai téléchargé toutes les 15 images"
+
+ou
+
+"J'ai ajouté les images dans le dossier"
+
+→ Je mettrai à jour le code HTML immédiatement ! ⚡
+
+═══════════════════════════════════════════════════════════════
+
+💡 CONSEIL IMPORTANT
+───────────────────────────────────────────────────────────────
+
+✅ Vérifiez que les noms sont EXACTEMENT corrects :
+   - hero-construction-pont.jpg (avec tirets -)
+   - about-equipe.jpg (tout en minuscules)
+   - team-directeur.jpg (pas d'espaces !)
+
+❌ Ces noms NE FONCTIONNERONT PAS :
+   - Hero-Construction-Pont.jpg (majuscules)
+   - hero_construction_pont.jpg (underscores _)
+   - hero construction pont.jpg (espaces)
+
+═══════════════════════════════════════════════════════════════
+
+⏱️  PROGRESSION ESTIMÉE
+───────────────────────────────────────────────────────────────
+
+Image 1-3 (Hero)      : 15 minutes
+Image 4-5 (À Propos)  : 10 minutes
+Image 6-8 (Domaines)  : 15 minutes
+Image 9-11 (Projets)  : 15 minutes
+Image 12-15 (Équipe)  : 20 minutes
+
+TOTAL : ~75 minutes (1h15)
+
+═══════════════════════════════════════════════════════════════
+
+🎉 VOUS ÊTES PRÊT À COMMENCER !
+
+Ouvrez Pexels.com et commencez par la première image !
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chatbot - DYG-BTP</title>
+    <link rel="stylesheet" href="dyg.css">
+    <style>
+        body {
+            padding: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-gray);
+        }
+        .test-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        .test-header h1 {
+            margin: 0 0 0.5rem 0;
+        }
+        .test-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .test-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 0.5rem;
+        }
+        .test-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .test-button.danger {
+            background: #f44336;
+        }
+        .status-box {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .status-box .status-ok {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .status-box .status-error {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .leads-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .leads-table th,
+        .leads-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .leads-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        .leads-table tr:hover {
+            background: var(--light-gray);
+        }
+        .lang-switch {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>🧪 Test Chatbot DYG-BTP</h1>
+        <p>Interface de test pour le chatbot conversationnel premium</p>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 État du système</h2>
+        <div class="status-box" id="status">
+            <div>Chargement...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎮 Actions de test</h2>
+        <button class="test-button" onclick="testOpen()">📖 Ouvrir le chatbot</button>
+        <button class="test-button" onclick="testClose()">✕ Fermer le chatbot</button>
+        <button class="test-button" onclick="testSendMessage()">💬 Envoyer un message</button>
+        <button class="test-button" onclick="testDevis()">📋 Demander un devis</button>
+        <button class="test-button" onclick="testFaq()">❓ Ouvrir FAQ</button>
+        <button class="test-button" onclick="testWhatsApp()">📱 Test WhatsApp</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🌐 Test multilingue</h2>
+        <div class="lang-switch">
+            <button class="test-button lang-btn" data-lang="fr" onclick="changeLang('fr')">🇫🇷 Français</button>
+            <button class="test-button lang-btn" data-lang="en" onclick="changeLang('en')">🇬🇧 English</button>
+        </div>
+        <p id="lang-status">Langue actuelle: <strong id="current-lang">fr</strong></p>
+    </div>
+
+    <div class="test-section">
+        <h2>📈 Leads capturés</h2>
+        <button class="test-button" onclick="showLeads()">🔄 Rafraîchir</button>
+        <button class="test-button danger" onclick="clearLeads()">🗑️ Effacer tous les leads</button>
+        <div id="leads-container"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 Configuration</h2>
+        <div class="status-box">
+            <div><strong>Nom:</strong> <span id="cfg-name"></span></div>
+            <div><strong>Organisation:</strong> <span id="cfg-org"></span></div>
+            <div><strong>WhatsApp:</strong> <span id="cfg-wa"></span></div>
+            <div><strong>Email:</strong> <span id="cfg-mail"></span></div>
+            <div><strong>API Endpoint:</strong> <span id="cfg-endpoint"></span></div>
+            <div><strong>LLM Endpoint:</strong> <span id="cfg-llm"></span></div>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <script src="chatbot.js"></script>
+
+    <script>
+        // Vérifier l'état du chatbot
+        function checkStatus() {
+            const status = document.getElementById('status');
+            const chatLoaded = !!window.DYG_CHAT;
+            
+            if (chatLoaded) {
+                status.innerHTML = `
+                    <div class="status-ok">✅ Chatbot chargé avec succès</div>
+                    <div>API disponible: window.DYG_CHAT</div>
+                    <div>Méthodes: open(), close(), sendMessage(), getLeads()</div>
+                `;
+            } else {
+                status.innerHTML = `
+                    <div class="status-error">❌ Chatbot non chargé</div>
+                    <div>Vérifiez que chatbot.js est bien présent</div>
+                `;
+            }
+        }
+
+        // Actions de test
+        function testOpen() {
+            if (window.DYG_CHAT) {
+                window.DYG_CHAT.open();
+                console.log('[Test] Chatbot ouvert');
+            } else {
+                alert('Chatbot non disponible');
+            }
+        }
+
+        function testClose() {
+            if (window.DYG_CHAT) {
+                window.DYG_CHAT.close();
+                console.log('[Test] Chatbot fermé');
+            }
+        }
+
+        function testSendMessage() {
+            if (window.DYG_CHAT) {
+                const messages = [
+                    "Bonjour",
+                    "Je veux un devis",
+                    "Quels sont vos services ?",
+                    "FAQ",
+                    "WhatsApp"
+                ];
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                window.DYG_CHAT.sendMessage(msg);
+                console.log('[Test] Message envoyé:', msg);
+            }
+        }
+
+        function testDevis() {
+            if (window.DYG_CHAT) {
+                window.DYG_CHAT.sendMessage("Je veux un devis pour un bâtiment");
+            }
+        }
+
+        function testFaq() {
+            if (window.DYG_CHAT) {
+                window.DYG_CHAT.sendMessage("FAQ");
+            }
+        }
+
+        function testWhatsApp() {
+            if (window.DYG_CHAT) {
+                window.DYG_CHAT.sendMessage("WhatsApp");
+            }
+        }
+
+        // Test multilingue
+        function changeLang(lang) {
+            localStorage.setItem("dyg_lang", lang);
+            document.getElementById("current-lang").textContent = lang;
+            
+            // Émettre l'événement de changement
+            window.dispatchEvent(new Event("dyg:langchange"));
+            
+            console.log('[Test] Langue changée:', lang);
+            alert('Langue changée en ' + (lang === 'fr' ? 'Français' : 'English') + '\nFermez et ré-ouvrez le chatbot pour voir le changement.');
+        }
+
+        // Afficher les leads
+        function showLeads() {
+            const container = document.getElementById('leads-container');
+            
+            if (!window.DYG_CHAT) {
+                container.innerHTML = '<p>Chatbot non disponible</p>';
+                return;
+            }
+
+            const leads = window.DYG_CHAT.getLeads();
+            
+            if (leads.length === 0) {
+                container.innerHTML = '<p style="padding:1rem;color:#999;">Aucun lead capturé pour le moment</p>';
+                return;
+            }
+
+            let html = '<table class="leads-table"><thead><tr>';
+            html += '<th>Date</th><th>Type</th><th>Besoin</th><th>Nom</th><th>Contact</th><th>Langue</th>';
+            html += '</tr></thead><tbody>';
+
+            leads.forEach(lead => {
+                const date = new Date(lead.ts).toLocaleString();
+                html += '<tr>';
+                html += `<td>${date}</td>`;
+                html += `<td>${lead.type || '-'}</td>`;
+                html += `<td>${lead.besoin || '-'}</td>`;
+                html += `<td>${lead.nom || '-'}</td>`;
+                html += `<td>${lead.contact || '-'}</td>`;
+                html += `<td>${lead.lang || 'fr'}</td>`;
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function clearLeads() {
+            if (confirm('Êtes-vous sûr de vouloir effacer tous les leads ?')) {
+                localStorage.removeItem('dyg_leads');
+                showLeads();
+                console.log('[Test] Leads effacés');
+            }
+        }
+
+        // Afficher la configuration
+        function showConfig() {
+            // Note: CFG n'est pas exposé, on affiche juste des valeurs de test
+            document.getElementById('cfg-name').textContent = 'Euloge';
+            document.getElementById('cfg-org').textContent = 'DYG-BTP';
+            document.getElementById('cfg-wa').textContent = '22899339658';
+            document.getElementById('cfg-mail').textContent = 'contact@dyg-btp.com';
+            document.getElementById('cfg-endpoint').textContent = window.DYG_CHAT_ENDPOINT || 'Non configuré';
+            document.getElementById('cfg-llm').textContent = window.DYG_LLM_ENDPOINT || 'Non configuré';
+        }
+
+        // Initialisation
+        setTimeout(() => {
+            checkStatus();
+            showLeads();
+            showConfig();
+            
+            const lang = localStorage.getItem("dyg_lang") || "fr";
+            document.getElementById("current-lang").textContent = lang;
+        }, 500);
+
+        console.log('='.repeat(50));
+        console.log('🧪 PAGE DE TEST CHATBOT DYG-BTP');
+        console.log('='.repeat(50));
+        console.log('API disponible: window.DYG_CHAT');
+        console.log('Méthodes:');
+        console.log('  - window.DYG_CHAT.open()');
+        console.log('  - window.DYG_CHAT.close()');
+        console.log('  - window.DYG_CHAT.sendMessage(msg)');
+        console.log('  - window.DYG_CHAT.getLeads()');
+        console.log('='.repeat(50));
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+═══════════════════════════════════════════════════════════════
+    GUIDE RAPIDE : TÉLÉCHARGER 15 IMAGES GRATUITES
+═══════════════════════════════════════════════════════════════
+
+📍 SITE RECOMMANDÉ : https://www.pexels.com
+
+🎯 OBJECTIF : Télécharger 15 photos professionnelles GRATUITES
+
+═══════════════════════════════════════════════════════════════
+
+📖 MÉTHODE SIMPLE (Pour Chaque Image)
+───────────────────────────────────────────────────────────────
+
+1️⃣ Ouvrir Pexels.com dans votre navigateur
+
+2️⃣ Chercher avec les mots-clés ci-dessous
+
+3️⃣ Cliquer sur une belle photo
+
+4️⃣ Cliquer sur le bouton vert "Download"
+
+5️⃣ Choisir "Large" (2000px)
+
+6️⃣ Renommer le fichier avec le nom exact
+
+7️⃣ Déplacer dans : 
+    c:\PROJET\dyg-BTP\DYG-BTP\frontend\public\images\
+
+═══════════════════════════════════════════════════════════════
+
+📝 LISTE DES 15 IMAGES À TÉLÉCHARGER
+───────────────────────────────────────────────────────────────
+
+🏗️ SECTION HERO (3 images)
+───────────────────────────────────────────────────────────────
+☐ 1. hero-construction-pont.jpg
+   Cherchez : "bridge construction"
+   
+☐ 2. hero-route.jpg
+   Cherchez : "highway construction"
+   
+☐ 3. hero-batiment.jpg
+   Cherchez : "building construction"
+
+═══════════════════════════════════════════════════════════════
+
+👥 SECTION À PROPOS (2 images)
+───────────────────────────────────────────────────────────────
+☐ 4. about-equipe.jpg
+   Cherchez : "construction team"
+   
+☐ 5. about-chantier.jpg
+   Cherchez : "construction site"
+
+═══════════════════════════════════════════════════════════════
+
+🎯 SECTION DOMAINES (3 images)
+───────────────────────────────────────────────────────────────
+☐ 6. domaine-batiments.jpg
+   Cherchez : "modern building"
+   
+☐ 7. domaine-routes.jpg
+   Cherchez : "highway aerial"
+   
+☐ 8. domaine-topographie.jpg
+   Cherchez : "construction equipment"
+
+═══════════════════════════════════════════════════════════════
+
+📁 SECTION PROJETS (3 images)
+───────────────────────────────────────────────────────────────
+☐ 9. projet-pont.jpg
+   Cherchez : "modern bridge"
+   
+☐ 10. projet-immeuble.jpg
+    Cherchez : "glass building"
+    
+☐ 11. projet-autoroute.jpg
+    Cherchez : "highway"
+
+═══════════════════════════════════════════════════════════════
+
+👔 SECTION ÉQUIPE (4 images - Portraits)
+───────────────────────────────────────────────────────────────
+☐ 12. team-directeur.jpg
+    Cherchez : "businessman portrait"
+    
+☐ 13. team-directrice.jpg
+    Cherchez : "businesswoman portrait"
+    
+☐ 14. team-chef-projet.jpg
+    Cherchez : "engineer portrait"
+    
+☐ 15. team-topographe.jpg
+    Cherchez : "female engineer"
+
+═══════════════════════════════════════════════════════════════
+
+⚡ APRÈS AVOIR TÉLÉCHARGÉ LES 15 IMAGES
+───────────────────────────────────────────────────────────────
+
+1. Vérifiez que tous les fichiers sont dans :
+   c:\PROJET\dyg-BTP\DYG-BTP\frontend\public\images\
+
+2. Vérifiez les noms (ils doivent être EXACTEMENT comme indiqué)
+
+3. Dites-moi : "J'ai téléchargé toutes les images"
+
+4. Je mettrai à jour le code HTML !
+
+═══════════════════════════════════════════════════════════════
+
+💡 ASTUCE RAPIDE
+───────────────────────────────────────────────────────────────
+
+Si une recherche ne donne pas de bons résultats, essayez :
+- En anglais (meilleurs résultats)
+- Différentes variations de mots-clés
+- Sur Unsplash.com ou Pixabay.com
+
+═══════════════════════════════════════════════════════════════
+
+⏱️ TEMPS ESTIMÉ : 30-45 minutes pour les 15 images
+
+🎉 VOUS POUVEZ COMMENCER !
+
+═══════════════════════════════════════════════════════════════

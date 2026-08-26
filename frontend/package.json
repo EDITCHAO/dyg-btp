@@ -1,0 +1,29 @@
+{
+  "name": "dyg-btp-frontend",
+  "version": "1.0.0",
+  "description": "Site web professionnel DYG-BTP - Ingénieurs Conseils en Génie Civil",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "npx serve public -p 3000",
+    "build": "echo 'No build step required - static site'",
+    "start": "npx serve public -p 3000",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "dyg-btp",
+    "ingénieurs",
+    "génie-civil",
+    "btp",
+    "infrastructure",
+    "construction"
+  ],
+  "author": "DYG-BTP",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

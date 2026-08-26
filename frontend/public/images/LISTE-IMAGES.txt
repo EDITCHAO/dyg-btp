@@ -1,0 +1,55 @@
+═══════════════════════════════════════════════════
+  LISTE DES 15 IMAGES À PLACER DANS CE DOSSIER
+═══════════════════════════════════════════════════
+
+📍 Emplacement : frontend/public/images/
+
+───────────────────────────────────────────────────
+SECTION HERO (Accueil)
+───────────────────────────────────────────────────
+☐ hero-construction-pont.jpg
+☐ hero-route.jpg
+☐ hero-batiment.jpg
+
+───────────────────────────────────────────────────
+SECTION À PROPOS
+───────────────────────────────────────────────────
+☐ about-equipe.jpg
+☐ about-chantier.jpg
+
+───────────────────────────────────────────────────
+SECTION DOMAINES
+───────────────────────────────────────────────────
+☐ domaine-batiments.jpg
+☐ domaine-routes.jpg
+☐ domaine-topographie.jpg
+
+───────────────────────────────────────────────────
+SECTION PROJETS
+───────────────────────────────────────────────────
+☐ projet-pont.jpg
+☐ projet-immeuble.jpg
+☐ projet-autoroute.jpg
+
+───────────────────────────────────────────────────
+SECTION ÉQUIPE (Portraits)
+───────────────────────────────────────────────────
+☐ team-directeur.jpg
+☐ team-directrice.jpg
+☐ team-chef-projet.jpg
+☐ team-topographe.jpg
+
+═══════════════════════════════════════════════════
+
+⚠️  IMPORTANT : 
+   Les noms doivent être EXACTEMENT comme indiqué !
+   Format : JPG ou PNG
+   
+📏 Dimensions recommandées :
+   - Hero/Domaines/Projets : 800x600px
+   - À Propos : 600x400px
+   - Portraits : 400x400px (carré)
+
+📖 Voir IMAGES-A-AJOUTER.md pour plus de détails
+
+═══════════════════════════════════════════════════

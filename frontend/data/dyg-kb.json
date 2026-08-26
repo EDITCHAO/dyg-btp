@@ -1,0 +1,270 @@
+{
+  "entity": {
+    "legalName": "DYG-BTP — Ingénieurs Conseils",
+    "shortName": "DYG-BTP",
+    "founded": "2004",
+    "yearsExperience": 20,
+    "projectsDelivered": 150,
+    "headquarters": {
+      "building": "Siège Social",
+      "street": "Avenue Principale",
+      "city": "Ville",
+      "country": "Pays"
+    },
+    "contacts": {
+      "phone_fixed": "+123 456 7890",
+      "phone_mobile": "+123 456 7891",
+      "email_pro": "contact@dyg-btp.com",
+      "website": "https://www.dyg-btp.com"
+    },
+    "hours": {
+      "mon_fri": "8h-18h",
+      "sat": "8h-12h"
+    }
+  },
+  
+  "certification": {
+    "iso9001": {
+      "referential": "ISO 9001:2015",
+      "scope_fr": "Études et Contrôle en Génie Civil",
+      "scope_en": "Studies and Control in Civil Engineering",
+      "valid_from": "2020-01-01",
+      "valid_until": "2025-12-31"
+    }
+  },
+  
+  "accreditations_state": {
+    "items": [
+      {
+        "number": "02 001",
+        "domain": "Bâtiments",
+        "category": "A2"
+      },
+      {
+        "number": "04 001",
+        "domain": "Hydraulique & Assainissement",
+        "category": "A2"
+      },
+      {
+        "number": "06 001",
+        "domain": "Infrastructures routières",
+        "category": "A2"
+      }
+    ],
+    "decree": "Arrêté interministériel — République"
+  },
+  
+  "domains": [
+    {
+      "id": "bat",
+      "name_fr": "Bâtiments & Construction",
+      "name_en": "Buildings & Construction",
+      "subtitle_fr": "Ingénierie Civile • Architecture",
+      "subtitle_en": "Civil Engineering • Architecture",
+      "accreditation": "02 001",
+      "expertise": [
+        "Immeubles IGH/ERP",
+        "Villas et habitats planifiés",
+        "Établissements hôteliers et hospitaliers",
+        "Pôles industriels",
+        "Infrastructures universitaires et scolaires",
+        "Terminaux de transport"
+      ]
+    },
+    {
+      "id": "route",
+      "name_fr": "Infrastructures routières",
+      "name_en": "Road Infrastructure",
+      "subtitle_fr": "Routes • VRD",
+      "subtitle_en": "Roads • Site development",
+      "accreditation": "06 001",
+      "expertise": [
+        "Ponts & Chaussées",
+        "Ouvrages de drainage/assainissement",
+        "Ouvrages d'art et de franchissement",
+        "Ouvrages de protection et signalisation",
+        "Postes de péage/pesage"
+      ]
+    },
+    {
+      "id": "topo",
+      "name_fr": "Topographie",
+      "name_en": "Surveying",
+      "subtitle_fr": "Relevés • Mesures • Implantations",
+      "subtitle_en": "Surveys • Measurements • Siting",
+      "accreditation": "",
+      "expertise": [
+        "Relevés topographiques",
+        "Implantations de chantiers",
+        "Calculs de volumes et cubatures",
+        "Contrôles de nivellement",
+        "Levés de plans et bornages"
+      ]
+    }
+  ],
+  
+  "services": [
+    {
+      "n": "S1",
+      "name": "Études de faisabilité"
+    },
+    {
+      "n": "S2",
+      "name": "Études techniques détaillées"
+    },
+    {
+      "n": "S3",
+      "name": "Contrôle et supervision de travaux"
+    },
+    {
+      "n": "S4",
+      "name": "Maîtrise d'œuvre"
+    },
+    {
+      "n": "S5",
+      "name": "Expertise et conseil technique"
+    },
+    {
+      "n": "S6",
+      "name": "Topographie et géomatique"
+    }
+  ],
+  
+  "values": [
+    {
+      "name": "Excellence",
+      "punch": "La qualité comme référence",
+      "desc": "Nous visons l'excellence dans chaque projet, avec des standards élevés et une certification ISO 9001:2015."
+    },
+    {
+      "name": "Expertise",
+      "punch": "20 ans d'expérience",
+      "desc": "Une équipe d'ingénieurs qualifiés avec plus de 20 ans d'expérience dans le génie civil."
+    },
+    {
+      "name": "Fiabilité",
+      "punch": "Votre partenaire de confiance",
+      "desc": "Des délais respectés, une qualité garantie et un suivi rigoureux de chaque projet."
+    }
+  ],
+  
+  "quality_policy": {
+    "commitment": "Satisfaction client et amélioration continue",
+    "sections": [
+      {
+        "n": 1,
+        "title": "Engagement qualité",
+        "content": "DYG-BTP s'engage à fournir des prestations conformes aux exigences réglementaires et aux attentes clients."
+      },
+      {
+        "n": 2,
+        "title": "Amélioration continue",
+        "content": "Nous mettons en œuvre une démarche d'amélioration continue de nos processus et compétences."
+      },
+      {
+        "n": 3,
+        "title": "Conformité ISO 9001",
+        "content": "Notre système de management de la qualité est certifié ISO 9001:2015."
+      }
+    ]
+  },
+  
+  "zones": {
+    "primary": "localement",
+    "sphere": "la région",
+    "regional": ["Zone 1", "Zone 2", "Zone 3"],
+    "extended": "zones limitrophes",
+    "clients_types": [
+      "Administrations publiques",
+      "Collectivités locales",
+      "Entreprises privées",
+      "Bailleurs de fonds internationaux",
+      "Particuliers"
+    ]
+  },
+  
+  "references": {
+    "Bâtiments": [
+      {
+        "n": 1,
+        "title": "Immeuble de bureaux R+5",
+        "client": "Entreprise ABC"
+      },
+      {
+        "n": 2,
+        "title": "Centre hospitalier",
+        "client": "Ministère de la Santé"
+      }
+    ],
+    "Infrastructures routières": [
+      {
+        "n": 1,
+        "title": "Route nationale 10 km",
+        "client": "Ministère des Infrastructures"
+      },
+      {
+        "n": 2,
+        "title": "Pont métallique 50m",
+        "client": "Collectivité XYZ"
+      }
+    ],
+    "Topographie": [
+      {
+        "n": 1,
+        "title": "Levé topographique 100 ha",
+        "client": "Promoteur immobilier"
+      }
+    ]
+  },
+  
+  "faq": [
+    {
+      "q": "Quels types de projets DYG-BTP prend-il en charge ?",
+      "a": "DYG-BTP intervient en bâtiments (IGH, ERP, villas, hôtels, hôpitaux, écoles), infrastructures routières (routes, ponts, ouvrages d'art) et topographie (relevés, implantations, calculs de volumes).",
+      "tags": ["services", "domaines", "projets"]
+    },
+    {
+      "q": "Vos qualifications officielles ?",
+      "a": "DYG-BTP est certifié ISO 9001:2015 en Études et Contrôle en Génie Civil. Nous intervenons en tant qu'ingénieurs-conseils depuis 2004.",
+      "tags": ["certification", "qualifications", "ISO"]
+    },
+    {
+      "q": "Intervenez-vous en dehors de votre région ?",
+      "a": "Oui, DYG-BTP est actif localement et développe des partenariats stratégiques pour une présence accrue dans la région.",
+      "tags": ["zones", "intervention", "géographie"]
+    },
+    {
+      "q": "Comment se déroule une mission de contrôle de travaux ?",
+      "a": "Une mission de contrôle s'articule autour de la vérification de la conformité technique, du suivi de l'avancement, du contrôle qualité et financier, avec rapports périodiques jusqu'à la réception des travaux.",
+      "tags": ["contrôle", "supervision", "mission"]
+    },
+    {
+      "q": "Comment obtenir un devis ?",
+      "a": "Via le chatbot du site, le formulaire de contact, par téléphone, WhatsApp ou email à contact@dyg-btp.com. Réponse adaptée sous 24h.",
+      "tags": ["devis", "contact", "tarif"]
+    },
+    {
+      "q": "Quels sont vos délais de réponse ?",
+      "a": "Nous répondons sous 24h pour une demande de devis, et dans les 48h pour les demandes techniques détaillées.",
+      "tags": ["délai", "réponse", "contact"]
+    },
+    {
+      "q": "Travaillez-vous avec des bailleurs de fonds ?",
+      "a": "Oui, DYG-BTP accompagne des projets financés par des administrations publiques, collectivités et bailleurs internationaux.",
+      "tags": ["bailleurs", "financement", "projets"]
+    }
+  ],
+  
+  "keywords_synonyms": {
+    "devis": ["tarif", "prix", "coût", "offre", "estimation"],
+    "bâtiment": ["construction", "immeuble", "édifice", "building"],
+    "route": ["voirie", "chaussée", "road", "infrastructure"],
+    "topographie": ["relevé", "plan", "survey", "géomètre"],
+    "contrôle": ["supervision", "suivi", "vérification", "inspection"],
+    "étude": ["analyse", "expertise", "conception", "design"],
+    "qualité": ["ISO", "certification", "norme", "standard"],
+    "projet": ["chantier", "réalisation", "ouvrage", "work"],
+    "ingénieur": ["expert", "conseil", "consultant", "engineer"],
+    "contact": ["joindre", "appeler", "email", "téléphone"]
+  }
+}

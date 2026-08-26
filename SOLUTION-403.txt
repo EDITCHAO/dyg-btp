@@ -1,0 +1,47 @@
+═══════════════════════════════════════════════════════════════
+   ⚠️  ERREUR 403 - TOKEN GITHUB EXPIRÉ
+═══════════════════════════════════════════════════════════════
+
+Votre token GitHub n'a plus les permissions.
+
+═══════════════════════════════════════════════════════════════
+   🔧 SOLUTION RAPIDE
+═══════════════════════════════════════════════════════════════
+
+1️⃣  Créer un nouveau token GitHub :
+
+    → Allez sur : https://github.com/settings/tokens
+    → Cliquez : "Generate new token (classic)"
+    → Nom : dyg-btp-push
+    → Cochez : ✅ repo (toutes les cases)
+    → Cliquez : Generate token
+    → COPIEZ le token (vous ne le verrez qu'une fois !)
+
+2️⃣  Utiliser le token :
+
+    → Double-cliquez sur : FIX-GITHUB-AUTH.bat
+    → Quand demandé, COLLEZ votre token
+    → Appuyez sur Entrée
+
+3️⃣  Vérifier :
+
+    → Allez sur : https://github.com/EDITCHAO/dyg-btp
+    → Vous devriez voir vos fichiers !
+
+═══════════════════════════════════════════════════════════════
+   📖 GUIDE COMPLET
+═══════════════════════════════════════════════════════════════
+
+Lisez : CREER-TOKEN-GITHUB.md
+
+═══════════════════════════════════════════════════════════════
+   💡 ALTERNATIVE SIMPLE
+═══════════════════════════════════════════════════════════════
+
+Si vous ne voulez pas gérer les tokens :
+
+→ Téléchargez GitHub Desktop
+→ https://desktop.github.com/
+→ C'est plus facile !
+
+═══════════════════════════════════════════════════════════════

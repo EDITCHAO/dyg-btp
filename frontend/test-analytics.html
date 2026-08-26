@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Google Analytics GA4 - DYG-BTP</title>
+    <link rel="stylesheet" href="dyg.css">
+    <style>
+        body {
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .test-section {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        .test-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .test-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .console-log {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        .console-log div {
+            margin: 0.25rem 0;
+        }
+        .log-info { color: #4ec9b0; }
+        .log-success { color: #4fc3f7; }
+        .log-warning { color: #ffb74d; }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .status-on { background: #4caf50; }
+        .status-off { background: #f44336; }
+        .status-pending { background: #ff9800; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Google Analytics GA4 - DYG-BTP</h1>
+    
+    <div class="test-section">
+        <h2>📊 État du système</h2>
+        <p>
+            <span class="status-indicator" id="status-cookies"></span>
+            <strong>Banner cookies :</strong> <span id="status-cookies-text">Chargement...</span>
+        </p>
+        <p>
+            <span class="status-indicator" id="status-analytics"></span>
+            <strong>Google Analytics :</strong> <span id="status-analytics-text">Chargement...</span>
+        </p>
+        <p>
+            <span class="status-indicator" id="status-consent"></span>
+            <strong>Consentement :</strong> <span id="status-consent-text">Chargement...</span>
+        </p>
+    </div>
+
+    <div class="test-section">
+        <h2>🎮 Actions de test</h2>
+        <button class="test-button" onclick="testAccept()">✓ Accepter les cookies</button>
+        <button class="test-button" onclick="testRefuse()">✕ Refuser les cookies</button>
+        <button class="test-button" onclick="testReset()">🔄 Réinitialiser</button>
+        <button class="test-button" onclick="testGetConsent()">📋 Voir consentement</button>
+        <button class="test-button" onclick="testDataLayer()">📊 Voir DataLayer</button>
+        <button class="test-button" onclick="clearLogs()">🗑️ Effacer logs</button>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Console des événements</h2>
+        <div class="console-log" id="console"></div>
+    </div>
+
+    <!-- Scripts dans le bon ordre -->
+    <script src="cookies.js"></script>
+    <script src="analytics.js"></script>
+
+    <script>
+        // Intercepter les console.log pour les afficher
+        const consoleEl = document.getElementById('console');
+        const originalLog = console.log;
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : a).join(' ');
+            addLog(message, 'info');
+        };
+
+        function addLog(message, type = 'info') {
+            const div = document.createElement('div');
+            const time = new Date().toLocaleTimeString();
+            div.className = `log-${type}`;
+            div.innerHTML = `[${time}] ${message}`;
+            consoleEl.appendChild(div);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
+        function clearLogs() {
+            consoleEl.innerHTML = '';
+            addLog('Console effacée', 'info');
+        }
+
+        // Actions de test
+        function testAccept() {
+            addLog('🟢 Action: Accepter les cookies', 'success');
+            window.DYG_COOKIES.accept();
+            updateStatus();
+        }
+
+        function testRefuse() {
+            addLog('🔴 Action: Refuser les cookies', 'warning');
+            window.DYG_COOKIES.refuse();
+            updateStatus();
+        }
+
+        function testReset() {
+            addLog('🔄 Action: Réinitialiser le consentement', 'warning');
+            window.DYG_COOKIES.reset();
+            setTimeout(() => {
+                location.reload();
+            }, 500);
+        }
+
+        function testGetConsent() {
+            const consent = window.DYG_COOKIES.getConsent();
+            addLog('📋 Consentement actuel: ' + JSON.stringify(consent, null, 2), 'info');
+        }
+
+        function testDataLayer() {
+            if (window.dataLayer) {
+                addLog('📊 DataLayer: ' + JSON.stringify(window.dataLayer, null, 2), 'info');
+            } else {
+                addLog('⚠️ DataLayer non disponible (Analytics non chargé)', 'warning');
+            }
+        }
+
+        // Mise à jour du statut
+        function updateStatus() {
+            // Cookies.js
+            const cookiesLoaded = !!window.DYG_COOKIES;
+            document.getElementById('status-cookies').className = 'status-indicator ' + (cookiesLoaded ? 'status-on' : 'status-off');
+            document.getElementById('status-cookies-text').textContent = cookiesLoaded ? 'Chargé ✓' : 'Non chargé ✗';
+
+            // Analytics.js
+            const analyticsLoaded = !!window.__dygGA;
+            document.getElementById('status-analytics').className = 'status-indicator ' + (analyticsLoaded ? 'status-on' : 'status-off');
+            document.getElementById('status-analytics-text').textContent = analyticsLoaded ? 'Chargé ✓' : 'Non chargé ✗';
+
+            // Consentement
+            const consent = window.DYG_CONSENT;
+            const hasConsent = consent && consent.analytics;
+            document.getElementById('status-consent').className = 'status-indicator ' + (hasConsent ? 'status-on' : 'status-off');
+            document.getElementById('status-consent-text').textContent = hasConsent ? 'Accepté ✓' : 'Refusé ou en attente';
+        }
+
+        // Écouter les changements de consentement
+        window.addEventListener('dyg:consent', function(e) {
+            addLog('🎉 Événement: dyg:consent reçu - ' + JSON.stringify(e.detail), 'success');
+            updateStatus();
+        });
+
+        // Initialisation
+        setTimeout(() => {
+            updateStatus();
+            addLog('✅ Page de test chargée', 'success');
+            addLog('💡 Astuce: Ouvrez la console du navigateur (F12) pour plus de détails', 'info');
+        }, 1000);
+
+        // Mise à jour périodique
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>

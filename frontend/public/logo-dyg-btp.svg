@@ -1,0 +1,13 @@
+<svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DYG -->
+  <text x="0" y="35" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#1a1a1a">DYG</text>
+  
+  <!-- Séparateur -->
+  <line x1="75" y1="15" x2="75" y2="40" stroke="#2c5f7f" stroke-width="2"/>
+  
+  <!-- BTP -->
+  <text x="85" y="35" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#2c5f7f">BTP</text>
+  
+  <!-- Icône construction -->
+  <rect x="0" y="40" width="180" height="2" fill="#d4af37"/>
+</svg>

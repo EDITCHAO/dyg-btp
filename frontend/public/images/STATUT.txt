@@ -1,0 +1,59 @@
+═══════════════════════════════════════════════════
+         STATUT DES IMAGES DYG-BTP
+═══════════════════════════════════════════════════
+
+📊 PROGRESSION : 3/15 images (20%)
+
+═══════════════════════════════════════════════════
+
+✅ SECTION HERO (3/3) - 100% TERMINÉ
+───────────────────────────────────────────────────
+✓ hero-construction-pont.jfif  → Ajouté & Configuré
+✓ hero-route.jfif              → Ajouté & Configuré
+✓ hero-batiment.jfif           → Ajouté & Configuré
+
+═══════════════════════════════════════════════════
+
+⏳ SECTION À PROPOS (0/2) - EN ATTENTE
+───────────────────────────────────────────────────
+☐ about-equipe.jpg/.jfif
+☐ about-chantier.jpg/.jfif
+
+═══════════════════════════════════════════════════
+
+⏳ SECTION DOMAINES (0/3) - EN ATTENTE
+───────────────────────────────────────────────────
+☐ domaine-batiments.jpg/.jfif
+☐ domaine-routes.jpg/.jfif
+☐ domaine-topographie.jpg/.jfif
+
+═══════════════════════════════════════════════════
+
+⏳ SECTION PROJETS (0/3) - EN ATTENTE
+───────────────────────────────────────────────────
+☐ projet-pont.jpg/.jfif
+☐ projet-immeuble.jpg/.jfif
+☐ projet-autoroute.jpg/.jfif
+
+═══════════════════════════════════════════════════
+
+⏳ SECTION ÉQUIPE (0/4) - EN ATTENTE
+───────────────────────────────────────────────────
+☐ team-directeur.jpg/.jfif
+☐ team-directrice.jpg/.jfif
+☐ team-chef-projet.jpg/.jfif
+☐ team-topographe.jpg/.jfif
+
+═══════════════════════════════════════════════════
+
+📍 DOSSIER : frontend/public/images/
+
+💡 FORMAT ACCEPTÉ : .jpg, .jfif, .png
+
+🚀 PROCHAINE ÉTAPE : 
+   Ajoutez les 12 images restantes et dites-le moi
+   pour que je mette à jour le code HTML !
+
+═══════════════════════════════════════════════════
+Dernière mise à jour : 17 août 2026
+═══════════════════════════════════════════════════
