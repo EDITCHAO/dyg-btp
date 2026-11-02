@@ -162,6 +162,7 @@
     <!-- Font Awesome & Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/dyg.css">
+    <link rel="stylesheet" href="css/main.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -172,41 +173,54 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <a href="#accueil">
-                    <img src="logo-dyg-btp.png" alt="DYG-BTP - Ingénieurs Conseils en Génie Civil" title="DYG-BTP - Accueil">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#accueil" data-i18n="nav.home">Accueil</a></li>
-                <li><a href="#apropos" data-i18n="nav.about">À propos</a></li>
-                <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
-                <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
-                <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
-                <li><a href="#carriere" data-i18n="nav.career">Carrière</a></li>
-            </ul>
-            <div class="nav-right">
-                <div class="lang-switch">
-                    <button class="lang-btn active" data-lang="fr">FR</button>
-                    <span style="font-size: 0.7rem; opacity: 0.5;">/</span>
-                    <button class="lang-btn" data-lang="en">EN</button>
+    <!-- Navigation Professionnelle -->
+    <div class="nav-wrapper">
+        <nav>
+            <div class="nav-container">
+                <!-- Logo Section -->
+                <div class="nav-logo">
+                    <a href="#accueil" aria-label="DYG-BTP - Retour à l'accueil">
+                        <img src="logo-dyg-btp.png" alt="DYG-BTP - Ingénieurs Conseils en Génie Civil" width="110" height="110">
+                    </a>
                 </div>
-                <a href="#devis" class="cta-button" data-i18n="nav.quote">Demander un devis</a>
-                <div class="burger">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
+                
+                <!-- Menu de Navigation -->
+                <ul class="nav-menu" role="navigation" aria-label="Menu principal">
+                    <li><a href="#accueil" class="active" data-i18n="nav.home">Accueil</a></li>
+                    <li><a href="#apropos" data-i18n="nav.about">À propos</a></li>
+                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+                    <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
+                    <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                    <li><a href="#carriere" data-i18n="nav.career">Carrière</a></li>
+                </ul>
+                
+                <!-- Actions Section -->
+                <div class="nav-actions">
+                    <!-- Sélecteur de Langue -->
+                    <div class="lang-switcher" role="group" aria-label="Sélection de la langue">
+                        <button class="lang-btn active" data-lang="fr" aria-label="Français" aria-pressed="true">FR</button>
+                        <button class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+                    </div>
+                    
+                    <!-- Bouton CTA -->
+                    <a href="#devis" class="nav-cta" data-i18n="nav.quote">
+                        Demander un devis
+                    </a>
+                    
+                    <!-- Menu Burger (Mobile) -->
+                    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
-    <section class="hero" id="accueil">
+    <section class="hero mt-nav" id="accueil">
         <!-- Background animé avec glows -->
         <div class="hero-bg" aria-hidden="true">
             <div class="glowA"></div>
@@ -934,6 +948,9 @@
     
     <!-- 6. Script principal du site -->
     <script src="js/dyg.js?v=2"></script>
+    
+    <!-- 7. Architecture modulaire professionnelle -->
+    <script src="js/main.js?v=1" defer></script>
     
     <!-- Curseur custom -->
     <!-- Curseur custom -->
