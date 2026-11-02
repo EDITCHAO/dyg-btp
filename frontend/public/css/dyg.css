@@ -45,7 +45,7 @@ nav {
     background: var(--white);
     box-shadow: 0 2px 15px rgba(0,0,0,0.08);
     z-index: 1000;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
@@ -71,22 +71,25 @@ nav {
     display: flex;
     align-items: center;
     text-decoration: none;
+    line-height: 0;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo a:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .logo img {
-    height: 110px;
+    height: 70px;
     width: auto;
+    max-width: 100%;
     object-fit: contain;
+    display: block;
     transition: all 0.3s ease;
 }
 
 .logo img:hover {
-    filter: brightness(1.08);
+    filter: brightness(1.05);
 }
 
 /* Navigation Links - Centre */
