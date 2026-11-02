@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparaison Tailles Logo DYG-BTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2855 0%, #2c5f7f 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a2855;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .size-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 3px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .size-card.new {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .size-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .size-card.old h3 {
+            color: #dc3545;
+        }
+        
+        .size-card.new h3 {
+            color: #28a745;
+        }
+        
+        .logo-display {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .size-label {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .old-size {
+            opacity: 0.6;
+        }
+        
+        .improvement {
+            background: #28a745;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+        }
+        
+        .device-section {
+            background: #e9ecef;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .device-section h2 {
+            color: #1a2855;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .device-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .device-card h4 {
+            color: #2c5f7f;
+            margin-bottom: 1rem;
+        }
+        
+        .device-logo {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        
+        .specs {
+            background: #fff3cd;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+        
+        .specs h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+        
+        .specs table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs th,
+        .specs td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #ffeeba;
+        }
+        
+        .specs th {
+            background: #ffeeba;
+            font-weight: 600;
+            color: #856404;
+        }
+        
+        .specs td.old {
+            color: #dc3545;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .specs td.new {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .specs td.improvement {
+            color: #17a2b8;
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #2c5f7f;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: #1a4d6d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 95, 127, 0.4);
+        }
+        
+        .btn-primary {
+            background: #28a745;
+        }
+        
+        .btn-primary:hover {
+            background: #218838;
+        }
+        
+        .action-buttons {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📏 Comparaison des Tailles du Logo</h1>
+        <p class="subtitle">Avant et Après l'Agrandissement</p>
+        
+        <!-- Navigation Desktop -->
+        <div class="comparison-grid">
+            <div class="size-card old">
+                <h3>❌ Avant (70px)</h3>
+                <div class="logo-display">
+                    <span class="size-label">70px</span>
+                    <img src="logo-dyg-btp.png" alt="Logo" style="height: 70px;">
+                </div>
+                <p>Taille originale - Navigation</p>
+            </div>
+            
+            <div class="size-card new">
+                <h3>✅ Maintenant (90px)</h3>
+                <div class="logo-display">
+                    <span class="size-label">90px</span>
+                    <img src="logo-dyg-btp.png" alt="Logo" style="height: 90px;">
+                </div>
+                <p>Nouvelle taille - Navigation</p>
+            </div>
+        </div>
+        
+        <div class="improvement">
+            🎉 Logo agrandi de +28% dans la navigation !
+        </div>
+        
+        <!-- Footer -->
+        <div class="comparison-grid">
+            <div class="size-card old">
+                <h3>❌ Avant (50px)</h3>
+                <div class="logo-display">
+                    <span class="size-label">50px</span>
+                    <img src="logo-dyg-btp.png" alt="Logo" style="height: 50px;">
+                </div>
+                <p>Taille originale - Footer</p>
+            </div>
+            
+            <div class="size-card new">
+                <h3>✅ Maintenant (70px)</h3>
+                <div class="logo-display">
+                    <span class="size-label">70px</span>
+                    <img src="logo-dyg-btp.png" alt="Logo" style="height: 70px;">
+                </div>
+                <p>Nouvelle taille - Footer</p>
+            </div>
+        </div>
+        
+        <div class="improvement">
+            🎉 Logo agrandi de +40% dans le footer !
+        </div>
+        
+        <!-- Aperçu par Device -->
+        <div class="device-section">
+            <h2>📱 Aperçu par Type d'Appareil</h2>
+            <div class="device-grid">
+                <div class="device-card">
+                    <h4>🖥️ Desktop</h4>
+                    <div class="device-logo">
+                        <img src="logo-dyg-btp.png" alt="Logo" style="height: 90px;">
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>90px</strong></p>
+                    <p style="font-size: 0.9rem; color: #666;">Écrans > 768px</p>
+                </div>
+                
+                <div class="device-card">
+                    <h4>📱 Tablet</h4>
+                    <div class="device-logo">
+                        <img src="logo-dyg-btp.png" alt="Logo" style="height: 70px;">
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>70px</strong></p>
+                    <p style="font-size: 0.9rem; color: #666;">Écrans 481-768px</p>
+                </div>
+                
+                <div class="device-card">
+                    <h4>📱 Mobile</h4>
+                    <div class="device-logo">
+                        <img src="logo-dyg-btp.png" alt="Logo" style="height: 50px;">
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>50px</strong></p>
+                    <p style="font-size: 0.9rem; color: #666;">Écrans < 480px</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tableau des Spécifications -->
+        <div class="specs">
+            <h3>📊 Tableau Récapitulatif</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Emplacement</th>
+                        <th>Avant</th>
+                        <th>Après</th>
+                        <th>Amélioration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Navigation (Desktop)</strong></td>
+                        <td class="old">70px</td>
+                        <td class="new">90px</td>
+                        <td class="improvement">+28%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Footer (Desktop)</strong></td>
+                        <td class="old">50px</td>
+                        <td class="new">70px</td>
+                        <td class="improvement">+40%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile</strong></td>
+                        <td class="old">35px</td>
+                        <td class="new">50px</td>
+                        <td class="improvement">+43%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Actions -->
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-primary">✅ Voir le Site Complet</a>
+            <a href="test-logo.html" class="btn">🧪 Test Complet du Logo</a>
+            <a href="http://localhost:3000" class="btn">🔄 Recharger la Page</a>
+        </div>
+    </div>
+</body>
+</html>

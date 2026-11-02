@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Logo DYG-BTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a2855;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .logo-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .logo-card h3 {
+            margin-bottom: 1.5rem;
+            color: #1a2855;
+            font-size: 1.2rem;
+        }
+        
+        .logo-display {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-display img {
+            max-width: 100%;
+            height: auto;
+            max-height: 120px;
+        }
+        
+        .logo-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .demo-section {
+            background: #1a2855;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+        
+        .demo-section h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .demo-nav {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-nav img {
+            height: 70px;
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-nav img:hover {
+            transform: scale(1.05);
+        }
+        
+        .demo-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            color: #1a2855;
+            font-weight: 600;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 2rem;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .next-steps {
+            background: #fff3cd;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 2px solid #ffeeba;
+        }
+        
+        .next-steps h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+        
+        .next-steps ol {
+            color: #856404;
+            padding-left: 1.5rem;
+        }
+        
+        .next-steps li {
+            margin: 0.5rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Test du Logo DYG-BTP</h1>
+        
+        <div class="logo-grid">
+            <div class="logo-card">
+                <h3>Logo Principal (PNG)</h3>
+                <div class="logo-display">
+                    <img src="logo-dyg-btp.png" alt="Logo DYG-BTP PNG" id="logo-png">
+                </div>
+                <div class="logo-info">
+                    <div id="png-status">Chargement...</div>
+                </div>
+            </div>
+            
+            <div class="logo-card">
+                <h3>Logo Vectoriel Pro (SVG)</h3>
+                <div class="logo-display">
+                    <img src="logo-dyg-btp-pro.svg" alt="Logo DYG-BTP Pro SVG" id="logo-svg-pro">
+                </div>
+                <div class="logo-info">
+                    <div id="svg-pro-status">Chargement...</div>
+                </div>
+            </div>
+            
+            <div class="logo-card">
+                <h3>Logo Simple (SVG)</h3>
+                <div class="logo-display">
+                    <img src="logo-dyg-btp.svg" alt="Logo DYG-BTP Simple SVG" id="logo-svg">
+                </div>
+                <div class="logo-info">
+                    <div id="svg-status">Chargement...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>Aperçu dans la Navigation</h2>
+            <div class="demo-nav">
+                <img src="logo-dyg-btp.png" alt="Logo DYG-BTP" id="demo-logo">
+                <ul class="demo-menu">
+                    <li>Accueil</li>
+                    <li>À propos</li>
+                    <li>Services</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="success-message" id="success-msg" style="display: none;">
+            ✅ Tous les logos sont chargés avec succès !
+        </div>
+        
+        <div class="next-steps">
+            <h3>📋 Prochaines Étapes</h3>
+            <ol>
+                <li>✅ Logo intégré dans le code</li>
+                <li>✅ Logo PNG ajouté (votre design professionnel)</li>
+                <li>✅ CSS optimisé avec effets premium</li>
+                <li>🔄 Créer un token GitHub</li>
+                <li>🔄 Pousser vers GitHub</li>
+                <li>🔄 Déployer sur Vercel</li>
+            </ol>
+            <br>
+            <a href="index.html" class="btn">Voir le Site Complet →</a>
+        </div>
+    </div>
+    
+    <script>
+        // Test de chargement des logos
+        function testLogo(imgId, statusId, filename) {
+            const img = document.getElementById(imgId);
+            const status = document.getElementById(statusId);
+            
+            img.onload = function() {
+                status.innerHTML = `<span class="status success">✓ Chargé</span><br>
+                    Dimensions: ${this.naturalWidth} × ${this.naturalHeight}px`;
+                checkAllLoaded();
+            };
+            
+            img.onerror = function() {
+                status.innerHTML = `<span class="status error">✗ Erreur</span><br>
+                    Fichier non trouvé: ${filename}`;
+            };
+        }
+        
+        testLogo('logo-png', 'png-status', 'logo-dyg-btp.png');
+        testLogo('logo-svg-pro', 'svg-pro-status', 'logo-dyg-btp-pro.svg');
+        testLogo('logo-svg', 'svg-status', 'logo-dyg-btp.svg');
+        
+        let loadedCount = 0;
+        function checkAllLoaded() {
+            loadedCount++;
+            if (loadedCount === 3) {
+                document.getElementById('success-msg').style.display = 'block';
+            }
+        }
+        
+        // Test du logo de démo
+        document.getElementById('demo-logo').onerror = function() {
+            this.src = 'logo-dyg-btp-pro.svg';
+        };
+    </script>
+</body>
+</html>
