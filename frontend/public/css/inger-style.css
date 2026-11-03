@@ -1,0 +1,959 @@
+/* ========================================================
+   DYG-BTP — INGER Editorial Aesthetic & Animation Engine
+   Directly inspired by www.inger-group.com
+   Featuring: Floating Pill Navbar, Bento Grid, Editorial Serif Typography,
+   Staggered Levitation Hero, Hover Micro-interactions, 3D Tilt
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+:root {
+    --bg-inger: #F7F5F0;
+    --card-inger: #FFFFFF;
+    --card-inger-subtle: #F0EDE5;
+    --border-inger: rgba(0, 0, 0, 0.06);
+    --border-inger-light: rgba(220, 218, 210, 0.85);
+    
+    --ink-inger: #15171C;
+    --ink-muted: #5C626A;
+    --ink-light: #8E949D;
+    
+    --accent-steel: #2C5F7F;
+    --accent-steel-light: #8FB9CE;
+    --accent-green: #27AE60;
+    
+    --font-serif: 'Newsreader', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --radius-pill: 9999px;
+    --radius-card: 28px;
+    --radius-card-lg: 36px;
+}
+
+/* BASE OVERRIDE FOR INGER CLEAN LOOK */
+body {
+    background-color: var(--bg-inger) !important;
+    color: var(--ink-inger);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================================
+   1. FLOATING PILL NAVBAR (Photos 1, 2, 3, 4)
+   ======================================================== */
+.nav-wrapper {
+    position: fixed !important;
+    top: 0.75rem !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0 1.25rem !important;
+    pointer-events: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-wrapper nav {
+    pointer-events: auto !important;
+    max-width: 1540px !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--border-inger-light) !important;
+    border-radius: var(--radius-pill) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+    padding: 0.3rem 1.4rem !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.nav-wrapper.scrolled nav {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.03) !important;
+    transform: translateY(-2px);
+}
+
+.nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    gap: 1.25rem !important;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.nav-logo img {
+    height: 32px !important;
+    width: auto !important;
+}
+
+.nav-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-brand-title {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 0.98rem;
+    color: var(--ink-inger);
+    letter-spacing: -0.3px;
+    line-height: 1;
+}
+
+.nav-brand-sub {
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    color: var(--ink-light);
+    margin-top: 1px;
+}
+
+/* Nav links styling */
+.nav-menu {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.35rem !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-menu li a {
+    color: var(--ink-muted) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    padding: 0.3rem 0.15rem !important;
+    position: relative !important;
+    transition: color 0.25s ease !important;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    color: var(--ink-inger) !important;
+    font-weight: 600 !important;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--ink-inger);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-menu li a:hover::after,
+.nav-menu li a.active::after {
+    width: 100%;
+}
+
+/* Actions: Language pill + Black Pill CTA */
+.nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+.lang-switcher {
+    display: inline-flex !important;
+    background: #EBE8DF !important;
+    border-radius: var(--radius-pill) !important;
+    padding: 2px !important;
+    border: none !important;
+}
+
+.lang-btn {
+    border: none !important;
+    background: transparent !important;
+    color: var(--ink-muted) !important;
+    font-weight: 600 !important;
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
+    border-radius: var(--radius-pill) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.lang-btn.active {
+    background: var(--ink-inger) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+}
+
+/* Black pill CTA button (from INGER header) */
+.nav-cta, .btn-inger-primary {
+    background: var(--ink-inger) !important;
+    color: #fff !important;
+    border-radius: var(--radius-pill) !important;
+    padding: 0.48rem 1.25rem !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    text-decoration: none !important;
+    transition: var(--transition-smooth) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
+}
+
+.nav-cta:hover, .btn-inger-primary:hover {
+    background: #000 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
+    color: #fff !important;
+}
+
+.nav-cta span.arrow, .btn-inger-primary span.arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.nav-cta:hover span.arrow, .btn-inger-primary:hover span.arrow {
+    transform: translateX(4px);
+}
+
+.btn-inger-secondary {
+    background: var(--card-inger);
+    color: var(--ink-inger);
+    border: 1px solid var(--border-inger-light);
+    border-radius: var(--radius-pill);
+    padding: 0.48rem 1.25rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.btn-inger-secondary:hover {
+    border-color: var(--ink-inger);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* ========================================================
+   2. HERO SECTION — ARCHITECTURAL EDITORIAL (Photo 2)
+   ======================================================== */
+.hero {
+    position: relative !important;
+    background: var(--bg-inger) !important;
+    padding: 10.5rem 0 5.5rem !important;
+    overflow: hidden !important;
+}
+
+/* Background blueprint architectural grid & golden ratio */
+.hero-bg {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    pointer-events: none !important;
+    opacity: 0.35 !important;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px) !important;
+    background-size: 60px 60px !important;
+    z-index: 1 !important;
+}
+
+.hero-spiral-watermark {
+    position: absolute;
+    top: -50px;
+    right: 15%;
+    width: 650px;
+    height: 650px;
+    pointer-events: none;
+    opacity: 0.12;
+    z-index: 1;
+    animation: rotateWatermark 120s linear infinite;
+}
+
+@keyframes rotateWatermark {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero-container {
+    position: relative !important;
+    z-index: 2 !important;
+    max-width: 1540px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    display: grid !important;
+    grid-template-columns: 1.12fr 0.88fr !important;
+    gap: 3rem !important;
+    align-items: center !important;
+}
+
+/* Hero Typography (from Photo 2: "Réaliser, ensemble") */
+.hero h1 {
+    font-family: var(--font-serif) !important;
+    font-size: clamp(3.4rem, 6.5vw, 6.2rem) !important;
+    font-weight: 400 !important;
+    line-height: 1.02 !important;
+    color: var(--ink-inger) !important;
+    letter-spacing: -0.03em !important;
+    margin-bottom: 2rem !important;
+}
+
+.hero h1 em, .hero h1 span.hero-italic {
+    font-style: italic !important;
+    font-family: var(--font-serif) !important;
+    font-weight: 400 !important;
+    color: var(--ink-inger) !important;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem !important;
+    color: var(--ink-muted) !important;
+    line-height: 1.75 !important;
+    max-width: 520px !important;
+    margin-bottom: 1.25rem !important;
+    font-weight: 400 !important;
+}
+
+.hero-cert-note {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.hero-cert-note strong {
+    color: var(--ink-inger);
+    font-weight: 600;
+}
+
+.hero-buttons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    margin-top: 1rem !important;
+}
+
+/* Hero Visual Composition — 2-Column Staggered Cluster (Photo 2 INGER) */
+.hero-visual-cluster {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 630px;
+    margin-left: auto;
+}
+
+/* Left column: 2 stacked cards */
+.cluster-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 270px;
+    flex-shrink: 0;
+}
+
+/* Right column: 1 tall card shifted down */
+.cluster-col-right {
+    width: 330px;
+    flex-shrink: 0;
+    margin-top: 2.75rem; /* Stagger: Building starts below top of road */
+}
+
+/* Base card styling */
+.cluster-card {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.03);
+    border: 3px solid #FFFFFF;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    cursor: pointer;
+    background: #E8E6DF;
+}
+
+.cluster-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cluster-card:hover img {
+    transform: scale(1.06);
+}
+
+.cluster-card:hover {
+    box-shadow: 0 26px 56px rgba(0, 0, 0, 0.16);
+    z-index: 5;
+}
+
+/* 1. Road Card (Top left horizontal) */
+.cluster-card-road {
+    width: calc(100% - 25px);
+    margin-left: 25px;
+    height: 145px;
+    border-radius: 22px;
+    animation: floatLevitateA 6.5s ease-in-out infinite;
+}
+
+/* 2. Ouvrage / Pont Card (Bottom left) */
+.cluster-card-pont {
+    width: 100%;
+    height: 225px;
+    border-radius: 26px;
+    animation: floatLevitateB 7.5s ease-in-out infinite 0.7s;
+}
+
+/* 3. Modern Building Card (Right tall vertical) */
+.cluster-card-building {
+    width: 100%;
+    height: 410px;
+    border-radius: 26px;
+    animation: floatLevitateC 8.5s ease-in-out infinite 1.4s;
+}
+
+/* Precision dot marker from Photo 2 */
+.cluster-dot-marker {
+    position: absolute;
+    top: 14px;
+    right: 335px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ink-inger);
+    opacity: 0.75;
+    z-index: 10;
+}
+    height: 390px;
+    z-index: 2;
+    animation: floatLevitateC 8.5s ease-in-out infinite 1.4s;
+}
+
+/* Floating keyframe animations (Smooth Sinusoidal Oscillation) */
+@keyframes floatLevitateA {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(0.8deg); }
+}
+
+@keyframes floatLevitateB {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(14px) rotate(-1deg); }
+}
+
+@keyframes floatLevitateC {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
+}
+
+/* Architectural precision focal dot */
+.hero-focal-dot {
+    position: absolute;
+    top: 15px;
+    left: 150px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ink-inger);
+    z-index: 5;
+    opacity: 0.6;
+}
+
+/* ========================================================
+   3. BENTO GRID SECTION (Photo 1)
+   ======================================================== */
+.bento-section {
+    background: var(--bg-inger);
+    padding: 3rem 0 6.5rem;
+    position: relative;
+    z-index: 5;
+}
+
+.bento-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: auto auto;
+    gap: 1.6rem;
+}
+
+.bento-card {
+    background: var(--card-inger);
+    border-radius: var(--radius-card);
+    padding: 2.75rem 2.5rem;
+    border: 1px solid var(--border-inger-light);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.06);
+    border-color: rgba(44, 95, 127, 0.3);
+}
+
+.bento-tag {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--ink-light);
+    margin-bottom: 1.75rem;
+    display: block;
+}
+
+.bento-title-serif {
+    font-family: var(--font-serif);
+    font-size: 2.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink-inger);
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.02em;
+}
+
+.bento-subtitle {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+}
+
+/* Card 1: Raison Sociale (Left top large) */
+.bento-card-sociale {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Card 2: Creation & Experience (Right top) */
+.bento-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.bento-stat-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.bento-stat-val-date {
+    font-family: var(--font-serif);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--ink-inger);
+    line-height: 1.2;
+}
+
+.bento-stat-experience {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.bento-stat-num {
+    font-family: var(--font-serif);
+    font-size: 4.8rem;
+    font-weight: 400;
+    line-height: 0.9;
+    color: var(--ink-inger);
+    letter-spacing: -0.04em;
+}
+
+.bento-stat-unit {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--ink-inger);
+}
+
+/* Card 3: Batir Durablement */
+.bento-card-durable {
+    grid-column: 2 / 3;
+}
+
+.bento-card-durable h3 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--ink-inger);
+    margin-bottom: 0.5rem;
+}
+
+/* Card 4: Siege Social */
+.bento-card-siege {
+    grid-column: 1 / 2;
+}
+
+.bento-card-siege h3 {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--ink-inger);
+    margin-bottom: 0.6rem;
+}
+
+/* Card 5: Certifié ISO 9001 */
+.bento-card-iso {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.bento-iso-badge {
+    width: 68px;
+    height: 68px;
+    border-radius: 14px;
+    background: var(--accent-green);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.05rem;
+    line-height: 1.1;
+    flex-shrink: 0;
+    box-shadow: 0 6px 18px rgba(39, 174, 96, 0.25);
+}
+
+.bento-iso-badge span {
+    font-size: 0.72rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.bento-iso-text h3 {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--ink-inger);
+    margin-bottom: 0.25rem;
+}
+
+.bento-iso-text p {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+}
+
+/* ========================================================
+   4. SECTION À PROPOS (Photo 3)
+   ======================================================== */
+.about {
+    background: var(--bg-inger) !important;
+    padding: 6.5rem 0 5rem !important;
+}
+
+.about-inger-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.45rem 1.2rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--border-inger-light);
+    border-radius: var(--radius-pill);
+    font-size: 0.76rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-muted);
+    margin-bottom: 3rem;
+}
+
+.about-inger-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 5rem;
+    align-items: flex-start;
+}
+
+.about-inger-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink-inger);
+    letter-spacing: -0.02em;
+    margin-bottom: 2.2rem;
+}
+
+.about-inger-title em {
+    font-style: italic;
+    font-family: var(--font-serif);
+}
+
+.about-inger-image-card {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    border: 3px solid #fff;
+    position: relative;
+}
+
+.about-inger-image-card img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-inger-image-card:hover img {
+    transform: scale(1.04);
+}
+
+.about-inger-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--ink-muted);
+    margin-bottom: 2.5rem;
+}
+
+.about-inger-intro strong {
+    color: var(--ink-inger);
+}
+
+/* Numbered list rows with hover glide (from Photo 3) */
+.about-rows-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-row-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1.5rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--border-inger-light);
+    align-items: baseline;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+}
+
+.about-row-item:first-child {
+    border-top: 1px solid var(--border-inger-light);
+}
+
+.about-row-item:hover {
+    padding-left: 0.85rem;
+    border-bottom-color: var(--ink-inger);
+}
+
+.about-row-num {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--ink-light);
+    transition: all 0.3s ease;
+}
+
+.about-row-item:hover .about-row-num {
+    color: var(--ink-inger);
+    transform: translateX(4px);
+}
+
+.about-row-desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    transition: color 0.3s ease;
+}
+
+.about-row-item:hover .about-row-desc {
+    color: var(--ink-inger);
+}
+
+/* ========================================================
+   5. QUOTE / BIG STATEMENT CARD (Photo 4)
+   ======================================================== */
+.quote-statement-section {
+    background: var(--bg-inger);
+    padding: 4rem 0 6.5rem;
+    position: relative;
+}
+
+.quote-statement-card {
+    background: var(--card-inger);
+    border-radius: var(--radius-card-lg);
+    padding: 5rem 3.5rem;
+    text-align: center;
+    border: 1px solid var(--border-inger-light);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
+    position: relative;
+    max-width: 1120px;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.quote-statement-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+}
+
+.quote-symbol {
+    font-family: var(--font-serif);
+    font-size: 4.5rem;
+    line-height: 1;
+    color: rgba(44, 95, 127, 0.22);
+    margin-bottom: 1.25rem;
+    display: inline-block;
+}
+
+.quote-statement-text {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink-inger);
+    letter-spacing: -0.02em;
+}
+
+.quote-statement-text em {
+    font-style: italic;
+    color: var(--accent-steel);
+    display: block;
+    margin-top: 0.35rem;
+}
+
+/* ========================================================
+   6. DOMAINES & SERVICES CARDS REFINEMENT
+   ======================================================== */
+.domaines, .services, .expertise-section, .projects, .team, .faq {
+    background: var(--bg-inger) !important;
+}
+
+.domaine-card, .service-card, .project-card, .expertise-card, .team-card {
+    background: var(--card-inger) !important;
+    border-radius: var(--radius-card) !important;
+    border: 1px solid var(--border-inger-light) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03) !important;
+    transition: var(--transition-smooth) !important;
+    overflow: hidden;
+}
+
+.domaine-card:hover, .service-card:hover, .project-card:hover, .expertise-card:hover, .team-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.07) !important;
+    border-color: rgba(44, 95, 127, 0.25) !important;
+}
+
+.section-tag {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid var(--border-inger-light) !important;
+    border-radius: var(--radius-pill) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    color: var(--ink-muted) !important;
+}
+
+.section-title {
+    font-family: var(--font-serif) !important;
+    font-weight: 400 !important;
+    font-size: clamp(2.2rem, 4vw, 3.4rem) !important;
+    color: var(--ink-inger) !important;
+    letter-spacing: -0.02em !important;
+}
+
+.section-title em, .section-title span {
+    font-style: italic !important;
+    font-family: var(--font-serif) !important;
+}
+
+/* ========================================================
+   7. FLOATING QUICK CHAT BUTTON (Bottom right from Photo 1)
+   ======================================================== */
+.floating-chat-trigger {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--ink-inger);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.floating-chat-trigger:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ========================================================
+   8. RESPONSIVE QUERIES
+   ======================================================== */
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 3rem !important;
+    }
+    .hero-subtitle, .hero-cert-note {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-visual {
+        height: 380px !important;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-card-durable {
+        grid-column: 1 / 2;
+    }
+    .about-inger-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .nav-menu {
+        display: none !important;
+    }
+}
+

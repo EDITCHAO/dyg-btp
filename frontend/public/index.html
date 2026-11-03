@@ -159,175 +159,266 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     
+    <!-- Google Fonts INGER Typography (Serif & Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
     <!-- Font Awesome & Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/dyg.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inger-style.css">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Favicon - Logo DYG-BTP -->
+    <link rel="icon" type="image/png" href="logo-dyg-btp.png">
+    <link rel="apple-touch-icon" href="logo-dyg-btp.png">
+    <link rel="shortcut icon" href="logo-dyg-btp.png">
 </head>
 <body>
 
-    <!-- Navigation Professionnelle -->
-    <div class="nav-wrapper">
-        <nav>
-            <div class="nav-container">
-                <!-- Logo Section -->
-                <div class="nav-logo">
-                    <a href="#accueil" aria-label="DYG-BTP - Retour à l'accueil">
-                        <img src="logo-dyg-btp.png" alt="DYG-BTP - Ingénieurs Conseils en Génie Civil" width="110" height="110">
-                    </a>
-                </div>
-                
-                <!-- Menu de Navigation -->
-                <ul class="nav-menu" role="navigation" aria-label="Menu principal">
-                    <li><a href="#accueil" class="active" data-i18n="nav.home">Accueil</a></li>
-                    <li><a href="#apropos" data-i18n="nav.about">À propos</a></li>
-                    <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                    <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
-                    <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
-                    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
-                    <li><a href="#carriere" data-i18n="nav.career">Carrière</a></li>
-                </ul>
-                
-                <!-- Actions Section -->
-                <div class="nav-actions">
-                    <!-- Sélecteur de Langue -->
-                    <div class="lang-switcher" role="group" aria-label="Sélection de la langue">
-                        <button class="lang-btn active" data-lang="fr" aria-label="Français" aria-pressed="true">FR</button>
-                        <button class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
-                    </div>
-                    
-                    <!-- Bouton CTA -->
-                    <a href="#devis" class="nav-cta" data-i18n="nav.quote">
-                        Demander un devis
-                    </a>
-                    
-                    <!-- Menu Burger (Mobile) -->
-                    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <!-- ============ NAVIGATION PILL ============ -->
+    <nav class="nav" id="nav">
+      <div class="nav-inner">
 
-    <!-- Hero Section -->
-    <section class="hero mt-nav" id="accueil">
-        <!-- Background animé avec glows -->
-        <div class="hero-bg" aria-hidden="true">
-            <div class="glowA"></div>
-            <div class="glowB"></div>
+        <!-- Logo -->
+        <a href="#accueil" class="nav-logo" aria-label="DYG-BTP — Accueil">
+          <span class="nav-logo-stack">
+            <img class="nav-logo-img" src="logo-dyg-btp.png" alt="DYG-BTP" width="120" height="60">
+            <span class="nav-logo-tagline">Ingénieurs &amp; Experts Conseils</span>
+          </span>
+        </a>
+
+        <!-- Liens desktop -->
+        <div class="nav-links">
+          <a href="#apropos"    data-i18n="nav.about">À propos</a>
+          <a href="#domaines"   data-i18n="nav.skills">Savoir-faire</a>
+          <a href="#services"   data-i18n="nav.services">Services</a>
+          <a href="#projets"    data-i18n="nav.projects">Références</a>
+          <a href="#expertise"  data-i18n="nav.expertise">Expertise</a>
+          <a href="#faq"        data-i18n="nav.faq">FAQ</a>
+          <a href="#carriere"   data-i18n="nav.career">Carrière</a>
         </div>
+
+        <!-- Actions CTA -->
+        <div class="nav-cta">
+          <!-- Sélecteur langue -->
+          <div class="lang-switch" role="group" aria-label="Langue / Language">
+            <button class="lang-opt active" type="button" data-lang="fr" aria-pressed="true">FR</button>
+            <span class="lang-sep"></span>
+            <button class="lang-opt" type="button" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <!-- Bouton devis -->
+          <a href="#devis" class="btn btn-primary" data-i18n="nav.quote">Demander un devis <span class="arr">→</span></a>
+          <!-- Burger mobile -->
+          <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Menu mobile overlay -->
+    <div class="m-menu" id="mmenu" aria-hidden="true">
+      <div class="m-menu-head">
+        <span class="m-brand">DYG-BTP</span>
+        <div class="lang-switch" role="group" aria-label="Langue / Language">
+          <button class="lang-opt active" type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <span class="lang-sep"></span>
+          <button class="lang-opt" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="m-close" id="mclose" aria-label="Fermer le menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <nav class="m-links">
+        <a href="#apropos">À propos</a>
+        <a href="#domaines">Savoir-faire</a>
+        <a href="#services">Services</a>
+        <a href="#projets">Références</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#faq">FAQ</a>
+        <a href="#carriere">Carrière</a>
+        <a href="#contact">Nous contacter</a>
+      </nav>
+      <div class="m-foot">
+        <a href="#devis" class="btn btn-primary">Demander un devis <span class="arr">→</span></a>
+        <div class="m-contact">
+          <a href="tel:+22899339658">+228 99 33 96 58</a>
+          <a href="mailto:guillaumeyana91@gmail.com">guillaumeyana91@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <!-- ============ FIN NAVIGATION ============ -->
+
+    <!-- Hero Section Architecturale -->
+    <section class="hero mt-nav" id="accueil">
+        <div class="hero-bg" aria-hidden="true"></div>
+        
+        <!-- Golden Ratio Blueprint Watermark -->
+        <svg class="hero-spiral-watermark" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M 250 250 A 50 50 0 0 1 200 250 A 100 100 0 0 1 200 150 A 150 150 0 0 1 350 150 A 200 200 0 0 1 350 350 A 250 250 0 0 1 100 350" stroke="#2C5F7F" stroke-width="1.2" stroke-dasharray="4 4"/>
+            <circle cx="250" cy="250" r="3" fill="#2C5F7F"/>
+            <line x1="0" y1="250" x2="500" y2="250" stroke="#2C5F7F" stroke-width="0.8" stroke-opacity="0.3"/>
+            <line x1="250" y1="0" x2="250" y2="500" stroke="#2C5F7F" stroke-width="0.8" stroke-opacity="0.3"/>
+        </svg>
         
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badges">
-                    <div class="badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span data-i18n="hero.badge.engineers">Ingénieurs Conseils</span>
-                    </div>
-                    <div class="badge">
-                        <i class="fas fa-certificate"></i>
-                        <span data-i18n="hero.badge.iso">ISO 9001:2015</span>
-                    </div>
-                    <div class="badge">
-                        <i class="fas fa-award"></i>
-                        <span data-i18n="hero.badge.certified">Agréé par l'État</span>
-                    </div>
-                </div>
-                <h1><span data-i18n="hero.title">Construisons</span> <span data-i18n="hero.title.accent">l'avenir</span> <span data-i18n="hero.title.end">ensemble</span></h1>
-                <p class="hero-subtitle" data-i18n="hero.subtitle">
-                    Depuis 2004, DYG-BTP accompagne ses clients dans leurs projets 
+                <h1>
+                    Construire,<br>
+                    <span class="hero-italic">ensemble</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Depuis 2004, <strong>DYG-BTP</strong>, agréé par l'État, accompagne ses clients dans leurs projets 
                     d'infrastructure en Bâtiment, Routes, Topographie et Assainissement.
                 </p>
+                <p class="hero-cert-note">
+                    <strong>DYG-BTP</strong> est certifié ISO 9001 : 2015 en Études et Contrôle en Génie Civil.
+                </p>
                 <div class="hero-buttons">
-                    <a href="#projets" class="btn-primary">
-                        <i class="fas fa-folder-open"></i>
-                        <span data-i18n="hero.btn.references">Nos Références</span>
+                    <a href="#projets" class="btn-inger-primary">
+                        <span>Nos Références</span>
+                        <span class="arrow">→</span>
                     </a>
-                    <a href="#contact" class="btn-secondary">
-                        <span data-i18n="hero.btn.contact">Discuter d'un projet</span>
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="#devis" class="btn-inger-secondary">
+                        <span>Discuter d'un projet</span>
                     </a>
                 </div>
             </div>
-            <div class="hero-images hero-visual">
-                <div class="hero-img large" data-tilt>
-                    <img src="images/hero-construction-pont.jfif" alt="Construction pont moderne - Génie Civil">
+            
+            <!-- Staggered Organic Floating Cards Composition (Photo 2 INGER) -->
+            <div class="hero-visual-cluster" data-tilt>
+                <!-- Colonne Gauche : 2 cartes empilees -->
+                <div class="cluster-col-left">
+                    <div class="cluster-card cluster-card-road" title="Infrastructure Routiere">
+                        <img src="images/hero-route.jfif" alt="Infrastructure routiere - Routes DYG-BTP">
+                    </div>
+                    <div class="cluster-card cluster-card-pont" title="Genie Civil et Ouvrages d'Art">
+                        <img src="images/hero-construction-pont.jfif" alt="Construction pont moderne - Genie Civil">
+                    </div>
                 </div>
-                <div class="hero-img" data-tilt>
-                    <img src="images/hero-route.jfif" alt="Infrastructure routière - Routes">
-                </div>
-                <div class="hero-img" data-tilt>
-                    <img src="images/hero-batiment.jfif" alt="Bâtiment moderne en construction">
+
+                <!-- Point focal architectural (Repere noir Photo 2) -->
+                <div class="cluster-dot-marker" aria-hidden="true"></div>
+
+                <!-- Colonne Droite : Grande carte verticale Batiment -->
+                <div class="cluster-col-right">
+                    <div class="cluster-card cluster-card-building" title="Batiment et Siege Moderne">
+                        <img src="images/hero-batiment.jfif" alt="Batiment moderne en construction">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-item reveal">
-                <span class="stat-number">12+</span>
-                <div class="stat-label" data-i18n="stats.years">Années d'expérience</div>
-            </div>
-            <div class="stat-item reveal" data-d="1">
-                <span class="stat-number">15+</span>
-                <div class="stat-label" data-i18n="stats.projects">Projets réalisés</div>
-            </div>
-            <div class="stat-item reveal" data-d="2">
-                <span class="stat-number">05</span>
-                <div class="stat-label" data-i18n="stats.approvals">Agréments d'État</div>
+    <!-- Bento Grid Section (Photo 1 INGER) -->
+    <section class="bento-section">
+        <div class="bento-container">
+            <div class="bento-grid">
+                <!-- Card 1: Raison Sociale -->
+                <div class="bento-card bento-card-sociale">
+                    <span class="bento-tag">Raison Sociale</span>
+                    <div>
+                        <h2 class="bento-title-serif">Ingénieurs et Experts Réunis</h2>
+                        <p class="bento-subtitle">DYG-BTP SARLU, ingénieurs conseils — Génie Civil &amp; Équipements.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Creation & Experience -->
+                <div class="bento-card bento-card-stats">
+                    <div class="bento-stat-col">
+                        <span class="bento-tag">Création</span>
+                        <div class="bento-stat-val-date">Septembre<br>2004</div>
+                    </div>
+                    <div class="bento-stat-col">
+                        <span class="bento-tag">Expérience</span>
+                        <div class="bento-stat-experience">
+                            <span class="bento-stat-num" data-target="20">20</span>
+                            <span class="bento-stat-unit">ans</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Siege Social -->
+                <div class="bento-card bento-card-siege">
+                    <span class="bento-tag">Siège Social</span>
+                    <h3 class="bento-title-serif" style="font-size: 1.65rem;">Immeuble DYG-BTP — Lomé, TOGO.</h3>
+                    <p class="bento-subtitle">VAKPOSSITO, Rue AGOE NYIVE, Lomé — TOGO.<br>BP 20 441 Lomé · Agrément Catégorie A2.</p>
+                </div>
+                
+                <!-- Card 4: Batir Durablement -->
+                <div class="bento-card bento-card-durable">
+                    <span class="bento-tag">Bâtir Durablement</span>
+                    <h3 class="bento-title-serif" style="font-size: 1.65rem;">Penser les ouvrages de demain</h3>
+                    <p class="bento-subtitle">Un engagement au service des projets ambitieux, alliant sécurité parasismique, résilience climatique et respect de l'environnement.</p>
+                </div>
+                
+                <!-- Card 5: Certifié ISO 9001 -->
+                <div class="bento-card bento-card-iso" style="grid-column: 1 / -1;">
+                    <div class="bento-iso-badge">
+                        ISO<span>9001</span>
+                    </div>
+                    <div class="bento-iso-text">
+                        <span class="bento-tag" style="margin-bottom: 0.35rem;">Système de Management de la Qualité</span>
+                        <h3 class="bento-title-serif" style="font-size: 1.55rem; margin-bottom: 0.25rem;">Certifié ISO 9001:2015</h3>
+                        <p class="bento-subtitle">en Études et Contrôle en Génie Civil, Bâtiments, Infrastructures Routières et Assainissement.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Section À Propos Editoriale (Photo 3 INGER) -->
     <section class="about" id="apropos">
-        <div class="about-container">
-            <div class="about-images">
-                <div class="about-img">
-                    <img src="images/about-equipe.jpeg" alt="Équipe d'ingénieurs DYG-BTP">
+        <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+            <div class="about-inger-tag">01 / À PROPOS &nbsp;·&nbsp; DYG-BTP SARLU</div>
+            
+            <div class="about-inger-grid">
+                <div class="about-left-col">
+                    <h2 class="about-inger-title">Votre projet,<br><em>notre expertise.</em></h2>
+                    <div class="about-inger-image-card">
+                        <img src="images/about-equipe.jpeg" alt="Équipe d'ingénieurs DYG-BTP au siège">
+                    </div>
                 </div>
-                <div class="about-img">
-                    <img src="images/about-chantier.jpeg" alt="Chantier de génie civil DYG-BTP">
+                
+                <div class="about-right-col">
+                    <p class="about-inger-intro">
+                        <strong>DYG-BTP</strong> a du métier en maturation et réalisation de projets et possède 
+                        une expertise de haut niveau pour mener à bien les vôtres.
+                    </p>
+                    
+                    <div class="about-rows-list">
+                        <div class="about-row-item">
+                            <span class="about-row-num">01</span>
+                            <div class="about-row-desc">Une longue et solide expérience en maîtrise de projets, accumulée depuis l'an 2004.</div>
+                        </div>
+                        <div class="about-row-item">
+                            <span class="about-row-num">02</span>
+                            <div class="about-row-desc">Un savoir-faire efficient, fondé sur un écosystème efficace de professionnels multidisciplinaires engagés.</div>
+                        </div>
+                        <div class="about-row-item">
+                            <span class="about-row-num">03</span>
+                            <div class="about-row-desc">Un plateau technique et une infrastructure logistique modernes et performants.</div>
+                        </div>
+                        <div class="about-row-item">
+                            <span class="about-row-num">04</span>
+                            <div class="about-row-desc">Plus de 150 projets livrés avec succès au Togo et dans la sous-région ouest-africaine.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="about-content">
-                <div class="section-tag">À Propos</div>
-                <h2>Excellence et Innovation en Génie Civil</h2>
-                <p>
-                    DYG-BTP est une entreprise leader dans le domaine du génie civil, 
-                    spécialisée dans les études, le contrôle et la supervision de projets 
-                    d'infrastructure complexes.
-                </p>
-                <p>
-                    Notre équipe d'ingénieurs qualifiés et expérimentés met à votre disposition 
-                    son expertise pour garantir la réussite de vos projets.
-                </p>
-                <div class="certifications">
-                    <div class="cert-badge">
-                        <i class="fas fa-certificate"></i>
-                        <div>ISO 9001</div>
-                    </div>
-                    <div class="cert-badge">
-                        <i class="fas fa-award"></i>
-                        <div>Agréé État</div>
-                    </div>
-                    <div class="cert-badge">
-                        <i class="fas fa-shield-alt"></i>
-                        <div>Garantie Décennale</div>
-                    </div>
-                </div>
+        </div>
+    </section>
+
+    <!-- Quote Statement Card (Photo 4 INGER) -->
+    <section class="quote-statement-section">
+        <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+            <div class="quote-statement-card">
+                <span class="quote-symbol" aria-hidden="true">“</span>
+                <blockquote class="quote-statement-text">
+                    ... pour bâtir aujourd'hui,<br>
+                    <em>garantir demain.</em>
+                </blockquote>
             </div>
         </div>
     </section>
@@ -928,6 +1019,8 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Moteur d'Animations INGER -->
+    <script src="js/inger-animations.js"></script>
     <!-- 0. Ajout automatique des data-i18n -->
     <script src="js/add-translations.js?v=1"></script>
     
@@ -951,6 +1044,8 @@
     
     <!-- 7. Architecture modulaire professionnelle -->
     <script src="js/main.js?v=1" defer></script>
+    <!-- 8. Navigation Pill -->
+    <script src="js/nav.js?v=1" defer></script>
     
     <!-- Curseur custom -->
     <!-- Curseur custom -->
