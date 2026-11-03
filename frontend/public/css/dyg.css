@@ -475,20 +475,21 @@ body {
 .hero-content {
     position: relative;
     overflow: visible;
+    isolation: isolate;
 }
 
 .hero-logo-watermark {
     position: absolute;
-    bottom: -40px;
-    left: -20px;
-    width: 580px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
     height: auto;
-    opacity: 0.18;
-    filter: grayscale(0.3);
+    opacity: 0.35;
     pointer-events: none;
     user-select: none;
     z-index: 0;
-    transform: rotate(-5deg);
+    object-fit: contain;
 }
 
 /* Tout le contenu textuel au-dessus du watermark */
