@@ -1117,19 +1117,19 @@ body {
 }
 
 .about-edal-title {
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     color: #1a2855;
-    line-height: 1.3;
+    line-height: 1.2;
     margin-bottom: 1rem;
 }
 
 .about-edal-bar {
-    width: 50px;
-    height: 3px;
+    width: 60px;
+    height: 4px;
     background: #2c5f7f;
     border-radius: 2px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
 }
 
 .about-edal-intro {
@@ -1137,6 +1137,28 @@ body {
     color: #444;
     line-height: 1.8;
     margin-bottom: 2rem;
+}
+
+.about-edal-subtitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.8rem;
+}
+
+.about-edal-h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a2855;
+    margin-bottom: 1.2rem;
+    margin-top: 0;
+}
+
+.about-edal-desc {
+    font-size: 1.15rem;
+    color: #444;
+    line-height: 2;
+    margin-bottom: 2.5rem;
 }
 
 /* Liste 01 02 03 04 */
@@ -1194,23 +1216,25 @@ body {
     color: #fff;
 }
 
-/* Colonne droite — Photo */
+/* Colonne droite — Photo GRANDE */
 .about-edal-right {
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 30px rgba(26,40,85,.12);
+    box-shadow: 0 16px 50px rgba(26,40,85,.18);
+    min-height: 500px;
 }
 
 .about-edal-right img {
     width: 100%;
     height: 100%;
+    min-height: 500px;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
 }
 
 .about-edal-right:hover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 /* Tag section */
