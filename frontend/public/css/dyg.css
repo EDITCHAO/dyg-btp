@@ -93,14 +93,35 @@ body {
   text-decoration: none;
   flex-shrink: 0;
   gap: 0;
+  position: relative;     /* pour le bg watermark */
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 6px 14px 6px 14px;
 }
 
+/* Watermark logo en fond */
+.nav-logo-bg {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70px;
+  width: auto;
+  opacity: 0.07;
+  filter: grayscale(1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Contenu au-dessus du watermark */
 .nav-logo-stack {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 3px;
   line-height: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-logo-img {
