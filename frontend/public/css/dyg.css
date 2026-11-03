@@ -130,6 +130,7 @@ body {
   display: block;
   object-fit: contain;
   transition: filter .3s;
+  mix-blend-mode: multiply;
 }
 
 .nav-logo:hover .nav-logo-img { filter: brightness(1.1); }
@@ -393,14 +394,14 @@ body {
   .nav-links       { display: none; }
   .nav-burger      { display: flex; }
   .nav-logo-tagline{ font-size: 7.5px; letter-spacing: .14em; }
-  .nav-logo-img    { height: 36px; }
+  .nav-logo-img    { height: 36px; mix-blend-mode: multiply; }
 }
 
 @media (max-width: 560px) {
   .nav-cta .btn.btn-primary { display: none; }
   .nav-inner     { margin: 8px auto 0; height: 60px; }
   .nav-logo-tagline { display: none; }
-  .nav-logo-img  { height: 30px; }
+  .nav-logo-img  { height: 30px; mix-blend-mode: multiply; }
 }
 
 /* Décalage page pour nav fixe */

@@ -1,0 +1,234 @@
+/* ============================================================
+   EQUIPE.CSS — Pages Équipes DYG-BTP
+   ============================================================ */
+
+.eq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Hero de la page */
+.eq-hero {
+    background: linear-gradient(135deg, #1a2855 0%, #2c5f7f 100%);
+    padding: 4rem 0;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 4rem;
+}
+
+.eq-hero-travaux {
+    background: linear-gradient(135deg, #1a2855 0%, #3a6b45 100%);
+}
+
+.eq-hero-qhse {
+    background: linear-gradient(135deg, #2c5f7f 0%, #1a2855 100%);
+}
+
+/* Bouton retour */
+.eq-back {
+    display: inline-block;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+}
+
+.eq-back:hover {
+    color: #fff;
+}
+
+.eq-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.eq-title-sub {
+    font-size: 1.3rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+}
+
+.eq-subtitle {
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin: 1.5rem auto 0;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+/* Grille membres */
+.eq-membres-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding-bottom: 5rem;
+}
+
+/* Carte membre */
+.eq-membre-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(26,40,85,.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e8edf2;
+}
+
+.eq-membre-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(26,40,85,.14);
+}
+
+/* Photo membre */
+.eq-membre-photo {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #f0f4f8;
+}
+
+.eq-membre-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.eq-membre-card:hover .eq-membre-photo img {
+    transform: scale(1.06);
+}
+
+/* Infos membre */
+.eq-membre-info {
+    padding: 1.5rem;
+}
+
+.eq-membre-nom {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.3rem;
+}
+
+.eq-membre-poste {
+    font-size: 0.82rem;
+    color: #2c5f7f;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 0.5rem;
+}
+
+.eq-membre-email {
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.eq-membre-email i {
+    color: #2c5f7f;
+    font-size: 0.75rem;
+}
+
+.eq-membre-desc {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.65;
+}
+
+/* Badges QHSE */
+.eq-qhse-badges {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.eq-qhse-badge {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid #e8edf2;
+    transition: all 0.3s ease;
+}
+
+.eq-qhse-badge:hover {
+    border-color: #2c5f7f;
+    background: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(44,95,127,.1);
+}
+
+.eq-qhse-badge i {
+    font-size: 2rem;
+    color: #2c5f7f;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.eq-qhse-badge span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a2855;
+}
+
+/* Footer */
+.eq-footer {
+    background: #1a2855;
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.eq-footer p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.eq-footer-link {
+    color: #8fb9ce;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.eq-footer-link:hover {
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .eq-membres-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .eq-qhse-badges {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .eq-membres-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eq-qhse-badges {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .eq-hero {
+        padding: 3rem 0;
+    }
+
+    .eq-membre-photo {
+        height: 200px;
+    }
+}
