@@ -614,17 +614,81 @@
                 </p>
             </div>
         </div>
-        <div class="expertise-certification">
-            <div class="expertise-cert-container">
-                <p class="cert-text">
-                    Arrêté interministériel n° 066 / MEF-MTP-CNEBETP — République Togolaise · 20 décembre 2011
-                </p>
-                <div class="cert-links">
-                    <a href="#politique-qualite" class="cert-link">Notre Politique Qualité →</a>
-                    <a href="#certificat" class="cert-link">Voir notre certificat ↗</a>
+        <div class="expertise-certification" style="display:none"></div>
+    </section>
+
+    <!-- ============ TÉMOIGNAGES ============ -->
+    <section class="temoignages" id="temoignages">
+        <div class="temoignages-header">
+            <h2 class="temoignages-title">Témoignages</h2>
+            <p class="temoignages-sub">Quelques avis de nos clients et partenaires</p>
+        </div>
+
+        <div class="temoignages-slider-wrap">
+            <!-- Flèche gauche -->
+            <button class="temo-arrow temo-prev" aria-label="Précédent">&#8249;</button>
+
+            <!-- Piste -->
+            <div class="temo-track-outer">
+                <div class="temo-track" id="temoTrack">
+
+                    <!-- Témoignage 1 -->
+                    <div class="temo-slide">
+                        <div class="temo-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Kofi+Mensah&background=1a2855&color=fff&size=80" alt="Kofi Mensah">
+                        </div>
+                        <div class="temo-body">
+                            <p class="temo-text">« DYG-BTP a réalisé notre immeuble commercial dans les délais et avec une qualité remarquable. Leur rigueur technique et leur professionnalisme nous ont pleinement satisfaits. Je les recommande sans hésitation pour tout projet de construction. »</p>
+                            <p class="temo-name">Kofi Mensah</p>
+                            <p class="temo-role">Promoteur immobilier, Lomé</p>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 2 -->
+                    <div class="temo-slide">
+                        <div class="temo-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Afi+Dossou&background=2c5f7f&color=fff&size=80" alt="Afi Dossou">
+                        </div>
+                        <div class="temo-body">
+                            <p class="temo-text">« Nous avons fait appel à DYG-BTP pour la réhabilitation d'une route communale. Leur équipe a su s'adapter aux contraintes du terrain tout en livrant un ouvrage solide et bien fini. Un partenaire de confiance pour les collectivités. »</p>
+                            <p class="temo-name">Afi Dossou</p>
+                            <p class="temo-role">Responsable Travaux, Mairie d'Agoe</p>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 3 -->
+                    <div class="temo-slide">
+                        <div class="temo-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Yao+Koffi&background=1a2855&color=fff&size=80" alt="Yao Koffi">
+                        </div>
+                        <div class="temo-body">
+                            <p class="temo-text">« La prestation de DYG-BTP en topographie pour notre projet d'aménagement a été irréprochable. Précision, réactivité et sens du détail — leur équipe maîtrise parfaitement son métier. Nous travaillons avec eux depuis trois ans. »</p>
+                            <p class="temo-name">Yao Koffi</p>
+                            <p class="temo-role">Directeur Technique, BTP Invest</p>
+                        </div>
+                    </div>
+
+                    <!-- Témoignage 4 -->
+                    <div class="temo-slide">
+                        <div class="temo-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Aïcha+Ouédraogo&background=2c5f7f&color=fff&size=80" alt="Aïcha Ouédraogo">
+                        </div>
+                        <div class="temo-body">
+                            <p class="temo-text">« Grâce à DYG-BTP, notre réseau d'assainissement a été conçu et réalisé avec un soin exceptionnel. Leur certification ISO 9001 se ressent à chaque étape du projet : rigueur, transparence et respect des engagements. »</p>
+                            <p class="temo-name">Aïcha Ouédraogo</p>
+                            <p class="temo-role">Chef de projet, ONG Eau & Vie</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <!-- Flèche droite -->
+            <button class="temo-arrow temo-next" aria-label="Suivant">&#8250;</button>
         </div>
+
+        <!-- Indicateurs (points) -->
+        <div class="temo-dots" id="temoDots"></div>
     </section>
 
     <!-- Team Section -->
@@ -1093,6 +1157,8 @@
     <script src="js/main.js?v=1" defer></script>
     <!-- 8. Navigation Pill -->
     <script src="js/nav.js?v=1" defer></script>
+    <!-- 9. Témoignages Slider -->
+    <script src="js/temoignages.js?v=1" defer></script>
     
     <!-- Curseur custom -->
     <!-- Curseur custom -->
