@@ -474,8 +474,9 @@ body {
 /* Watermark logo dans le hero */
 .hero-content {
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     isolation: isolate;
+    min-height: 0;
 }
 
 .hero-logo-watermark {
@@ -483,7 +484,8 @@ body {
     top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 160%;
+    width: 100%;
+    max-width: 100%;
     height: auto;
     opacity: 0.55;
     pointer-events: none;
