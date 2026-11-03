@@ -1092,10 +1092,146 @@ body {
     margin-top: 0.5rem;
 }
 
-/* About Section */
+/* ============================================================
+   À PROPOS — Style EDAL (texte gauche + photo droite)
+   ============================================================ */
+
 .about {
-    background: var(--light-gray);
+    background: #fff;
     padding: 6rem 2rem;
+}
+
+.about-edal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 2.5rem;
+}
+
+/* Colonne gauche */
+.about-edal-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about-edal-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    color: #1a2855;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+.about-edal-bar {
+    width: 50px;
+    height: 3px;
+    background: #2c5f7f;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.about-edal-intro {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* Liste 01 02 03 04 */
+.about-rows-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 2.5rem;
+}
+
+.about-row-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.about-row-item:first-child {
+    border-top: 1px solid #eef0f3;
+}
+
+.about-row-num {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1a2855;
+    min-width: 36px;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+.about-row-desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Bouton Voir Plus style EDAL */
+.about-voir-plus {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border: 2px solid #1a2855;
+    border-radius: 50px;
+    color: #1a2855;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: .06em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.about-voir-plus:hover {
+    background: #1a2855;
+    color: #fff;
+}
+
+/* Colonne droite — Photo */
+.about-edal-right {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(26,40,85,.12);
+}
+
+.about-edal-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-edal-right:hover img {
+    transform: scale(1.03);
+}
+
+/* Tag section */
+.about-inger-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #2c5f7f;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .about-edal-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .about-edal-right {
+        max-height: 400px;
+    }
 }
 
 .about-container {
