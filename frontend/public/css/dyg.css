@@ -410,7 +410,7 @@ body {
 .hero {
     margin-top: 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 85px 2rem 4rem;
+    padding: 85px 2rem 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -1114,7 +1114,7 @@ body {
 
 .about {
     background: #fff;
-    padding: 6rem 2rem;
+    padding: 3rem 2rem 5rem;
 }
 
 .about-edal-grid {
