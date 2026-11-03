@@ -114,8 +114,8 @@ body {
 .nav-logo:hover .nav-logo-img { filter: brightness(1.1); }
 
 .nav-logo-tagline {
-  font-size: 8px;
-  letter-spacing: .18em;
+  font-size: 7.5px;
+  letter-spacing: .12em;
   color: var(--nav-concrete);
   text-transform: uppercase;
   font-weight: 400;
@@ -161,8 +161,13 @@ body {
 .nav-cta {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;          /* espace entre langue et bouton */
   padding-right: 6px;
+}
+
+/* Diviseur visuel entre langue et bouton */
+.nav-cta .lang-switch {
+  margin-right: 2px;
 }
 
 /* Sélecteur langue */
