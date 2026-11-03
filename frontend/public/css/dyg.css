@@ -125,7 +125,7 @@ body {
 }
 
 .nav-logo-img {
-  height: 52px;
+  height: 62px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -135,8 +135,8 @@ body {
 .nav-logo:hover .nav-logo-img { filter: brightness(1.1); }
 
 .nav-logo-tagline {
-  font-size: 7.5px;
-  letter-spacing: .12em;
+  font-size: 10px;
+  letter-spacing: .10em;
   color: var(--nav-concrete);
   text-transform: uppercase;
   font-weight: 400;
@@ -483,23 +483,20 @@ body {
     z-index: 1;
 }
 
-/* Watermark logo dans le hero */
+/* Watermark logo dans le hero — positionné dans .hero */
 .hero-content {
     position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    min-height: 0;
+    z-index: 1;
 }
 
 .hero-logo-watermark {
     position: absolute;
-    top: 65%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 220%;
-    max-width: none;
+    width: 50%;
     height: auto;
-    opacity: 0.55;
+    opacity: 0.75;
     pointer-events: none;
     user-select: none;
     z-index: 0;
@@ -527,17 +524,18 @@ body {
 .hero-content .hero-cert-note {
     color: #0d1b2a;
     font-weight: 700;
-    font-size: 1.15rem;
-    line-height: 1.8;
+    font-size: 1.2rem;
+    line-height: 1.9;
     position: relative;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.88);
-    padding: 1rem 1.4rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-    backdrop-filter: blur(6px);
-    display: inline-block;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 1.3rem 2rem;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    backdrop-filter: blur(8px);
+    display: block;
     margin-bottom: 1.5rem;
+    border-left: 4px solid #1a2855;
 }
 
 .hero-content h1 span {
