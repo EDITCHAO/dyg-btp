@@ -1,0 +1,525 @@
+/* ============================================================
+   APROPOS.CSS — Page À Propos DYG-BTP
+   Inspiré du design EDAL
+   ============================================================ */
+
+/* Container global */
+.ap-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Utilitaires */
+.ap-title-bar {
+    width: 60px;
+    height: 4px;
+    background: #2c5f7f;
+    border-radius: 2px;
+    margin: 1rem 0 2.5rem;
+}
+
+.ap-bar-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ap-section-label {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.5rem;
+}
+
+.ap-section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.5rem;
+}
+
+.ap-section-title-center {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: #1a2855;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.ap-section-sub {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 900px;
+    margin-bottom: 3rem;
+}
+
+.ap-sub-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Bouton outline */
+.ap-btn-outline {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    border: 2px solid #1a2855;
+    border-radius: 50px;
+    color: #1a2855;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: .08em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+}
+
+.ap-btn-outline:hover {
+    background: #1a2855;
+    color: #fff;
+}
+
+/* ============================================================
+   1. QUI SOMMES-NOUS
+   ============================================================ */
+
+.ap-qui-section {
+    padding: 4rem 0 5rem;
+    background: #fff;
+}
+
+.ap-qui-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 0.5rem;
+}
+
+.ap-qui-title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 1.2rem;
+}
+
+.ap-qui-text {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.9;
+    margin-bottom: 1rem;
+}
+
+/* Piliers droite : 2 colonnes */
+.ap-qui-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+}
+
+.ap-pilier-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.6rem;
+    border-bottom: 2px solid #2c5f7f;
+    padding-bottom: 0.4rem;
+    display: inline-block;
+}
+
+.ap-pilier p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   2. NOS VALEURS
+   ============================================================ */
+
+.ap-valeurs-section {
+    padding: 5rem 0;
+    background: #f9fafb;
+}
+
+.ap-valeurs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.ap-valeur-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #e8edf2;
+    transition: all 0.3s ease;
+}
+
+.ap-valeur-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(26,40,85,.1);
+    border-color: #2c5f7f;
+}
+
+.ap-valeur-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ap-valeur-card h3 i {
+    color: #2c5f7f;
+    font-size: 1rem;
+}
+
+.ap-valeur-card p {
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   3. NOS ÉQUIPES
+   ============================================================ */
+
+.ap-equipes-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.ap-equipes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.ap-equipe-card {
+    border: 1px solid #e8edf2;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.ap-equipe-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(26,40,85,.1);
+}
+
+.ap-equipe-img {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.ap-equipe-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ap-equipe-card:hover .ap-equipe-img img {
+    transform: scale(1.06);
+}
+
+/* QHSE card spéciale */
+.ap-equipe-img-qhse {
+    background: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ap-qhse-logo {
+    text-align: center;
+}
+
+.ap-qhse-main {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1a2855;
+    display: block;
+    letter-spacing: 0.1em;
+}
+
+.ap-qhse-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 0.5rem;
+}
+
+.ap-qhse-sub span {
+    font-size: 0.7rem;
+    color: #2c5f7f;
+    font-weight: 500;
+    letter-spacing: .05em;
+}
+
+.ap-equipe-body {
+    padding: 1.5rem;
+}
+
+.ap-equipe-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.ap-equipe-body p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   4. POLITIQUE QUALITÉ + 5. SST
+   ============================================================ */
+
+.ap-politique-section {
+    padding: 5rem 0;
+    background: #f9fafb;
+}
+
+.ap-sst-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.ap-politique-body {
+    max-width: 820px;
+    margin: 0 auto 3rem;
+}
+
+.ap-politique-body p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+}
+
+.ap-blockquote {
+    border-left: 4px solid #2c5f7f;
+    padding: 1rem 1.5rem;
+    background: #fff;
+    color: #444;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+
+/* 4 Axes */
+.ap-axes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.ap-axe-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border: 1px solid #e8edf2;
+    transition: all 0.3s ease;
+}
+
+.ap-axe-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(26,40,85,.1);
+    border-color: #2c5f7f;
+}
+
+.ap-axe-card i {
+    font-size: 2rem;
+    color: #2c5f7f;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.ap-axe-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.6rem;
+}
+
+.ap-axe-card p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.ap-politique-footer {
+    max-width: 820px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid #e8edf2;
+}
+
+.ap-politique-footer p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Engagements SST */
+.ap-sst-engagements {
+    max-width: 820px;
+    margin: 0 auto 3rem;
+}
+
+.ap-sst-engagements h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 1.2rem;
+}
+
+.ap-check-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.ap-check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+.ap-check-list li::before {
+    content: '✓';
+    color: #2c5f7f;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+/* Objectifs SST */
+.ap-objectifs-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.ap-objectifs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.ap-objectif-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border: 1px solid #e8edf2;
+    transition: all 0.3s ease;
+}
+
+.ap-objectif-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(26,40,85,.1);
+}
+
+.ap-objectif-card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.ap-objectif-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.6rem;
+}
+
+.ap-objectif-card p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .ap-qui-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .ap-qui-right {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ap-valeurs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ap-axes-grid,
+    .ap-objectifs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .ap-equipes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ap-qui-right {
+        grid-template-columns: 1fr;
+    }
+
+    .ap-valeurs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ap-axes-grid,
+    .ap-objectifs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ap-section-label {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ap-axes-grid,
+    .ap-objectifs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ap-equipe-img {
+        height: 180px;
+    }
+}
