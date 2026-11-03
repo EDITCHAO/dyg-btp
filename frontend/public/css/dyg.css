@@ -404,7 +404,7 @@ body {
 }
 
 /* Décalage page pour nav fixe */
-.mt-nav { padding-top: 92px; }
+.mt-nav { padding-top: 78px; }
 
 /* Hero Section */
 .hero {
@@ -480,7 +480,7 @@ body {
 
 .hero-logo-watermark {
     position: absolute;
-    top: 72%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 160%;
