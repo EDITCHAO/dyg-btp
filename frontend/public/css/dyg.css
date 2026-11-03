@@ -467,6 +467,38 @@ body {
     line-height: 1.2;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+    position: relative;
+    z-index: 1;
+}
+
+/* Watermark logo dans le hero */
+.hero-content {
+    position: relative;
+    overflow: visible;
+}
+
+.hero-logo-watermark {
+    position: absolute;
+    bottom: -20px;
+    left: -30px;
+    width: 420px;
+    height: auto;
+    opacity: 0.06;
+    filter: grayscale(1);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    transform: rotate(-5deg);
+}
+
+/* Tout le contenu textuel au-dessus du watermark */
+.hero-content h1,
+.hero-content .hero-subtitle,
+.hero-content .hero-cert-note,
+.hero-content .hero-buttons,
+.hero-content .hero-badges {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content h1 span {
