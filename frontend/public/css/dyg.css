@@ -499,18 +499,31 @@ body {
     margin-bottom: 1.5rem;
     color: #0d1b2a;
     font-weight: 800;
-    text-shadow: 0 2px 12px rgba(255,255,255,0.8);
+    text-shadow:
+        2px  2px 0 rgba(255,255,255,0.95),
+       -2px -2px 0 rgba(255,255,255,0.95),
+        2px -2px 0 rgba(255,255,255,0.95),
+       -2px  2px 0 rgba(255,255,255,0.95),
+        0    4px 16px rgba(255,255,255,0.9);
     position: relative;
     z-index: 1;
 }
 
 .hero-content .hero-subtitle,
 .hero-content .hero-cert-note {
-    color: #1a2855;
-    font-weight: 500;
-    text-shadow: 0 1px 8px rgba(255,255,255,0.9);
+    color: #0d1b2a;
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.8;
     position: relative;
     z-index: 1;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 1rem 1.4rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    backdrop-filter: blur(6px);
+    display: inline-block;
+    margin-bottom: 1.5rem;
 }
 
 .hero-content h1 span {
@@ -548,6 +561,9 @@ body {
 .hero-buttons {
     display: flex;
     gap: 1rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
 }
 
 .btn-primary {
