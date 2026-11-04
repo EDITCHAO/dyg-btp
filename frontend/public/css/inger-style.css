@@ -1108,3 +1108,220 @@ body {
         justify-content: center;
     }
 }
+
+/* ============================================================
+   DOMAINES V2 — Design UX/UI Premium
+   ============================================================ */
+
+.domaines-v2 {
+    background: #f5f7fa;
+    padding: 5rem 0;
+}
+
+/* Header compact */
+.dv2-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+    padding: 0 2rem;
+}
+
+.dv2-label {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #2c5f7f;
+    background: rgba(44,95,127,.08);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.dv2-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+}
+
+.dv2-sub {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Grille 3 colonnes */
+.dv2-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Carte domaine */
+.dv2-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(26,40,85,.07);
+    transition: all 0.35s cubic-bezier(.23,1,.32,1);
+    border: 1px solid #e8edf2;
+}
+
+.dv2-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(26,40,85,.13);
+}
+
+.dv2-card-dark {
+    background: #1a2855;
+    border-color: #1a2855;
+}
+
+.dv2-card-dark .dv2-body {
+    color: #fff;
+}
+
+.dv2-card-dark .dv2-name {
+    color: #fff;
+}
+
+.dv2-card-dark .dv2-tagline {
+    color: rgba(255,255,255,.65);
+}
+
+.dv2-card-dark .dv2-list li {
+    color: rgba(255,255,255,.85);
+    border-bottom-color: rgba(255,255,255,.08);
+}
+
+.dv2-card-dark .dv2-icon {
+    background: rgba(255,255,255,.1);
+    color: #8fb9ce;
+}
+
+.dv2-card-dark .dv2-list li i {
+    color: #8fb9ce;
+}
+
+/* Image */
+.dv2-img-wrap {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.dv2-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.dv2-card:hover .dv2-img-wrap img {
+    transform: scale(1.07);
+}
+
+.dv2-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,40,85,.6) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 1.2rem;
+}
+
+.dv2-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,.25);
+    line-height: 1;
+    letter-spacing: -.02em;
+}
+
+/* Corps */
+.dv2-body {
+    padding: 1.5rem 1.5rem 1.8rem;
+}
+
+.dv2-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(44,95,127,.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c5f7f;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.dv2-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.3rem;
+}
+
+.dv2-tagline {
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    letter-spacing: .03em;
+}
+
+.dv2-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.dv2-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: #555;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid #f0f2f5;
+    line-height: 1.4;
+}
+
+.dv2-list li:last-child {
+    border-bottom: none;
+}
+
+.dv2-list li i {
+    color: #2c5f7f;
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dv2-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    .dv2-grid {
+        padding: 0 1rem;
+    }
+
+    .dv2-img-wrap {
+        height: 160px;
+    }
+}
