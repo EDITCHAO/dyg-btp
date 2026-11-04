@@ -1907,3 +1907,222 @@ body {
     .proj-item { height: 220px; }
     .proj-header { padding: 0 1rem; }
 }
+
+/* ============================================================
+   FAQ V2 — Design UX/UI Premium
+   ============================================================ */
+
+.faq-v2 {
+    background: #f5f7fa;
+    padding: 5rem 0;
+}
+
+.faq2-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+/* Colonne gauche */
+.faq2-aside {
+    position: sticky;
+    top: 100px;
+}
+
+.faq2-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #2c5f7f;
+    background: rgba(44,95,127,.1);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(44,95,127,.15);
+}
+
+.faq2-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: #1a2855;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+}
+
+.faq2-title em {
+    font-style: italic;
+    color: #2c5f7f;
+}
+
+.faq2-desc {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.faq2-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: #1a2855;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    margin-bottom: 2.5rem;
+}
+
+.faq2-cta:hover {
+    background: #2c5f7f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,40,85,.25);
+}
+
+.faq2-cta i {
+    transition: transform 0.3s ease;
+}
+
+.faq2-cta:hover i {
+    transform: translateX(4px);
+}
+
+/* Stats */
+.faq2-stats {
+    display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e5ec;
+}
+
+.faq2-stat-num {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a2855;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.faq2-stat-lbl {
+    font-size: 0.82rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-weight: 500;
+}
+
+/* Accordéon */
+.faq2-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.faq2-item {
+    border-bottom: 1px solid #e0e5ec;
+}
+
+.faq2-item:first-child {
+    border-top: 1px solid #e0e5ec;
+}
+
+.faq2-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.faq2-q:hover .faq2-q-text {
+    color: #2c5f7f;
+}
+
+.faq2-q-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a2855;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+    flex: 1;
+}
+
+.faq2-q-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid #d0d7e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a2855;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.faq2-item.open .faq2-q-icon {
+    background: #1a2855;
+    border-color: #1a2855;
+    color: #fff;
+    transform: rotate(45deg);
+}
+
+.faq2-item.open .faq2-q-text {
+    color: #2c5f7f;
+}
+
+/* Réponse */
+.faq2-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(.23,1,.32,1);
+}
+
+.faq2-item.open .faq2-a {
+    max-height: 300px;
+}
+
+.faq2-a p {
+    padding: 0 0 1.4rem;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .faq2-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .faq2-aside {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .faq2-container {
+        padding: 0 1rem;
+    }
+    .faq2-title {
+        font-size: 1.8rem;
+    }
+}
