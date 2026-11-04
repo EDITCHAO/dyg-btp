@@ -2126,3 +2126,362 @@ body {
         font-size: 1.8rem;
     }
 }
+
+/* ============================================================
+   CONTACT V2 — Design UX/UI Premium
+   ============================================================ */
+
+.contact-v2 {
+    background: #fff;
+    padding: 5rem 0;
+}
+
+.cv2-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* En-tête */
+.cv2-header {
+    margin-bottom: 3.5rem;
+}
+
+.cv2-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #2c5f7f;
+    background: rgba(44,95,127,.1);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(44,95,127,.15);
+}
+
+.cv2-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.5rem;
+}
+
+.cv2-title em {
+    font-style: italic;
+    color: #2c5f7f;
+}
+
+.cv2-sub {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Grid 2 colonnes */
+.cv2-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Infos contact */
+.cv2-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.cv2-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid #eef0f4;
+}
+
+.cv2-info-card:first-child {
+    border-top: 1px solid #eef0f4;
+}
+
+.cv2-info-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(44,95,127,.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c5f7f;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.cv2-info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.4rem;
+}
+
+.cv2-info-val {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    display: block;
+}
+
+.cv2-link {
+    text-decoration: none;
+    color: #1a2855;
+    transition: color 0.2s;
+}
+
+.cv2-link:hover { color: #2c5f7f; }
+
+.cv2-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+    padding: 0.5rem 1.1rem;
+    background: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.cv2-wa-btn:hover {
+    background: #1fb855;
+    transform: translateY(-1px);
+}
+
+/* Formulaire */
+.cv2-form-wrap {
+    background: #f9fafb;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid #e8edf2;
+}
+
+.cv2-form-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a2855;
+    margin-bottom: 0.5rem;
+}
+
+.cv2-form-sub {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.cv2-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.cv2-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cv2-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cv2-field label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #444;
+    letter-spacing: .03em;
+}
+
+.cv2-required {
+    color: #e53935;
+}
+
+.cv2-field input,
+.cv2-field select,
+.cv2-field textarea {
+    padding: 0.85rem 1rem;
+    border: 1.5px solid #e0e5ec;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.cv2-field input:focus,
+.cv2-field select:focus,
+.cv2-field textarea:focus {
+    border-color: #2c5f7f;
+    box-shadow: 0 0 0 3px rgba(44,95,127,.1);
+}
+
+.cv2-privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+.cv2-privacy i {
+    color: #2c5f7f;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.cv2-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem 2.5rem;
+    background: #1a2855;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.cv2-submit:hover {
+    background: #2c5f7f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,40,85,.25);
+}
+
+.cv2-submit i {
+    transition: transform 0.3s;
+}
+
+.cv2-submit:hover i {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   CARRIÈRE V2 — Bannière premium
+   ============================================================ */
+
+.carriere-v2 {
+    background: linear-gradient(135deg, #1a2855 0%, #2c5f7f 100%);
+    padding: 4rem 0;
+}
+
+.car2-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.car2-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 0.8rem;
+}
+
+.car2-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+}
+
+.car2-title em {
+    font-style: italic;
+    color: #8fb9ce;
+}
+
+.car2-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,.75);
+    line-height: 1.7;
+    max-width: 560px;
+}
+
+.car2-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.car2-cta:hover {
+    background: rgba(255,255,255,.22);
+    border-color: rgba(255,255,255,.6);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .cv2-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cv2-row {
+        grid-template-columns: 1fr;
+    }
+
+    .cv2-form-wrap {
+        padding: 1.5rem;
+    }
+
+    .car2-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .car2-desc {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv2-container {
+        padding: 0 1rem;
+    }
+}
