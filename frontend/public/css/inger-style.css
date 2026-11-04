@@ -1325,3 +1325,41 @@ body {
         height: 160px;
     }
 }
+
+/* ============================================================
+   DOMAINES V2 — Effets de couleur au survol
+   ============================================================ */
+
+/* Carte 1 (blanc) → bleu foncé au survol */
+.dv2-card:not(.dv2-card-dark):hover {
+    background: #1a2855;
+    border-color: #1a2855;
+}
+
+.dv2-card:not(.dv2-card-dark):hover .dv2-name {
+    color: #fff;
+}
+
+.dv2-card:not(.dv2-card-dark):hover .dv2-tagline {
+    color: rgba(255,255,255,.65);
+}
+
+.dv2-card:not(.dv2-card-dark):hover .dv2-list li {
+    color: rgba(255,255,255,.85);
+    border-bottom-color: rgba(255,255,255,.08);
+}
+
+.dv2-card:not(.dv2-card-dark):hover .dv2-icon {
+    background: rgba(255,255,255,.12);
+    color: #8fb9ce;
+}
+
+.dv2-card:not(.dv2-card-dark):hover .dv2-list li i {
+    color: #8fb9ce;
+}
+
+/* Carte 2 (bleu) → bleu acier au survol */
+.dv2-card-dark:hover {
+    background: #2c5f7f;
+    border-color: #2c5f7f;
+}
