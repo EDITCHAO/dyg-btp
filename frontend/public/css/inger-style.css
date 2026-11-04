@@ -1626,3 +1626,284 @@ body {
         padding: 1.5rem;
     }
 }
+
+/* ============================================================
+   RÉALISATIONS V2 — Style EDAL avec Lightbox
+   ============================================================ */
+
+.proj-v2 {
+    background: #fff;
+    padding: 5rem 0 0;
+}
+
+/* En-tête */
+.proj-header {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+}
+
+.proj-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: #1a2855;
+    margin-bottom: 0.8rem;
+}
+
+.proj-title-bar {
+    width: 60px;
+    height: 4px;
+    background: #2c5f7f;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+}
+
+.proj-sub {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* Grille EDAL — sans espaces */
+.proj-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 280px 280px;
+    gap: 0;
+    width: 100%;
+}
+
+/* Item de base */
+.proj-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: #1a2855;
+}
+
+/* Grande carte tall (2 rangées) */
+.proj-item-tall {
+    grid-row: span 2;
+}
+
+.proj-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+/* Overlay au survol */
+.proj-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,40,85,.0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.35s ease;
+}
+
+.proj-item:hover .proj-item-overlay {
+    background: rgba(26,40,85,.55);
+}
+
+.proj-item:hover img {
+    transform: scale(1.06);
+    filter: brightness(0.85);
+}
+
+/* Boutons d'action (zoom + lien) */
+.proj-item-actions {
+    display: flex;
+    gap: 0.8rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.35s ease;
+}
+
+.proj-item:hover .proj-item-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.proj-zoom,
+.proj-link {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.7);
+    background: rgba(255,255,255,.15);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.proj-zoom:hover,
+.proj-link:hover {
+    background: rgba(255,255,255,.3);
+    border-color: #fff;
+    transform: scale(1.1);
+}
+
+/* Étiquette en bas */
+.proj-item-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(26,40,85,.85) 0%, transparent 100%);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    padding: 1.5rem 1rem 0.8rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+}
+
+.proj-item:hover .proj-item-label {
+    transform: translateY(0);
+}
+
+/* ---- LIGHTBOX ---- */
+.proj-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.95);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.proj-lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.proj-lb-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: lbZoomIn 0.3s ease;
+}
+
+@keyframes lbZoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.proj-lb-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+
+.proj-lb-info {
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+.proj-lb-info span {
+    font-size: 0.78rem;
+    color: #8fb9ce;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.proj-lb-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Boutons lightbox */
+.proj-lb-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.4);
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100000;
+}
+
+.proj-lb-close:hover {
+    background: rgba(255,255,255,.2);
+    transform: rotate(90deg);
+}
+
+.proj-lb-prev,
+.proj-lb-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.4);
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100000;
+}
+
+.proj-lb-prev { left: 1.5rem; }
+.proj-lb-next { right: 1.5rem; }
+
+.proj-lb-prev:hover,
+.proj-lb-next:hover {
+    background: rgba(255,255,255,.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .proj-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+    .proj-item-tall { grid-row: span 1; }
+    .proj-item { height: 250px; }
+}
+
+@media (max-width: 600px) {
+    .proj-grid {
+        grid-template-columns: 1fr;
+    }
+    .proj-item { height: 220px; }
+    .proj-header { padding: 0 1rem; }
+}

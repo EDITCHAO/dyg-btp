@@ -698,35 +698,101 @@
     </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projets">
-        <div class="section-header">
-            <div class="section-tag">Portfolio</div>
-            <h2 class="section-title">Projets Réalisés</h2>
-            <p>Découvrez quelques-uns de nos projets phares</p>
+    <!-- Projects Section — Style EDAL avec Lightbox -->
+    <section class="proj-v2" id="projets">
+
+        <!-- En-tête -->
+        <div class="proj-header">
+            <h2 class="proj-title">Nos Réalisations</h2>
+            <div class="proj-title-bar"></div>
+            <p class="proj-sub">Nous vous présentons quelques unes de nos réalisations</p>
         </div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="images/projet-pont.jfif" alt="Pont Autoroutier - Projet DYG-BTP">
-                <div class="project-overlay">
-                    <div class="project-category">Infrastructure</div>
-                    <h3 class="project-title">Pont Autoroutier</h3>
+
+        <!-- Grille EDAL — sans espaces -->
+        <div class="proj-grid">
+
+            <div class="proj-item" data-title="Pont Autoroutier" data-cat="Infrastructure">
+                <img src="images/projet-pont.jfif" alt="Pont Autoroutier - DYG-BTP">
+                <div class="proj-item-overlay">
+                    <div class="proj-item-actions">
+                        <button class="proj-zoom" aria-label="Agrandir"><i class="fas fa-expand"></i></button>
+                        <button class="proj-link" aria-label="Voir détail"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="proj-item-label">PONT AUTOROUTIER</div>
                 </div>
             </div>
-            <div class="project-card">
-                <img src="images/projet-immeuble.jfif" alt="Immeuble Commercial - Projet DYG-BTP">
-                <div class="project-overlay">
-                    <div class="project-category">Bâtiment</div>
-                    <h3 class="project-title">Immeuble Commercial</h3>
+
+            <div class="proj-item" data-title="Immeuble Commercial" data-cat="Bâtiment">
+                <img src="images/projet-immeuble.jfif" alt="Immeuble Commercial - DYG-BTP">
+                <div class="proj-item-overlay">
+                    <div class="proj-item-actions">
+                        <button class="proj-zoom" aria-label="Agrandir"><i class="fas fa-expand"></i></button>
+                        <button class="proj-link" aria-label="Voir détail"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="proj-item-label">CONSTRUCTION D'UN IMMEUBLE</div>
                 </div>
             </div>
-            <div class="project-card">
-                <img src="images/projet-autoroute.jfif" alt="Autoroute Urbaine - Projet DYG-BTP">
-                <div class="project-overlay">
-                    <div class="project-category">Route</div>
-                    <h3 class="project-title">Autoroute Urbaine</h3>
+
+            <div class="proj-item proj-item-tall" data-title="Résidence Hôtelière" data-cat="Bâtiment">
+                <img src="images/hero-batiment.jfif" alt="Résidence Hôtelière - DYG-BTP">
+                <div class="proj-item-overlay">
+                    <div class="proj-item-actions">
+                        <button class="proj-zoom" aria-label="Agrandir"><i class="fas fa-expand"></i></button>
+                        <button class="proj-link" aria-label="Voir détail"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="proj-item-label">PROJET RÉSIDENCE HÔTELIÈRE</div>
+                </div>
+            </div>
+
+            <div class="proj-item" data-title="Autoroute Urbaine" data-cat="Route">
+                <img src="images/projet-autoroute.jfif" alt="Autoroute Urbaine - DYG-BTP">
+                <div class="proj-item-overlay">
+                    <div class="proj-item-actions">
+                        <button class="proj-zoom" aria-label="Agrandir"><i class="fas fa-expand"></i></button>
+                        <button class="proj-link" aria-label="Voir détail"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="proj-item-label">AUTOROUTE URBAINE</div>
+                </div>
+            </div>
+
+            <div class="proj-item" data-title="Infrastructure Routière" data-cat="Route">
+                <img src="images/hero-route.jfif" alt="Infrastructure Routière - DYG-BTP">
+                <div class="proj-item-overlay">
+                    <div class="proj-item-actions">
+                        <button class="proj-zoom" aria-label="Agrandir"><i class="fas fa-expand"></i></button>
+                        <button class="proj-link" aria-label="Voir détail"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="proj-item-label">INFRASTRUCTURE ROUTIÈRE</div>
+                </div>
+            </div>
+
+            <div class="proj-item" data-title="Ouvrage d'Art" data-cat="Infrastructure">
+                <img src="images/hero-construction-pont.jfif" alt="Ouvrage d'Art - DYG-BTP">
+                <div class="proj-item-overlay">
+                    <div class="proj-item-actions">
+                        <button class="proj-zoom" aria-label="Agrandir"><i class="fas fa-expand"></i></button>
+                        <button class="proj-link" aria-label="Voir détail"><i class="fas fa-link"></i></button>
+                    </div>
+                    <div class="proj-item-label">OUVRAGE D'ART</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Lightbox -->
+        <div class="proj-lightbox" id="projLightbox" aria-hidden="true">
+            <button class="proj-lb-close" id="projLbClose" aria-label="Fermer"><i class="fas fa-times"></i></button>
+            <button class="proj-lb-prev" id="projLbPrev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <button class="proj-lb-next" id="projLbNext" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+            <div class="proj-lb-content">
+                <img src="" alt="" id="projLbImg">
+                <div class="proj-lb-info">
+                    <span id="projLbCat"></span>
+                    <h3 id="projLbTitle"></h3>
                 </div>
             </div>
         </div>
+
     </section>
 
     <!-- Expertise Section — Design UX/UI Premium -->
@@ -1163,6 +1229,8 @@
     <script src="js/nav.js?v=1" defer></script>
     <!-- 9. Témoignages Slider -->
     <script src="js/temoignages.js?v=1" defer></script>
+    <!-- 10. Réalisations Lightbox -->
+    <script src="js/realisations.js?v=1" defer></script>
     
     <!-- Curseur custom -->
     <!-- Curseur custom -->
