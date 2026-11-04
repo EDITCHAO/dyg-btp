@@ -354,43 +354,45 @@ body {
     margin-top: 1rem !important;
 }
 
-/* Hero Visual Composition — 2-Column Staggered Cluster (Photo 2 INGER) */
+/* ============================================================
+   HERO VISUAL CLUSTER — Redesign UX/UI Premium
+   Layout : 2 colonnes, 3 images bien proportionnées
+   ============================================================ */
+
 .hero-visual-cluster {
     position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    gap: 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    align-items: start;
+    gap: 1rem;
     width: 100%;
-    max-width: 630px;
+    max-width: 620px;
     margin-left: auto;
 }
 
-/* Left column: 2 stacked cards */
+/* Left column: 2 cartes empilées */
 .cluster-col-left {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    width: 270px;
-    flex-shrink: 0;
+    gap: 1rem;
 }
 
-/* Right column: 1 tall card shifted down */
+/* Right column: 1 grande carte verticale */
 .cluster-col-right {
-    width: 330px;
-    flex-shrink: 0;
-    margin-top: 2.75rem; /* Stagger: Building starts below top of road */
+    margin-top: 2.5rem;
 }
 
-/* Base card styling */
+/* Base card */
 .cluster-card {
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.03);
-    border: 3px solid #FFFFFF;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    box-shadow: 0 12px 32px rgba(26,40,85,.12);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.4s ease;
     cursor: pointer;
-    background: #E8E6DF;
+    background: #e8e6df;
 }
 
 .cluster-card img {
@@ -398,41 +400,68 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cluster-card:hover img {
-    transform: scale(1.06);
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
 
 .cluster-card:hover {
-    box-shadow: 0 26px 56px rgba(0, 0, 0, 0.16);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 24px 50px rgba(26,40,85,.18);
     z-index: 5;
 }
 
-/* 1. Road Card (Top left horizontal) */
+.cluster-card:hover img {
+    transform: scale(1.07);
+}
+
+/* Label overlay sur chaque image */
+.cluster-card::after {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(26,40,85,.65);
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    backdrop-filter: blur(6px);
+}
+
+/* 1. Route — petite carte haut gauche */
 .cluster-card-road {
-    width: calc(100% - 25px);
-    margin-left: 25px;
-    height: 145px;
-    border-radius: 22px;
+    height: 150px;
     animation: floatLevitateA 6.5s ease-in-out infinite;
 }
 
-/* 2. Ouvrage / Pont Card (Bottom left) */
+.cluster-card-road::after {
+    content: 'Routes & VRD';
+}
+
+/* 2. Pont/Infrastructure — grande carte bas gauche */
 .cluster-card-pont {
-    width: 100%;
-    height: 225px;
-    border-radius: 26px;
+    height: 230px;
     animation: floatLevitateB 7.5s ease-in-out infinite 0.7s;
 }
 
-/* 3. Modern Building Card (Right tall vertical) */
+.cluster-card-pont::after {
+    content: 'Génie Civil';
+}
+
+/* 3. Bâtiment — grande carte droite */
 .cluster-card-building {
-    width: 100%;
-    height: 410px;
-    border-radius: 26px;
+    height: 405px;
     animation: floatLevitateC 8.5s ease-in-out infinite 1.4s;
+}
+
+.cluster-card-building::after {
+    content: 'Bâtiment';
+}
+
+/* Point de repère (optionnel) */
+.cluster-dot-marker {
+    display: none;
 }
 
 /* Precision dot marker from Photo 2 */
