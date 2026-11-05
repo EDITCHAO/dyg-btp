@@ -458,21 +458,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const status = document.getElementById('cf-status');
 
         // Sauvegarder dans localStorage pour le dashboard admin
+        const prenom     = fd.get('prenom') || '';
+        const nomSeul    = fd.get('nom')    || '';
+        const nomComplet = [prenom, nomSeul].filter(Boolean).join(' ') || 'Anonyme';
+
+        // Nom du fichier CV (si sélectionné)
+        const cvInput    = document.getElementById('cf-cv');
+        const cvFilename = (cvInput && cvInput.files && cvInput.files[0]) ? cvInput.files[0].name : '';
+
         const candidature = {
-            type:         'candidature',
-            poste:        fd.get('poste') || '',
-            prenom:       fd.get('prenom') || '',
-            nom:          fd.get('nom') || '',
-            email:        fd.get('email') || '',
-            telephone:    fd.get('telephone') || '',
-            experience:   fd.get('experience') || '',
-            disponibilite:fd.get('disponibilite') || '',
-            formation:    fd.get('formation') || '',
-            lettre:       fd.get('lettre') || '',
-            reference:    fd.get('reference') || '',
-            departement:  fd.get('departement') || '',
+            nom:          nomComplet,
+            email:        fd.get('email')       || '',
+            tel:          fd.get('telephone')   || '',
+            poste:        fd.get('poste')        || '',
+            opportunite:  fd.get('reference')   || fd.get('poste') || '',
+            message:      fd.get('lettre')       || '',
+            cv_filename:  cvFilename,
             date:         new Date().toISOString(),
-            statut:       'nouveau'
+            statut:       'nouveau',
+            // Champs supplémentaires conservés pour le contexte
+            experience:    fd.get('experience')    || '',
+            disponibilite: fd.get('disponibilite') || '',
+            formation:     fd.get('formation')     || '',
+            departement:   fd.get('departement')   || '',
+            lu: false
         };
 
         // Sauvegarder

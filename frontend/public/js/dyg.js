@@ -137,38 +137,73 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-// ========== Formulaire de Contact ==========
+// ========== Formulaire de Contact / Devis ==========
 (function initContactForm() {
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupérer les données du formulaire
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-            
-            // Afficher un message de confirmation
-            if (status) {
-                status.innerHTML = '<div style="color: #2c5f7f; padding: 1rem; background: #e8f4f8; border-radius: 8px; margin-top: 1rem;"><i class="fas fa-check-circle"></i> Merci ! Votre message a été envoyé. Nous vous recontacterons rapidement.</div>';
-            }
-            
-            // Réinitialiser le formulaire
-            form.reset();
-            
-            // Logger les données (en production, envoyer au serveur)
-            console.log('Formulaire soumis:', data);
-            
-            // Masquer le message après 5 secondes
-            setTimeout(() => {
-                if (status) {
-                    status.innerHTML = '';
-                }
-            }, 5000);
-        });
-    }
+
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const fd = new FormData(form);
+
+        // Normaliser le nom (prénom + nom ou juste l'un des deux)
+        const prenom = fd.get('prenom') || '';
+        const nomSeul = fd.get('nom') || '';
+        const nomComplet = [prenom, nomSeul].filter(Boolean).join(' ') || 'Anonyme';
+
+        // Entrée devis (dyg_devis) — structure attendue par le dashboard admin
+        const entreeDevis = {
+            nom:        nomComplet,
+            email:      fd.get('email') || '',
+            tel:        fd.get('telephone') || '',
+            prestation: fd.get('prestation') || '',
+            domaine:    fd.get('domaine') || '',
+            message:    fd.get('message') || '',
+            date:       new Date().toISOString(),
+            statut:     'nouveau',
+            // Champs supplémentaires conservés pour le contexte
+            organisation: fd.get('organisation') || '',
+            lu: false
+        };
+
+        // Sauvegarder dans dyg_devis
+        try {
+            const devis = JSON.parse(localStorage.getItem('dyg_devis') || '[]');
+            devis.unshift(entreeDevis);
+            localStorage.setItem('dyg_devis', JSON.stringify(devis));
+        } catch (err) {
+            console.warn('[DYG-BTP] Erreur localStorage dyg_devis :', err);
+        }
+
+        // Sauvegarder aussi dans dyg_messages (contact général)
+        try {
+            const entreeMsg = {
+                nom:     nomComplet,
+                email:   fd.get('email') || '',
+                message: fd.get('message') || '',
+                date:    new Date().toISOString(),
+                statut:  'nouveau',
+                lu: false
+            };
+            const messages = JSON.parse(localStorage.getItem('dyg_messages') || '[]');
+            messages.unshift(entreeMsg);
+            localStorage.setItem('dyg_messages', JSON.stringify(messages));
+        } catch (err) {
+            console.warn('[DYG-BTP] Erreur localStorage dyg_messages :', err);
+        }
+
+        // Réinitialiser le formulaire
+        form.reset();
+
+        // Afficher un message de confirmation
+        if (status) {
+            status.innerHTML = '<div style="color:#22c55e;font-weight:600;margin-top:.8rem"><i class="fas fa-check-circle"></i> Demande envoyée ! Nous vous recontactons sous 24h.</div>';
+            setTimeout(() => { status.innerHTML = ''; }, 5000);
+        }
+    });
 })();
 
 

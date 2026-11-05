@@ -1310,46 +1310,8 @@
     <script src="js/temoignages.js?v=1" defer></script>
     <!-- 10. Réalisations Lightbox -->
     <script src="js/realisations.js?v=1" defer></script>
-    <!-- 12. Capture formulaire → Admin Dashboard -->
+    <!-- 12. FAQ accordion -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('contact-form');
-        if (!form) return;
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const fd = new FormData(form);
-            const data = {
-                type: 'devis',
-                prenom: fd.get('prenom') || '',
-                nom: fd.get('nom') || '',
-                organisation: fd.get('organisation') || '',
-                email: fd.get('email') || '',
-                telephone: fd.get('telephone') || '',
-                prestation: fd.get('prestation') || '',
-                domaine: fd.get('domaine') || '',
-                message: fd.get('message') || '',
-                date: new Date().toISOString(),
-                statut: 'nouveau',
-                lu: false
-            };
-            // Sauvegarder dans localStorage pour le dashboard admin
-            const pending = JSON.parse(localStorage.getItem('dyg_pending_submissions') || '[]');
-            pending.push(data);
-            localStorage.setItem('dyg_pending_submissions', JSON.stringify(pending));
-            // Aussi directement dans la base admin
-            const existing = JSON.parse(localStorage.getItem('dyg_devis') || '[]');
-            existing.unshift(data);
-            localStorage.setItem('dyg_devis', JSON.stringify(existing));
-            // Feedback utilisateur
-            const status = document.getElementById('form-status');
-            if (status) {
-                status.innerHTML = '<div style="color:#22c55e;font-weight:600;margin-top:.8rem"><i class="fas fa-check-circle"></i> Demande envoyée ! Nous vous recontactons sous 24h.</div>';
-            }
-            form.reset();
-            setTimeout(() => { if (status) status.innerHTML = ''; }, 5000);
-        });
-    });
-    </script>
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.faq2-q').forEach(btn => {
             btn.addEventListener('click', () => {
