@@ -280,10 +280,12 @@ tbody tr:last-child td{border-bottom:none}
    MEDIA
    ================================================ */
 .mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
-.mi{background:var(--w);border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);cursor:pointer;transition:all .2s}
+.mi{background:var(--w);border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);cursor:pointer;transition:all .2s;position:relative}
 .mi:hover{border-color:var(--pl);box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .mi img{width:100%;height:100px;object-fit:cover}
 .mi span{display:block;padding:.35rem .55rem;font-size:.68rem;color:var(--ts);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mi-add-btn{display:none;position:absolute;bottom:.4rem;right:.4rem;font-size:.65rem;padding:.22rem .55rem;border-radius:6px}
+.mi-hov:hover .mi-add-btn{display:inline-flex}
 
 /* ================================================
    SEO FORM
@@ -362,7 +364,7 @@ tbody tr:last-child td{border-bottom:none}
       <button class="ni on" onclick="go('dashboard')"><i class="fas fa-chart-bar"></i> Tableau de bord</button>
       <button class="ni" onclick="go('pages')"><i class="fas fa-file-alt"></i> Pages statiques</button>
       <button class="ni" onclick="go('realisations')"><i class="fas fa-images"></i> Réalisations (Portfolio)</button>
-      <button class="ni" onclick="go('services')"><i class="fas fa-cog"></i> Services <span class="bdg">6</span></button>
+      <button class="ni" onclick="go('services')"><i class="fas fa-cog"></i> Services <span class="bdg">8</span></button>
       <button class="ni" onclick="go('temoignages')"><i class="fas fa-star"></i> Témoignages</button>
       <button class="ni" onclick="go('equipes')"><i class="fas fa-users"></i> Équipes</button>
       <button class="ni" onclick="go('mediatheque')"><i class="fas fa-photo-video"></i> Médiathèque</button>
@@ -479,9 +481,12 @@ tbody tr:last-child td{border-bottom:none}
     <div id="pg-realisations" class="pg">
       <div class="ph"><div><h1><i class="fas fa-images"></i> Réalisations (Portfolio)</h1><div class="ph-sub">Gestion des projets affichés sur le site</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
       <div class="cg">
-        <div class="cc"><img src="../images/projet-pont.jfif" alt=""><div class="cc-b"><span class="tg-ct">Infrastructure</span><h3>Pont Autoroutier</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
-        <div class="cc"><img src="../images/projet-immeuble.jfif" alt=""><div class="cc-b"><span class="tg-ct">Bâtiment</span><h3>Immeuble Commercial</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
-        <div class="cc"><img src="../images/projet-autoroute.jfif" alt=""><div class="cc-b"><span class="tg-ct">Route</span><h3>Autoroute Urbaine</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/projet-pont.jfif" alt="Pont Autoroutier"><div class="cc-b"><span class="tg-ct">Infrastructure</span><h3>Pont Autoroutier</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/projet-immeuble.jfif" alt="Immeuble Commercial"><div class="cc-b"><span class="tg-ct">Bâtiment</span><h3>Immeuble Commercial</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/projet-autoroute.jfif" alt="Autoroute Urbaine"><div class="cc-b"><span class="tg-ct">Route</span><h3>Autoroute Urbaine</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/projet-ecole.jfif" onerror="this.src='https://placehold.co/400x200/e2e8f0/64748b?text=École+Publique'" alt="École Publique"><div class="cc-b"><span class="tg-ct">Bâtiment</span><h3>École Publique</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/domaine-batiments.jfif" alt="Bâtiments Résidentiels"><div class="cc-b"><span class="tg-ct">Bâtiment</span><h3>Bâtiments Résidentiels</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/domaine-routes.jfif" alt="Routes & VRD"><div class="cc-b"><span class="tg-ct">Infrastructure</span><h3>Routes &amp; VRD</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
         <div class="cc-add" onclick="alert('Ajouter un projet')"><i class="fas fa-plus"></i><p>Ajouter un projet</p></div>
       </div>
     </div>
@@ -490,14 +495,16 @@ tbody tr:last-child td{border-bottom:none}
     <div id="pg-services" class="pg">
       <div class="ph"><div><h1><i class="fas fa-cog"></i> Services</h1><div class="ph-sub">Gestion des services affichés sur le site</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
       <div class="tw"><table>
-        <thead><tr><th>#</th><th>ICÔNE</th><th>SERVICE</th><th>DESCRIPTION</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <thead><tr><th>#</th><th>ICÔNE</th><th>SERVICE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td><i class="fas fa-building"></i></td><td>Construction de Bâtiments</td><td>Infrastructures modernes et durables...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
-          <tr><td>2</td><td><i class="fas fa-road"></i></td><td>Travaux Publics</td><td>Routes, ponts, réseaux d'assainissement...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
-          <tr><td>3</td><td><i class="fas fa-drafting-compass"></i></td><td>Conception Architecturale</td><td>Plans et solutions architecturales...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
-          <tr><td>4</td><td><i class="fas fa-ruler-combined"></i></td><td>Études et Réalisation</td><td>Prise en charge complète des projets...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
-          <tr><td>5</td><td><i class="fas fa-truck-moving"></i></td><td>Location d'Engins</td><td>Pelles, bulldozers, compacteurs...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
-          <tr><td>6</td><td><i class="fas fa-map-marked-alt"></i></td><td>Topographie</td><td>Relevés topographiques de précision...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+          <tr><td>1</td><td><i class="fas fa-building"></i></td><td>Construction de Bâtiments</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>2</td><td><i class="fas fa-road"></i></td><td>Travaux Publics</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>3</td><td><i class="fas fa-drafting-compass"></i></td><td>Conception Architecturale</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>4</td><td><i class="fas fa-ruler-combined"></i></td><td>Études et Réalisation</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>5</td><td><i class="fas fa-truck-moving"></i></td><td>Location d'Engins</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>6</td><td><i class="fas fa-map-marked-alt"></i></td><td>Topographie</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>7</td><td><i class="fas fa-water"></i></td><td>Travaux d'Assainissement</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
+          <tr><td>8</td><td><i class="fas fa-tint"></i></td><td>Hydraulique</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button> <button class="btn-dl">Désactiver</button></td></tr>
         </tbody>
       </table></div>
     </div>
@@ -508,21 +515,23 @@ tbody tr:last-child td{border-bottom:none}
       <div class="tw"><table>
         <thead><tr><th>NOM</th><th>RÔLE</th><th>TÉMOIGNAGE</th><th>NOTE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
         <tbody>
-          <tr><td>Kofi Mensah</td><td>Promoteur immobilier</td><td>DYG-BTP a réalisé notre immeuble dans les délais...</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
-          <tr><td>Afi Dossou</td><td>Mairie d'Agoe</td><td>DYG-BTP pour la réhabilitation d'une route...</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Kofi Mensah</td><td>Promoteur immobilier</td><td>DYG-BTP a réalisé notre immeuble dans les délais impartis avec une qualité irréprochable. Équipe professionnelle et réactive.</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Afi Dossou</td><td>Mairie d'Agoe</td><td>Nous avons fait appel à DYG-BTP pour la réhabilitation d'une route dans notre arrondissement. Résultat excellent.</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Ibrahim Traoré</td><td>Entrepreneur privé</td><td>Service de topographie très précis. Respect des délais et tarifs compétitifs. Je recommande vivement.</td><td>⭐ 4/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Marie Gbetode</td><td>Directrice d'école</td><td>Construction de notre nouveau bâtiment scolaire livrée en avance. DYG-BTP est fiable et compétent.</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
         </tbody>
       </table></div>
     </div>
 
     <!-- ÉQUIPES -->
     <div id="pg-equipes" class="pg">
-      <div class="ph"><div><h1><i class="fas fa-users"></i> Équipes</h1><div class="ph-sub">Membres affichés sur le site</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+      <div class="ph"><div><h1><i class="fas fa-users"></i> Équipes</h1><div class="ph-sub">Pages équipes du site institutionnel</div></div></div>
       <div class="tw"><table>
-        <thead><tr><th>PHOTO</th><th>NOM</th><th>POSTE</th><th>DÉPARTEMENT</th><th>EMAIL</th><th>ACTIONS</th></tr></thead>
+        <thead><tr><th>ÉQUIPE</th><th>DESCRIPTION</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
         <tbody>
-          <tr><td><div class="avsm">DG</div></td><td>Directeur Général</td><td>Direction</td><td><span class="td-ad">Administration</span></td><td>contact@dyg-btp.com</td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
-          <tr><td><div class="avsm">TC</div></td><td>Chef des Travaux</td><td>Direction Technique</td><td><span class="td-tr">Travaux</span></td><td>travaux@dyg-btp.com</td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
-          <tr><td><div class="avsm">QH</div></td><td>Responsable QHSE</td><td>Qualité & Sécurité</td><td><span class="td-qh">QHSE</span></td><td>qhse@dyg-btp.com</td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td><strong>Équipe Administration</strong></td><td>Direction et administration générale</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-administration.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir la page</a></td></tr>
+          <tr><td><strong>Équipe Travaux</strong></td><td>Conducteurs de travaux et techniciens</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-travaux.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir la page</a></td></tr>
+          <tr><td><strong>Équipe QHSE</strong></td><td>Qualité, Hygiène, Sécurité, Environnement</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-qhse.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir la page</a></td></tr>
         </tbody>
       </table></div>
     </div>
@@ -531,14 +540,15 @@ tbody tr:last-child td{border-bottom:none}
     <div id="pg-mediatheque" class="pg">
       <div class="ph"><div><h1><i class="fas fa-photo-video"></i> Médiathèque</h1><div class="ph-sub">Images et fichiers du site</div></div><button class="btn-a"><i class="fas fa-upload"></i> Uploader</button></div>
       <div class="mg">
-        <div class="mi"><img src="../images/projet-pont.jfif" alt=""><span>projet-pont.jfif</span></div>
-        <div class="mi"><img src="../images/projet-immeuble.jfif" alt=""><span>projet-immeuble.jfif</span></div>
-        <div class="mi"><img src="../images/domaine-batiments.jfif" alt=""><span>domaine-batiments.jfif</span></div>
-        <div class="mi"><img src="../images/domaine-routes.jfif" alt=""><span>domaine-routes.jfif</span></div>
-        <div class="mi"><img src="../images/hero-route.jfif" alt=""><span>hero-route.jfif</span></div>
-        <div class="mi"><img src="../images/hero-batiment.jfif" alt=""><span>hero-batiment.jfif</span></div>
-        <div class="mi"><img src="../images/equipe-administration.jfif" alt=""><span>equipe-administration.jfif</span></div>
-        <div class="mi"><img src="../images/equipe-travaux.jpeg" alt=""><span>equipe-travaux.jpeg</span></div>
+        <div class="mi mi-hov"><img src="../images/projet-pont.jfif" alt="projet-pont"><span>projet-pont.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/projet-immeuble.jfif" alt="projet-immeuble"><span>projet-immeuble.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/projet-autoroute.jfif" alt="projet-autoroute"><span>projet-autoroute.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/domaine-batiments.jfif" alt="domaine-batiments"><span>domaine-batiments.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/domaine-routes.jfif" alt="domaine-routes"><span>domaine-routes.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/hero-route.jfif" alt="hero-route"><span>hero-route.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/hero-batiment.jfif" alt="hero-batiment"><span>hero-batiment.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/equipe-administration.jfif" alt="equipe-administration"><span>equipe-administration.jfif</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+        <div class="mi mi-hov"><img src="../images/equipe-travaux.jpeg" alt="equipe-travaux"><span>equipe-travaux.jpeg</span><button class="mi-add-btn btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
       </div>
     </div>
 
@@ -582,11 +592,12 @@ tbody tr:last-child td{border-bottom:none}
       <div class="tw"><table>
         <thead><tr><th>PAGE</th><th>URL</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
         <tbody>
-          <tr><td>Accueil</td><td>/</td><td><span class="st gn">Publié</span></td><td><a href="../index.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
-          <tr><td>À propos</td><td>/apropos</td><td><span class="st gn">Publié</span></td><td><a href="../apropos.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
-          <tr><td>Équipe Administration</td><td>/equipe-administration</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-administration.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
-          <tr><td>Équipe Travaux</td><td>/equipe-travaux</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-travaux.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
-          <tr><td>Équipe QHSE</td><td>/equipe-qhse</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-qhse.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
+          <tr><td>Accueil</td><td>../index.html</td><td><span class="st gn">Publié</span></td><td><a href="../index.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a> <button class="btn-ed" disabled style="opacity:.45;cursor:not-allowed" title="Modification côté serveur requise"><i class="fas fa-edit"></i> Modifier</button></td></tr>
+          <tr><td>À propos</td><td>../apropos.html</td><td><span class="st gn">Publié</span></td><td><a href="../apropos.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a> <button class="btn-ed" disabled style="opacity:.45;cursor:not-allowed" title="Modification côté serveur requise"><i class="fas fa-edit"></i> Modifier</button></td></tr>
+          <tr><td>Carrière</td><td>../carriere.html</td><td><span class="st gn">Publié</span></td><td><a href="../carriere.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a> <button class="btn-ed" disabled style="opacity:.45;cursor:not-allowed" title="Modification côté serveur requise"><i class="fas fa-edit"></i> Modifier</button></td></tr>
+          <tr><td>Équipe Administration</td><td>../equipe-administration.html</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-administration.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a> <button class="btn-ed" disabled style="opacity:.45;cursor:not-allowed" title="Modification côté serveur requise"><i class="fas fa-edit"></i> Modifier</button></td></tr>
+          <tr><td>Équipe Travaux</td><td>../equipe-travaux.html</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-travaux.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a> <button class="btn-ed" disabled style="opacity:.45;cursor:not-allowed" title="Modification côté serveur requise"><i class="fas fa-edit"></i> Modifier</button></td></tr>
+          <tr><td>Équipe QHSE</td><td>../equipe-qhse.html</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-qhse.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a> <button class="btn-ed" disabled style="opacity:.45;cursor:not-allowed" title="Modification côté serveur requise"><i class="fas fa-edit"></i> Modifier</button></td></tr>
         </tbody>
       </table></div>
     </div>
@@ -603,6 +614,285 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </div>
 
-<script src="admin.js"></script>
+<script>
+// Navigation
+function go(id) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  const pg = document.getElementById('pg-' + id);
+  if (pg) pg.classList.add('on');
+  document.querySelectorAll('.ni').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('on');
+  });
+  addLog('Navigation vers : ' + id);
+}
+
+// Données localStorage
+function loadData() {
+  const devis = JSON.parse(localStorage.getItem('dyg_devis') || '[]');
+  const messages = JSON.parse(localStorage.getItem('dyg_messages') || '[]');
+  const candidatures = JSON.parse(localStorage.getItem('dyg_candidatures') || '[]');
+
+  // Badges sidebar
+  document.getElementById('bdg-d').textContent = devis.length;
+  document.getElementById('bdg-m').textContent = messages.length;
+  document.getElementById('bdg-c').textContent = candidatures.length;
+
+  // KPIs dashboard
+  document.getElementById('kn-d').textContent = devis.length;
+  document.getElementById('kn-m').textContent = messages.length;
+  document.getElementById('kn-s').textContent = devis.filter(d=>d.statut==='nouveau'||!d.statut).length;
+  document.getElementById('kn-c').textContent = candidatures.length;
+
+  // Tables dashboard (5 derniers)
+  renderDevisTable('tb-d', devis.slice(-5).reverse(), 7);
+  renderMessagesTable('tb-m', messages.slice(-5).reverse());
+
+  // Tables pages dédiées
+  renderDevisTable('tb-d2', devis.slice().reverse(), 9);
+  renderMessagesTableFull(messages);
+  renderCandidaturesTable(candidatures);
+}
+
+function renderDevisTable(tbId, devis, cols) {
+  const tb = document.getElementById(tbId);
+  if (!tb) return;
+  if (!devis.length) {
+    tb.innerHTML = `<tr><td colspan="${cols}" class="es"><i class="fas fa-inbox"></i><p>Aucune demande de devis</p><small>Les soumissions du formulaire apparaîtront ici</small></td></tr>`;
+    return;
+  }
+  tb.innerHTML = devis.map((d,i) => `
+    <tr>
+      <td><strong>DEV-${String(i+1).padStart(3,'0')}</strong></td>
+      <td>${escHtml(d.nom||d.name||'—')}</td>
+      <td>${escHtml(d.email||'—')}</td>
+      ${cols>7 ? `<td>${escHtml(d.tel||d.phone||'—')}</td>` : ''}
+      <td>${escHtml(d.prestation||d.service||'—')}</td>
+      ${cols>7 ? `<td>${escHtml(d.domaine||'—')}</td>` : ''}
+      <td>${escHtml(d.date ? new Date(d.date).toLocaleDateString('fr-FR') : '—')}</td>
+      <td><span class="st ${stCls(d.statut)}">${escHtml(d.statut||'nouveau')}</span></td>
+      <td><button class="btn-ed" onclick="openDevisModal(${i})"><i class="fas fa-eye"></i></button></td>
+    </tr>
+  `).join('');
+}
+
+function renderMessagesTable(tbId, messages) {
+  const tb = document.getElementById(tbId);
+  if (!tb) return;
+  if (!messages.length) {
+    tb.innerHTML = '<tr><td colspan="6" class="es"><i class="fas fa-envelope-open"></i><p>Aucun message</p></td></tr>';
+    return;
+  }
+  tb.innerHTML = messages.map((m,i) => `
+    <tr>
+      <td>${escHtml(m.nom||m.name||'—')}</td>
+      <td>${escHtml(m.email||'—')}</td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml((m.message||m.msg||'').substring(0,80))}${(m.message||m.msg||'').length>80?'…':''}</td>
+      <td>${escHtml(m.date ? new Date(m.date).toLocaleDateString('fr-FR') : '—')}</td>
+      <td><span class="st ${stCls(m.statut||'nouveau')}">${escHtml(m.statut||'nouveau')}</span></td>
+      <td><button class="btn-ed" onclick="openMsgModal(${i})"><i class="fas fa-eye"></i></button></td>
+    </tr>
+  `).join('');
+}
+
+function renderMessagesTableFull(messages) {
+  const pg = document.getElementById('pg-messages');
+  if (!pg) return;
+  const tb = pg.querySelector('tbody');
+  if (!tb) return;
+  if (!messages.length) {
+    tb.innerHTML = '<tr><td colspan="6" class="es"><i class="fas fa-envelope-open"></i><p>Aucun message</p></td></tr>';
+    return;
+  }
+  tb.innerHTML = messages.slice().reverse().map((m,i) => `
+    <tr>
+      <td>${escHtml(m.nom||m.name||'—')}</td>
+      <td>${escHtml(m.email||'—')}</td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml((m.message||m.msg||'').substring(0,80))}${(m.message||m.msg||'').length>80?'…':''}</td>
+      <td>${escHtml(m.date ? new Date(m.date).toLocaleDateString('fr-FR') : '—')}</td>
+      <td><span class="st ${stCls(m.statut||'nouveau')}">${escHtml(m.statut||'nouveau')}</span></td>
+      <td><button class="btn-ed" onclick="openMsgModal(${i})"><i class="fas fa-eye"></i></button></td>
+    </tr>
+  `).join('');
+}
+
+function renderCandidaturesTable(candidatures) {
+  const pg = document.getElementById('pg-candidatures');
+  if (!pg) return;
+  const tb = pg.querySelector('tbody');
+  if (!tb) return;
+  if (!candidatures.length) {
+    tb.innerHTML = '<tr><td colspan="6" class="es"><i class="fas fa-user-graduate"></i><p>Aucune candidature</p></td></tr>';
+    return;
+  }
+  tb.innerHTML = candidatures.slice().reverse().map((c,i) => `
+    <tr>
+      <td>${escHtml(c.nom||c.name||'—')}</td>
+      <td>${escHtml(c.email||'—')}</td>
+      <td>${escHtml(c.poste||c.position||c.opportunite||'—')}</td>
+      <td>${escHtml(c.date ? new Date(c.date).toLocaleDateString('fr-FR') : '—')}</td>
+      <td><span class="st ${stCls(c.statut||'nouveau')}">${escHtml(c.statut||'nouveau')}</span></td>
+      <td><button class="btn-ed" onclick="openCandidatureModal(${i})"><i class="fas fa-eye"></i></button></td>
+    </tr>
+  `).join('');
+}
+
+function stCls(s) {
+  const m = {nouveau:'og',en_cours:'bl','en-cours':'bl',traite:'gn',archive:'gy',nouveau_msg:'rd'};
+  return m[s] || 'gy';
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Modals
+let _currentType = '', _currentIdx = -1;
+function openDevisModal(idx) {
+  const devis = JSON.parse(localStorage.getItem('dyg_devis') || '[]');
+  const d = devis[devis.length - 1 - idx] || devis[idx];
+  if (!d) return;
+  _currentType = 'devis'; _currentIdx = idx;
+  document.getElementById('m-ttl').textContent = 'Détails de la demande de devis';
+  document.getElementById('m-st').value = d.statut || 'nouveau';
+  document.getElementById('m-body').innerHTML = `
+    <div class="dr"><span class="dl">Nom</span><span class="dv">${escHtml(d.nom||d.name||'—')}</span></div>
+    <div class="dr"><span class="dl">Email</span><span class="dv">${escHtml(d.email||'—')}</span></div>
+    <div class="dr"><span class="dl">Téléphone</span><span class="dv">${escHtml(d.tel||d.phone||'—')}</span></div>
+    <div class="dr"><span class="dl">Prestation</span><span class="dv">${escHtml(d.prestation||d.service||'—')}</span></div>
+    <div class="dr"><span class="dl">Domaine</span><span class="dv">${escHtml(d.domaine||'—')}</span></div>
+    <div class="dr"><span class="dl">Message</span><span class="dv">${escHtml(d.message||d.description||'—')}</span></div>
+    <div class="dr"><span class="dl">Date</span><span class="dv">${escHtml(d.date ? new Date(d.date).toLocaleString('fr-FR') : '—')}</span></div>
+  `;
+  document.getElementById('modal').classList.add('on');
+}
+
+function openMsgModal(idx) {
+  const messages = JSON.parse(localStorage.getItem('dyg_messages') || '[]');
+  const m = messages[messages.length - 1 - idx] || messages[idx];
+  if (!m) return;
+  _currentType = 'messages'; _currentIdx = idx;
+  document.getElementById('m-ttl').textContent = 'Détails du message';
+  document.getElementById('m-st').value = m.statut || 'nouveau';
+  document.getElementById('m-body').innerHTML = `
+    <div class="dr"><span class="dl">Nom</span><span class="dv">${escHtml(m.nom||m.name||'—')}</span></div>
+    <div class="dr"><span class="dl">Email</span><span class="dv">${escHtml(m.email||'—')}</span></div>
+    <div class="dr"><span class="dl">Message</span><span class="dv" style="white-space:pre-wrap">${escHtml(m.message||m.msg||'—')}</span></div>
+    <div class="dr"><span class="dl">Date</span><span class="dv">${escHtml(m.date ? new Date(m.date).toLocaleString('fr-FR') : '—')}</span></div>
+  `;
+  document.getElementById('modal').classList.add('on');
+}
+
+function openCandidatureModal(idx) {
+  const candidatures = JSON.parse(localStorage.getItem('dyg_candidatures') || '[]');
+  const c = candidatures[candidatures.length - 1 - idx] || candidatures[idx];
+  if (!c) return;
+  _currentType = 'candidatures'; _currentIdx = idx;
+  document.getElementById('m-ttl').textContent = 'Détails de la candidature';
+  document.getElementById('m-st').value = c.statut || 'nouveau';
+  document.getElementById('m-body').innerHTML = `
+    <div class="dr"><span class="dl">Nom</span><span class="dv">${escHtml(c.nom||c.name||'—')}</span></div>
+    <div class="dr"><span class="dl">Email</span><span class="dv">${escHtml(c.email||'—')}</span></div>
+    <div class="dr"><span class="dl">Téléphone</span><span class="dv">${escHtml(c.tel||c.phone||'—')}</span></div>
+    <div class="dr"><span class="dl">Poste ciblé</span><span class="dv">${escHtml(c.poste||c.position||c.opportunite||'—')}</span></div>
+    <div class="dr"><span class="dl">Message</span><span class="dv" style="white-space:pre-wrap">${escHtml(c.message||c.lettre||'—')}</span></div>
+    <div class="dr"><span class="dl">CV</span><span class="dv">${escHtml(c.cv_filename||c.cv||'Non fourni')}</span></div>
+    <div class="dr"><span class="dl">Date</span><span class="dv">${escHtml(c.date ? new Date(c.date).toLocaleString('fr-FR') : '—')}</span></div>
+  `;
+  document.getElementById('modal').classList.add('on');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('on');
+}
+
+function saveStatut() {
+  const newSt = document.getElementById('m-st').value;
+  if (_currentType && _currentIdx >= 0) {
+    const key = 'dyg_' + _currentType;
+    const arr = JSON.parse(localStorage.getItem(key) || '[]');
+    const realIdx = arr.length - 1 - _currentIdx;
+    if (arr[realIdx] !== undefined) {
+      arr[realIdx].statut = newSt;
+      localStorage.setItem(key, JSON.stringify(arr));
+      addLog('Statut modifié pour ' + _currentType + ' #' + _currentIdx + ' → ' + newSt);
+      loadData();
+    }
+  }
+  closeModal();
+}
+
+// Filtres devis
+function filterDevis() {
+  const st = document.getElementById('flt-st').value;
+  const sr = (document.getElementById('flt-sr').value || '').toLowerCase();
+  let devis = JSON.parse(localStorage.getItem('dyg_devis') || '[]').slice().reverse();
+  if (st) devis = devis.filter(d => (d.statut||'nouveau') === st);
+  if (sr) devis = devis.filter(d => JSON.stringify(d).toLowerCase().includes(sr));
+  renderDevisTable('tb-d2', devis, 9);
+}
+
+// Export CSV
+function exportCSV(type) {
+  const data = JSON.parse(localStorage.getItem('dyg_' + type) || '[]');
+  if (!data.length) { alert('Aucune donnée à exporter.'); return; }
+  const keys = Object.keys(data[0]);
+  const csv = [keys.join(','), ...data.map(r => keys.map(k => '"' + String(r[k]||'').replace(/"/g,'""') + '"').join(','))].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = 'dyg-btp-' + type + '-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+// Journal
+function addLog(action) {
+  const logs = JSON.parse(localStorage.getItem('dyg_logs') || '[]');
+  logs.push({ date: new Date().toISOString(), action, user: 'Administrateur' });
+  localStorage.setItem('dyg_logs', JSON.stringify(logs.slice(-200)));
+  renderLogs();
+}
+
+function renderLogs() {
+  const tb = document.getElementById('tb-j');
+  if (!tb) return;
+  const logs = JSON.parse(localStorage.getItem('dyg_logs') || '[]').slice().reverse().slice(0,50);
+  if (!logs.length) {
+    tb.innerHTML = `<tr><td>${new Date().toLocaleString('fr-FR')}</td><td>Connexion au back-office</td><td>Administrateur</td></tr>`;
+    return;
+  }
+  tb.innerHTML = logs.map(l => `
+    <tr><td>${escHtml(new Date(l.date).toLocaleString('fr-FR'))}</td><td>${escHtml(l.action)}</td><td>${escHtml(l.user||'Admin')}</td></tr>
+  `).join('');
+}
+
+// Sync / Refresh
+function syncData() {
+  loadData();
+  addLog('Synchronisation manuelle des données');
+  const btn = document.querySelector('.btn-sync');
+  if (btn) {
+    btn.innerHTML = '<i class="fas fa-check"></i> Synchronisé';
+    setTimeout(() => { btn.innerHTML = '<i class="fas fa-sync-alt"></i> Sync Données'; }, 2000);
+  }
+}
+
+function refresh() {
+  loadData();
+  const btn = document.querySelector('.btn-r');
+  if (btn) {
+    const now = new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
+    btn.innerHTML = `<i class="fas fa-clock"></i> Actualisé à ${now}`;
+  }
+}
+
+// Date journal
+const jd = document.getElementById('jd');
+if (jd) jd.textContent = new Date().toLocaleString('fr-FR');
+
+// Initialisation
+loadData();
+addLog('Ouverture du back-office');
+</script>
 </body>
 </html>
