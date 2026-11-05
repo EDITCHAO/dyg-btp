@@ -7,11 +7,17 @@
     <link rel="icon" type="image/png" href="../logo-dyg-btp.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="admin.css">
+    <style>
+      *, *::before, *::after { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
+      body { font-family: 'Segoe UI', system-ui, sans-serif !important; background: #f0f4f9 !important; color: #1e293b !important; font-size: 14px !important; line-height: 1.5 !important; }
+      .page { display: none !important; }
+      .page.active { display: block !important; }
+    </style>
 </head>
 <body>
 
 <!-- ============ TOPBAR ============ -->
-<header class="topbar">
+<div class="topbar">
     <div class="topbar-left">
         <div class="topbar-logo">
             <img src="../logo-dyg-btp.png" alt="DYG-BTP">
@@ -36,12 +42,12 @@
         </a>
         <div class="topbar-avatar">AD</div>
     </div>
-</header>
+</div>
 
 <div class="admin-layout">
 
     <!-- ============ SIDEBAR ============ -->
-    <aside class="sidebar">
+    <div class="sidebar">
         <nav class="sidebar-nav">
 
             <div class="nav-section-title">1. GÉNÉRAL (CONTENU)</div>
@@ -102,10 +108,10 @@
                 </div>
             </div>
         </div>
-    </aside>
+    </div><!-- end sidebar -->
 
     <!-- ============ MAIN CONTENT ============ -->
-    <main class="main-content">
+    <div class="main-content">
 
         <!-- PAGE: DASHBOARD -->
         <div id="page-dashboard" class="page active">
@@ -589,8 +595,8 @@
             </div>
         </div>
 
-    </main>
-</div>
+    </div><!-- end main-content -->
+</div><!-- end admin-layout -->
 
 <!-- Modal Détails Devis -->
 <div id="modal-devis" class="modal">
