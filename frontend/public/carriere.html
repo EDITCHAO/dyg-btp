@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrière — DYG-BTP · Rejoignez notre équipe</title>
+    <meta name="description" content="Rejoignez DYG-BTP — Découvrez nos opportunités d'emploi et déposez votre candidature en ligne.">
+    <link rel="icon" type="image/png" href="logo-dyg-btp.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dyg.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inger-style.css">
+    <link rel="stylesheet" href="css/apropos.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="DYG-BTP — Accueil">
+      <span class="nav-logo-stack">
+        <img class="nav-logo-img" src="logo-dyg-btp.png" alt="DYG-BTP" width="62" height="62">
+        <span class="nav-logo-tagline">Bâtiment, travaux publics, conception architecturale</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="apropos.html">À propos</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#projets">Références</a>
+      <a href="index.html#expertise">Expertise</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="carriere.html" class="active">Carrière</a>
+    </div>
+    <div class="nav-cta">
+      <div class="lang-switch" role="group">
+        <button class="lang-opt active" type="button" data-lang="fr">FR</button>
+        <span class="lang-sep"></span>
+        <button class="lang-opt" type="button" data-lang="en">EN</button>
+      </div>
+      <a href="index.html#contact" class="btn btn-primary">Discuter d'un projet <span class="arr">→</span></a>
+      <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Menu mobile -->
+<div class="m-menu" id="mmenu" aria-hidden="true">
+  <div class="m-menu-head">
+    <span class="m-brand">DYG-BTP</span>
+    <div class="lang-switch" role="group">
+      <button class="lang-opt active" type="button" data-lang="fr">FR</button>
+      <span class="lang-sep"></span>
+      <button class="lang-opt" type="button" data-lang="en">EN</button>
+    </div>
+    <button class="m-close" id="mclose" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav class="m-links">
+    <a href="index.html">Accueil</a>
+    <a href="apropos.html">À propos</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#projets">Références</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="carriere.html">Carrière</a>
+  </nav>
+</div>
+
+<!-- ============ HERO CARRIÈRE ============ -->
+<section class="car-hero mt-nav">
+  <div class="car-hero-inner">
+    <div class="car-hero-content">
+      <span class="car-hero-tag">Carrière · DYG-BTP</span>
+      <h1 class="car-hero-title">Construire l'avenir,<br><em>avec vous</em></h1>
+      <p class="car-hero-desc">
+        Ingénieurs, techniciens, projeteurs, professionnels du métier :
+        rejoignez <strong>DYG-BTP</strong> pour contribuer à l'essor
+        des infrastructures nouvelles au Togo et en Afrique de l'Ouest.
+      </p>
+      <div class="car-hero-stats">
+        <div class="car-stat"><span class="car-stat-n">3</span><span class="car-stat-l">Postes ouverts</span></div>
+        <div class="car-stat"><span class="car-stat-n">6</span><span class="car-stat-l">Ans d'existence</span></div>
+        <div class="car-stat"><span class="car-stat-n">Togo</span><span class="car-stat-l">Basé à Lomé</span></div>
+      </div>
+    </div>
+    <div class="car-hero-img">
+      <img src="images/equipe-travaux.jpeg" alt="Équipe DYG-BTP sur chantier">
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFRES D'EMPLOI ============ -->
+<section class="car-offres" id="offres">
+  <div class="car-container">
+    <div class="car-section-head">
+      <span class="car-label">Nos opportunités</span>
+      <h2 class="car-title">Offres en cours</h2>
+      <p class="car-sub">Cliquez sur une offre pour la sélectionner et remplir le formulaire automatiquement</p>
+    </div>
+
+    <div class="offres-grid" id="offres-grid">
+
+      <!-- Offre 1 -->
+      <div class="offre-card" data-poste="Chef de Chantier" data-dept="Travaux" data-type="CDI" data-lieu="Lomé, Togo" data-ref="DYG-2026-01" onclick="selectOffre(this)">
+        <div class="offre-top">
+          <div class="offre-icon"><i class="fas fa-hard-hat"></i></div>
+          <div class="offre-badges">
+            <span class="offre-badge cdi">CDI</span>
+            <span class="offre-badge urgent">Urgent</span>
+          </div>
+        </div>
+        <h3 class="offre-title">Chef de Chantier</h3>
+        <p class="offre-dept"><i class="fas fa-tools"></i> Département Travaux</p>
+        <p class="offre-lieu"><i class="fas fa-map-marker-alt"></i> Lomé, Togo</p>
+        <p class="offre-desc">Supervision et coordination des travaux de construction et d'infrastructure. Gestion des équipes et suivi des délais et de la qualité.</p>
+        <div class="offre-skills">
+          <span>BTP</span><span>Gestion équipe</span><span>Suivi chantier</span>
+        </div>
+        <div class="offre-footer">
+          <span class="offre-ref">Réf: DYG-2026-01</span>
+          <span class="offre-select-btn">Postuler <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Offre 2 -->
+      <div class="offre-card" data-poste="Ingénieur Topographe" data-dept="Topographie" data-type="CDI" data-lieu="Lomé, Togo" data-ref="DYG-2026-02" onclick="selectOffre(this)">
+        <div class="offre-top">
+          <div class="offre-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <div class="offre-badges">
+            <span class="offre-badge cdi">CDI</span>
+          </div>
+        </div>
+        <h3 class="offre-title">Ingénieur Topographe</h3>
+        <p class="offre-dept"><i class="fas fa-ruler-combined"></i> Département Topographie</p>
+        <p class="offre-lieu"><i class="fas fa-map-marker-alt"></i> Lomé, Togo</p>
+        <p class="offre-desc">Réalisation de relevés topographiques, implantations de chantiers, calculs de volumes et utilisation d'équipements modernes (GPS RTK, station totale).</p>
+        <div class="offre-skills">
+          <span>AutoCAD</span><span>GPS RTK</span><span>SIG</span>
+        </div>
+        <div class="offre-footer">
+          <span class="offre-ref">Réf: DYG-2026-02</span>
+          <span class="offre-select-btn">Postuler <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Offre 3 -->
+      <div class="offre-card" data-poste="Technicien en Génie Civil" data-dept="Études" data-type="CDD" data-lieu="Lomé, Togo" data-ref="DYG-2026-03" onclick="selectOffre(this)">
+        <div class="offre-top">
+          <div class="offre-icon"><i class="fas fa-drafting-compass"></i></div>
+          <div class="offre-badges">
+            <span class="offre-badge cdd">CDD</span>
+          </div>
+        </div>
+        <h3 class="offre-title">Technicien en Génie Civil</h3>
+        <p class="offre-dept"><i class="fas fa-building"></i> Département Études</p>
+        <p class="offre-lieu"><i class="fas fa-map-marker-alt"></i> Lomé, Togo</p>
+        <p class="offre-desc">Assistance aux ingénieurs pour les études techniques, préparation de plans d'exécution et suivi des travaux sur les chantiers de construction.</p>
+        <div class="offre-skills">
+          <span>Plans</span><span>Suivi travaux</span><span>Béton</span>
+        </div>
+        <div class="offre-footer">
+          <span class="offre-ref">Réf: DYG-2026-03</span>
+          <span class="offre-select-btn">Postuler <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Candidature spontanée -->
+      <div class="offre-card offre-spontanee" data-poste="Candidature Spontanée" data-dept="Tous départements" data-type="Ouvert" data-lieu="Lomé, Togo" data-ref="DYG-SPON" onclick="selectOffre(this)">
+        <div class="offre-top">
+          <div class="offre-icon offre-icon-spon"><i class="fas fa-user-plus"></i></div>
+          <div class="offre-badges">
+            <span class="offre-badge ouvert">Toujours ouvert</span>
+          </div>
+        </div>
+        <h3 class="offre-title">Candidature Spontanée</h3>
+        <p class="offre-dept"><i class="fas fa-users"></i> Tous départements</p>
+        <p class="offre-lieu"><i class="fas fa-map-marker-alt"></i> Lomé, Togo</p>
+        <p class="offre-desc">Vous ne trouvez pas le poste idéal ? Envoyez-nous votre candidature spontanée. Nous étudions tous les profils qualifiés avec attention.</p>
+        <div class="offre-skills">
+          <span>Profil libre</span><span>Tout niveau</span>
+        </div>
+        <div class="offre-footer">
+          <span class="offre-ref">Réf: DYG-SPON</span>
+          <span class="offre-select-btn">Postuler <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMULAIRE DE CANDIDATURE ============ -->
+<section class="car-form-section" id="candidature">
+  <div class="car-container">
+
+    <div class="car-form-wrap">
+
+      <!-- Offre sélectionnée (affichage dynamique) -->
+      <div class="selected-offre" id="selected-offre" style="display:none">
+        <div class="sel-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="sel-info">
+          <div class="sel-label">Offre sélectionnée</div>
+          <div class="sel-poste" id="sel-poste">—</div>
+          <div class="sel-meta" id="sel-meta">—</div>
+        </div>
+        <button class="sel-reset" onclick="resetOffre()"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="car-form-header">
+        <h2 class="car-form-title"><i class="fas fa-paper-plane"></i> Déposer votre candidature</h2>
+        <p class="car-form-sub">Remplissez le formulaire ci-dessous. Nous vous recontactons sous 48h.</p>
+      </div>
+
+      <form class="car-form" id="car-form">
+
+        <!-- Poste (auto-rempli) -->
+        <div class="cf-field">
+          <label for="cf-poste">Poste visé <span class="req">*</span></label>
+          <div class="cf-select-wrap">
+            <select id="cf-poste" name="poste" required>
+              <option value="">Sélectionner un poste ou une offre ci-dessus</option>
+              <option value="Chef de Chantier">Chef de Chantier (DYG-2026-01)</option>
+              <option value="Ingénieur Topographe">Ingénieur Topographe (DYG-2026-02)</option>
+              <option value="Technicien en Génie Civil">Technicien en Génie Civil (DYG-2026-03)</option>
+              <option value="Candidature Spontanée">Candidature Spontanée</option>
+              <option value="Autre">Autre poste</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cf-prenom">Prénom <span class="req">*</span></label>
+            <input id="cf-prenom" type="text" name="prenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="cf-field">
+            <label for="cf-nom">Nom <span class="req">*</span></label>
+            <input id="cf-nom" type="text" name="nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cf-email">Email <span class="req">*</span></label>
+            <input id="cf-email" type="email" name="email" placeholder="vous@email.com" required>
+          </div>
+          <div class="cf-field">
+            <label for="cf-tel">Téléphone <span class="req">*</span></label>
+            <input id="cf-tel" type="tel" name="telephone" placeholder="+228 ..." required>
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cf-exp">Années d'expérience</label>
+            <select id="cf-exp" name="experience">
+              <option value="">Sélectionner</option>
+              <option value="0-1 an">Moins d'1 an (Junior)</option>
+              <option value="1-3 ans">1 à 3 ans</option>
+              <option value="3-5 ans">3 à 5 ans</option>
+              <option value="5-10 ans">5 à 10 ans</option>
+              <option value="+10 ans">Plus de 10 ans</option>
+            </select>
+          </div>
+          <div class="cf-field">
+            <label for="cf-dispo">Disponibilité</label>
+            <select id="cf-dispo" name="disponibilite">
+              <option value="">Sélectionner</option>
+              <option value="Immédiate">Immédiate</option>
+              <option value="1 mois">Dans 1 mois</option>
+              <option value="2-3 mois">Dans 2 à 3 mois</option>
+              <option value="Plus de 3 mois">Plus de 3 mois</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cf-field">
+          <label for="cf-formation">Formation / Diplôme</label>
+          <input id="cf-formation" type="text" name="formation" placeholder="Ex: Licence en Génie Civil, BTS Bâtiment...">
+        </div>
+
+        <div class="cf-field">
+          <label for="cf-lettre">Lettre de motivation</label>
+          <textarea id="cf-lettre" name="lettre" rows="5" placeholder="Présentez-vous brièvement, expliquez votre intérêt pour DYG-BTP et ce que vous apporterez à notre équipe..."></textarea>
+        </div>
+
+        <!-- CV Upload -->
+        <div class="cf-field">
+          <label>Curriculum Vitae (CV)</label>
+          <div class="cv-upload" id="cv-upload" onclick="document.getElementById('cf-cv').click()">
+            <input type="file" id="cf-cv" name="cv" accept=".pdf,.doc,.docx" style="display:none" onchange="handleCV(this)">
+            <div class="cv-upload-inner" id="cv-inner">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Cliquez pour uploader votre CV</p>
+              <small>PDF, DOC, DOCX — max 5 Mo</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="cf-ref-hidden">
+          <input type="hidden" id="cf-ref" name="reference">
+          <input type="hidden" id="cf-dept" name="departement">
+        </div>
+
+        <div class="cf-privacy">
+          <i class="fas fa-lock"></i>
+          Vos données sont traitées de manière confidentielle, uniquement pour l'examen de votre candidature.
+        </div>
+
+        <button type="submit" class="cf-submit">
+          <i class="fas fa-paper-plane"></i>
+          Envoyer ma candidature
+        </button>
+
+        <div id="cf-status"></div>
+
+      </form>
+    </div>
+
+    <!-- Infos côté -->
+    <div class="car-aside">
+      <div class="car-aside-card">
+        <div class="car-aside-icon"><i class="fas fa-envelope"></i></div>
+        <h3>Candidature directe</h3>
+        <p>Envoyez votre CV directement à :</p>
+        <a href="mailto:contact@dyg-btp.com" class="car-aside-link">contact@dyg-btp.com</a>
+      </div>
+      <div class="car-aside-card">
+        <div class="car-aside-icon"><i class="fab fa-whatsapp"></i></div>
+        <h3>WhatsApp</h3>
+        <p>Contactez-nous directement :</p>
+        <a href="https://wa.me/22899339658" class="car-aside-link car-wa">+228 99 33 96 58</a>
+      </div>
+      <div class="car-aside-card car-aside-values">
+        <h3><i class="fas fa-heart"></i> Pourquoi DYG-BTP ?</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> Environnement stimulant</li>
+          <li><i class="fas fa-check"></i> Projets d'envergure</li>
+          <li><i class="fas fa-check"></i> Formation continue</li>
+          <li><i class="fas fa-check"></i> Équipe passionnée</li>
+          <li><i class="fas fa-check"></i> Impact réel sur les infrastructures</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer simple -->
+<footer style="background:#1a2855;color:#fff;padding:3rem 2rem;text-align:center;margin-top:4rem">
+  <div style="max-width:1200px;margin:0 auto">
+    <img src="logo-dyg-btp.png" alt="DYG-BTP" style="height:50px;margin:0 auto 1rem;mix-blend-mode:multiply;filter:brightness(10)">
+    <p style="font-size:.9rem;opacity:.7;margin-bottom:.5rem">© 2020 DYG-BTP — Ingénieurs Conseils en Génie Civil</p>
+    <p style="font-size:.85rem;opacity:.5;margin-bottom:1.5rem">VAKPOSSITO, Rue AGOE NYIVE, Lomé — TOGO</p>
+    <div>
+      <a href="index.html" style="color:#8fb9ce;text-decoration:none;margin:0 1rem;font-size:.9rem">Accueil</a>
+      <a href="apropos.html" style="color:#8fb9ce;text-decoration:none;margin:0 1rem;font-size:.9rem">À propos</a>
+      <a href="index.html#services" style="color:#8fb9ce;text-decoration:none;margin:0 1rem;font-size:.9rem">Services</a>
+      <a href="index.html#contact" style="color:#8fb9ce;text-decoration:none;margin:0 1rem;font-size:.9rem">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js?v=1" defer></script>
+<script>
+// ============================================================
+// CARRIÈRE — Sélection d'offre et synchronisation formulaire
+// ============================================================
+
+function selectOffre(card) {
+    // Retirer la sélection précédente
+    document.querySelectorAll('.offre-card').forEach(c => c.classList.remove('selected'));
+
+    // Marquer la carte cliquée
+    card.classList.add('selected');
+
+    // Récupérer les données de la carte
+    const poste  = card.dataset.poste;
+    const dept   = card.dataset.dept;
+    const type   = card.dataset.type;
+    const lieu   = card.dataset.lieu;
+    const ref    = card.dataset.ref;
+
+    // Synchroniser le formulaire
+    const selectPoste = document.getElementById('cf-poste');
+    if (selectPoste) {
+        // Chercher l'option correspondante
+        for (let i = 0; i < selectPoste.options.length; i++) {
+            if (selectPoste.options[i].value === poste) {
+                selectPoste.selectedIndex = i;
+                break;
+            }
+        }
+    }
+
+    // Remplir les champs cachés
+    const cfRef  = document.getElementById('cf-ref');
+    const cfDept = document.getElementById('cf-dept');
+    if (cfRef)  cfRef.value  = ref;
+    if (cfDept) cfDept.value = dept;
+
+    // Afficher le bandeau de confirmation
+    const selBanner = document.getElementById('selected-offre');
+    const selPoste  = document.getElementById('sel-poste');
+    const selMeta   = document.getElementById('sel-meta');
+
+    if (selBanner) {
+        selPoste.textContent = poste;
+        selMeta.textContent  = `${type} · ${dept} · ${lieu} · Réf: ${ref}`;
+        selBanner.style.display = 'flex';
+    }
+
+    // Scroll vers le formulaire
+    setTimeout(() => {
+        const formSection = document.getElementById('candidature');
+        if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 300);
+}
+
+function resetOffre() {
+    document.querySelectorAll('.offre-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('selected-offre').style.display = 'none';
+    document.getElementById('cf-poste').selectedIndex = 0;
+    const cfRef  = document.getElementById('cf-ref');
+    const cfDept = document.getElementById('cf-dept');
+    if (cfRef)  cfRef.value  = '';
+    if (cfDept) cfDept.value = '';
+}
+
+// ---- Upload CV ----
+function handleCV(input) {
+    const inner = document.getElementById('cv-inner');
+    if (!inner || !input.files[0]) return;
+    const file = input.files[0];
+    const size  = (file.size / 1024 / 1024).toFixed(2);
+    inner.innerHTML = `
+        <i class="fas fa-file-pdf" style="color:#2c5f7f;font-size:2rem"></i>
+        <p style="font-weight:600;color:#1a2855">${file.name}</p>
+        <small style="color:#22c55e">✓ ${size} Mo — Prêt à envoyer</small>
+    `;
+    document.getElementById('cv-upload').style.borderColor = '#22c55e';
+}
+
+// ---- Soumission formulaire ----
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('car-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fd     = new FormData(form);
+        const status = document.getElementById('cf-status');
+
+        // Sauvegarder dans localStorage pour le dashboard admin
+        const candidature = {
+            type:         'candidature',
+            poste:        fd.get('poste') || '',
+            prenom:       fd.get('prenom') || '',
+            nom:          fd.get('nom') || '',
+            email:        fd.get('email') || '',
+            telephone:    fd.get('telephone') || '',
+            experience:   fd.get('experience') || '',
+            disponibilite:fd.get('disponibilite') || '',
+            formation:    fd.get('formation') || '',
+            lettre:       fd.get('lettre') || '',
+            reference:    fd.get('reference') || '',
+            departement:  fd.get('departement') || '',
+            date:         new Date().toISOString(),
+            statut:       'nouveau'
+        };
+
+        // Sauvegarder
+        const existing = JSON.parse(localStorage.getItem('dyg_candidatures') || '[]');
+        existing.unshift(candidature);
+        localStorage.setItem('dyg_candidatures', JSON.stringify(existing));
+
+        // Feedback
+        if (status) {
+            status.innerHTML = `
+                <div style="background:#dcfce7;border:1px solid #86efac;border-radius:10px;padding:1.2rem;margin-top:1rem;display:flex;align-items:center;gap:.8rem">
+                    <i class="fas fa-check-circle" style="color:#22c55e;font-size:1.5rem"></i>
+                    <div>
+                        <strong style="color:#166534">Candidature envoyée avec succès !</strong>
+                        <p style="color:#166534;font-size:.88rem;margin-top:.2rem">Nous étudierons votre profil et vous contacterons sous 48h.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        form.reset();
+        resetOffre();
+        document.getElementById('cv-inner').innerHTML = `
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Cliquez pour uploader votre CV</p>
+            <small>PDF, DOC, DOCX — max 5 Mo</small>
+        `;
+        document.getElementById('cv-upload').style.borderColor = '';
+
+        setTimeout(() => { if (status) status.innerHTML = ''; }, 6000);
+    });
+});
+</script>
+
+<style>
+/* ============================================================
+   CARRIÈRE — Styles spécifiques
+   ============================================================ */
+
+/* Hero */
+.car-hero {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8edf5 100%);
+  padding: 4rem 0;
+}
+.car-hero-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.car-hero-tag {
+  display: inline-block; font-size: .75rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: #2c5f7f; background: rgba(44,95,127,.1);
+  padding: .4rem 1rem; border-radius: 50px;
+  margin-bottom: 1.2rem; border: 1px solid rgba(44,95,127,.15);
+}
+.car-hero-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800; color: #1a2855; line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+.car-hero-title em { font-style: italic; color: #2c5f7f; }
+.car-hero-desc { font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 2rem; }
+.car-hero-stats { display: flex; gap: 2rem; }
+.car-stat-n { display: block; font-size: 1.8rem; font-weight: 800; color: #1a2855; }
+.car-stat-l { font-size: .78rem; color: #888; text-transform: uppercase; letter-spacing: .06em; }
+.car-hero-img {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 16px 50px rgba(26,40,85,.15);
+}
+.car-hero-img img { width: 100%; height: 360px; object-fit: cover; }
+
+/* Section offres */
+.car-offres { padding: 5rem 0; background: #fff; }
+.car-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.car-section-head { text-align: center; max-width: 600px; margin: 0 auto 3rem; }
+.car-label {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: #2c5f7f; background: rgba(44,95,127,.08);
+  padding: .35rem .9rem; border-radius: 50px;
+  margin-bottom: 1rem;
+}
+.car-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: #1a2855; margin-bottom: .8rem; }
+.car-sub { font-size: .95rem; color: #666; line-height: 1.7; }
+
+/* Grille offres */
+.offres-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Carte offre */
+.offre-card {
+  background: #fff; border-radius: 16px; padding: 1.8rem;
+  border: 2px solid #e8edf2; cursor: pointer;
+  transition: all 0.3s cubic-bezier(.23,1,.32,1);
+  display: flex; flex-direction: column; gap: 0;
+  position: relative; overflow: hidden;
+}
+.offre-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%; background: #e8edf2;
+  transition: background .3s;
+}
+.offre-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,40,85,.12); border-color: #2c5f7f; }
+.offre-card:hover::before { background: #2c5f7f; }
+.offre-card.selected { border-color: #1a2855; box-shadow: 0 16px 40px rgba(26,40,85,.18); background: #f0f6ff; }
+.offre-card.selected::before { background: #1a2855; }
+
+.offre-spontanee::before { background: #f59e0b; }
+.offre-spontanee:hover { border-color: #f59e0b; }
+.offre-spontanee.selected { border-color: #f59e0b; background: #fffbeb; }
+
+.offre-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+.offre-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(44,95,127,.1); color: #2c5f7f;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.offre-icon-spon { background: rgba(245,158,11,.1); color: #f59e0b; }
+.offre-badges { display: flex; gap: .4rem; flex-wrap: wrap; }
+.offre-badge {
+  font-size: .65rem; font-weight: 700; padding: .22rem .65rem;
+  border-radius: 50px; letter-spacing: .04em;
+}
+.offre-badge.cdi    { background: #dcfce7; color: #166534; }
+.offre-badge.cdd    { background: #dbeafe; color: #1d4ed8; }
+.offre-badge.urgent { background: #fee2e2; color: #dc2626; }
+.offre-badge.ouvert { background: #fef3c7; color: #92400e; }
+
+.offre-title { font-size: 1.15rem; font-weight: 700; color: #1a2855; margin-bottom: .5rem; }
+.offre-dept, .offre-lieu {
+  font-size: .82rem; color: #888; margin-bottom: .3rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.offre-dept i, .offre-lieu i { color: #2c5f7f; font-size: .75rem; width: 14px; }
+.offre-desc { font-size: .88rem; color: #555; line-height: 1.7; margin: .8rem 0 1rem; flex: 1; }
+.offre-skills { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
+.offre-skills span {
+  font-size: .7rem; font-weight: 600; color: #2c5f7f;
+  background: rgba(44,95,127,.08); padding: .25rem .7rem;
+  border-radius: 50px;
+}
+.offre-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: .8rem; border-top: 1px solid #f0f2f5; }
+.offre-ref { font-size: .7rem; color: #aaa; font-weight: 500; }
+.offre-select-btn { font-size: .8rem; font-weight: 700; color: #2c5f7f; display: flex; align-items: center; gap: .35rem; transition: gap .2s; }
+.offre-card:hover .offre-select-btn { gap: .6rem; color: #1a2855; }
+
+/* ---- Formulaire candidature ---- */
+.car-form-section { padding: 5rem 0; background: #f5f7fa; }
+.car-form-section .car-container {
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 3rem; align-items: start;
+}
+.car-form-wrap {
+  background: #fff; border-radius: 20px; padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(26,40,85,.08);
+  border: 1px solid #e8edf2;
+}
+
+/* Bandeau offre sélectionnée */
+.selected-offre {
+  display: flex; align-items: center; gap: 1rem;
+  background: linear-gradient(135deg, #1a2855 0%, #2c5f7f 100%);
+  color: #fff; padding: 1rem 1.5rem; border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.sel-icon { font-size: 1.5rem; color: #22c55e; flex-shrink: 0; }
+.sel-label { font-size: .7rem; opacity: .7; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .2rem; }
+.sel-poste { font-size: 1rem; font-weight: 700; }
+.sel-meta { font-size: .78rem; opacity: .8; margin-top: .2rem; }
+.sel-reset {
+  margin-left: auto; background: rgba(255,255,255,.15); border: none;
+  color: #fff; width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s; flex-shrink: 0;
+}
+.sel-reset:hover { background: rgba(255,255,255,.3); }
+
+.car-form-header { margin-bottom: 2rem; }
+.car-form-title { font-size: 1.4rem; font-weight: 700; color: #1a2855; margin-bottom: .4rem; display: flex; align-items: center; gap: .5rem; }
+.car-form-title i { color: #2c5f7f; }
+.car-form-sub { font-size: .88rem; color: #666; }
+
+.car-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cf-field { display: flex; flex-direction: column; gap: .4rem; }
+.cf-field label { font-size: .8rem; font-weight: 600; color: #444; }
+.req { color: #ef4444; }
+.cf-field input, .cf-field select, .cf-field textarea {
+  padding: .8rem 1rem; border: 1.5px solid #e0e5ec;
+  border-radius: 10px; font-size: .9rem; color: #333;
+  background: #fff; transition: border .2s, box-shadow .2s;
+  outline: none; font-family: inherit; resize: vertical;
+}
+.cf-field input:focus, .cf-field select:focus, .cf-field textarea:focus {
+  border-color: #2c5f7f; box-shadow: 0 0 0 3px rgba(44,95,127,.1);
+}
+.cf-select-wrap { position: relative; }
+.cf-select-wrap select { width: 100%; appearance: none; padding-right: 2.5rem; }
+.cf-select-wrap i { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: #888; pointer-events: none; font-size: .8rem; }
+
+/* Upload CV */
+.cv-upload {
+  border: 2px dashed #d0d7e0; border-radius: 12px;
+  padding: 2rem; text-align: center; cursor: pointer;
+  transition: all .3s; background: #fafbfc;
+}
+.cv-upload:hover { border-color: #2c5f7f; background: #f0f6ff; }
+.cv-upload-inner i { font-size: 2rem; color: #c0c8d4; margin-bottom: .6rem; }
+.cv-upload-inner p { font-size: .9rem; color: #555; margin-bottom: .3rem; font-weight: 500; }
+.cv-upload-inner small { font-size: .75rem; color: #999; }
+
+.cf-privacy { display: flex; align-items: flex-start; gap: .6rem; font-size: .78rem; color: #888; line-height: 1.6; }
+.cf-privacy i { color: #2c5f7f; margin-top: .15rem; flex-shrink: 0; }
+.cf-submit {
+  padding: 1rem 2.5rem; background: #1a2855; color: #fff;
+  border: none; border-radius: 50px; font-size: .95rem;
+  font-weight: 700; cursor: pointer; display: inline-flex;
+  align-items: center; gap: .6rem; transition: all .3s;
+  align-self: flex-start;
+}
+.cf-submit:hover { background: #2c5f7f; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,40,85,.25); }
+
+/* Aside */
+.car-aside { display: flex; flex-direction: column; gap: 1.2rem; }
+.car-aside-card {
+  background: #fff; border-radius: 14px; padding: 1.5rem;
+  border: 1px solid #e8edf2; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.car-aside-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(44,95,127,.1); color: #2c5f7f;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; margin-bottom: 1rem;
+}
+.car-aside-card h3 { font-size: 1rem; font-weight: 700; color: #1a2855; margin-bottom: .5rem; }
+.car-aside-card p { font-size: .85rem; color: #666; margin-bottom: .6rem; }
+.car-aside-link {
+  display: inline-block; font-size: .88rem; font-weight: 600;
+  color: #2c5f7f; text-decoration: none; transition: color .2s;
+}
+.car-aside-link:hover { color: #1a2855; }
+.car-wa { color: #22c55e !important; }
+.car-wa:hover { color: #16a34a !important; }
+.car-aside-values h3 { display: flex; align-items: center; gap: .5rem; }
+.car-aside-values ul { display: flex; flex-direction: column; gap: .5rem; margin-top: .8rem; }
+.car-aside-values li { display: flex; align-items: center; gap: .6rem; font-size: .88rem; color: #555; }
+.car-aside-values li i { color: #22c55e; font-size: .8rem; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .car-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .car-hero-img { display: none; }
+  .car-form-section .car-container { grid-template-columns: 1fr; }
+  .car-aside { grid-row: 1; }
+}
+@media (max-width: 768px) {
+  .cf-row { grid-template-columns: 1fr; }
+  .car-hero-stats { gap: 1.5rem; }
+  .offres-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+</body>
+</html>

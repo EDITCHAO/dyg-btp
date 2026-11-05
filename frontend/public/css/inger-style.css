@@ -1475,10 +1475,10 @@ body {
     line-height: 1.7;
 }
 
-/* Grille 4 cartes */
+/* Grille 6 cartes */
 .exp-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
@@ -1626,7 +1626,6 @@ body {
         padding: 1.5rem;
     }
 }
-
 /* ============================================================
    RÉALISATIONS V2 — Style EDAL avec Lightbox
    ============================================================ */

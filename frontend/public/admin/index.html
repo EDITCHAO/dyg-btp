@@ -1,622 +1,606 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DYG-BTP — Back-Office</title>
-    <link rel="icon" type="image/png" href="../logo-dyg-btp.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="admin.css">
-    <style>
-      *, *::before, *::after { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
-      body { font-family: 'Segoe UI', system-ui, sans-serif !important; background: #f0f4f9 !important; color: #1e293b !important; font-size: 14px !important; line-height: 1.5 !important; }
-      .page { display: none !important; }
-      .page.active { display: block !important; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DYG-BTP — Back-Office</title>
+<link rel="icon" type="image/png" href="../logo-dyg-btp.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ================================================
+   RESET TOTAL — CSS Admin Self-Contained
+   ================================================ */
+html{font-size:14px;height:100%}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f4f9;color:#1e293b;line-height:1.5;height:100%;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;outline:none}
+img{display:block;max-width:100%}
+ul{list-style:none}
+table{border-collapse:collapse;width:100%}
+
+/* ---- VARIABLES ---- */
+:root{
+  --p:#1a2855;--pl:#2c5f7f;--acc:#f59e0b;
+  --bg:#f0f4f9;--w:#fff;--bd:#e2e8f0;
+  --tx:#1e293b;--ts:#64748b;
+  --sw:240px;--th:60px;--r:10px;
+  --sh:0 2px 12px rgba(0,0,0,.07);
+}
+
+/* ================================================
+   TOPBAR
+   ================================================ */
+.tb{
+  position:fixed;top:0;left:0;right:0;height:var(--th);
+  background:var(--p);display:flex;align-items:center;
+  justify-content:space-between;padding:0 1.5rem;
+  z-index:1000;gap:1rem;
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.tb-l{display:flex;align-items:center;gap:.8rem;flex-shrink:0}
+.tb-logo{height:34px;width:auto;filter:brightness(0) invert(1);display:block}
+.tb-name{color:#fff;font-size:.95rem;font-weight:700;letter-spacing:.04em}
+.tb-tag{
+  background:var(--acc);color:#fff;font-size:.58rem;font-weight:800;
+  padding:.17rem .44rem;border-radius:4px;letter-spacing:.06em;
+  margin-left:.3rem;vertical-align:middle;
+}
+.tb-sub{color:rgba(255,255,255,.45);font-size:.68rem;margin-left:.3rem}
+.tb-c{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.rl{color:rgba(255,255,255,.6);font-size:.75rem}
+.rb{
+  padding:.36rem .85rem;border-radius:20px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.6);
+  font-size:.73rem;font-weight:600;transition:all .2s;cursor:pointer;
+}
+.rb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.rb:hover:not(.on){background:rgba(255,255,255,.18);color:#fff}
+.tb-r{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.btn-sync{
+  padding:.4rem .9rem;border-radius:7px;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);
+  font-size:.76rem;font-weight:600;
+  display:inline-flex;align-items:center;gap:.35rem;
+  transition:all .2s;cursor:pointer;border:none;
+}
+.btn-sync:hover{background:rgba(255,255,255,.2);color:#fff}
+.btn-site{
+  padding:.4rem .9rem;border-radius:7px;
+  background:var(--acc);color:#fff;
+  font-size:.76rem;font-weight:600;
+  display:inline-flex;align-items:center;gap:.35rem;
+  transition:all .2s;text-decoration:none;
+}
+.btn-site:hover{background:#d97706}
+.av{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.2);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.78rem;flex-shrink:0;
+}
+
+/* ================================================
+   LAYOUT
+   ================================================ */
+.layout{
+  display:flex;
+  margin-top:var(--th);
+  min-height:calc(100vh - var(--th));
+}
+
+/* ================================================
+   SIDEBAR
+   ================================================ */
+.sb{
+  width:var(--sw);background:var(--w);
+  border-right:1px solid var(--bd);
+  position:fixed;top:var(--th);bottom:0;left:0;
+  overflow-y:auto;display:flex;flex-direction:column;
+  z-index:100;
+}
+.sb-nav{flex:1;padding:.8rem 0}
+.sec-ttl{
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ts);
+  padding:1rem 1.2rem .35rem;display:block;
+}
+.ni{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.65rem 1.2rem;color:var(--ts);
+  font-size:.83rem;font-weight:500;
+  background:transparent;border:none;
+  width:100%;text-align:left;
+  cursor:pointer;transition:all .18s;
+  border-right:3px solid transparent;
+}
+.ni i{width:15px;font-size:.88rem;flex-shrink:0}
+.ni:hover{background:#f1f5f9;color:var(--p)}
+.ni.on{background:#eff6ff;color:var(--p);border-right-color:var(--p);font-weight:600}
+.bdg{
+  margin-left:auto;background:var(--p);color:#fff;
+  font-size:.6rem;font-weight:700;
+  padding:.1rem .4rem;border-radius:10px;min-width:18px;
+  text-align:center;line-height:1.5;
+}
+.bdg.o{background:var(--acc)}
+.bdg.r{background:#ef4444}
+.bdg.b{background:#3b82f6}
+.sb-ft{padding:.9rem 1.2rem;border-top:1px solid var(--bd)}
+.u-inf{display:flex;align-items:center;gap:.65rem}
+.u-av{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--p);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.73rem;flex-shrink:0;
+}
+.u-nm{font-size:.83rem;font-weight:600;color:var(--tx)}
+.u-st{font-size:.7rem;color:var(--ts);display:flex;align-items:center;gap:.3rem;margin-top:.1rem}
+.dot{width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;flex-shrink:0}
+
+/* ================================================
+   MAIN
+   ================================================ */
+.main{
+  margin-left:var(--sw);padding:2rem;
+  flex:1;width:calc(100% - var(--sw));
+  min-height:calc(100vh - var(--th));
+}
+
+/* ================================================
+   PAGES
+   ================================================ */
+.pg{display:none}
+.pg.on{display:block}
+
+.ph{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;gap:1rem;
+  margin-bottom:1.8rem;flex-wrap:wrap;
+}
+.ph h1{
+  font-size:1.45rem;font-weight:700;color:var(--p);
+  display:flex;align-items:center;gap:.5rem;line-height:1.2;
+}
+.ph h1 i{font-size:1.1rem;color:var(--pl)}
+.ph-sub{color:var(--ts);font-size:.85rem;margin-top:.3rem}
+
+.btn-r{padding:.48rem 1.1rem;border-radius:8px;background:#f1f5f9;color:var(--ts);font-size:.79rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
+.btn-e{padding:.48rem 1.1rem;border-radius:8px;background:#ecfdf5;color:#059669;font-size:.79rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
+.btn-e:hover{background:#059669;color:#fff}
+.btn-a{padding:.48rem 1.1rem;border-radius:8px;background:var(--p);color:#fff;font-size:.79rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
+.btn-a:hover{background:var(--pl)}
+.btn-sv{padding:.48rem 1.1rem;border-radius:8px;background:#22c55e;color:#fff;font-size:.79rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;border:none;transition:all .2s}
+.btn-sv:hover{background:#16a34a}
+.btn-cn{padding:.48rem 1.1rem;border-radius:8px;background:#f1f5f9;color:var(--ts);font-size:.79rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+
+/* ================================================
+   KPI
+   ================================================ */
+.kpi{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1rem;margin-bottom:2rem;
+}
+.kpi-c{
+  background:var(--w);border-radius:var(--r);
+  padding:1.2rem 1.3rem;
+  box-shadow:var(--sh);border:1px solid var(--bd);
+  transition:transform .2s,box-shadow .2s;
+}
+.kpi-c:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.kpi-t{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+.kpi-l{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ts);line-height:1.3}
+.kpi-t i{font-size:1.1rem;flex-shrink:0}
+.kpi-n{font-size:2.4rem;font-weight:800;color:var(--p);line-height:1;margin-bottom:.4rem}
+.kpi-m{font-size:.68rem;line-height:1.4}
+.kpi-m.o{color:#d97706}.kpi-m.b{color:#2563eb}.kpi-m.g{color:#16a34a}.kpi-m.gr{color:var(--ts)}
+
+/* ================================================
+   TABLE SECTIONS
+   ================================================ */
+.ts-wrap{
+  background:var(--w);border-radius:var(--r);
+  padding:1.5rem;box-shadow:var(--sh);
+  border:1px solid var(--bd);margin-bottom:1.5rem;
+}
+.ts-h{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1rem;flex-wrap:wrap}
+.ts-h h2{font-size:.95rem;font-weight:700;color:var(--p);display:flex;align-items:center;gap:.38rem}
+.ts-h h2 i{font-size:.85rem;color:var(--pl)}
+.ts-sub{font-size:.75rem;color:var(--ts)}
+.ts-lnk{margin-left:auto;font-size:.75rem;color:var(--pl);font-weight:600;cursor:pointer}
+.ts-lnk:hover{text-decoration:underline}
+
+/* ================================================
+   TABLE
+   ================================================ */
+.tw{overflow-x:auto;border-radius:8px}
+table{min-width:500px}
+thead th{
+  background:#f8fafc;padding:.65rem 1rem;
+  text-align:left;font-size:.63rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ts);border-bottom:1px solid var(--bd);
+  white-space:nowrap;
+}
+tbody td{
+  padding:.72rem 1rem;border-bottom:1px solid #f1f5f9;
+  vertical-align:middle;color:var(--tx);
+}
+tbody tr:hover td{background:#f8fafc}
+tbody tr:last-child td{border-bottom:none}
+.es{text-align:center!important;padding:3rem 1rem!important;color:var(--ts)}
+.es i{font-size:2.2rem;margin-bottom:.8rem;display:block;opacity:.25}
+.es p{font-size:.9rem;font-weight:500;margin-bottom:.3rem}
+.es small{font-size:.73rem}
+
+/* ================================================
+   STATUS + FILTERS + ACTIONS
+   ================================================ */
+.st{display:inline-block;padding:.22rem .65rem;border-radius:20px;font-size:.68rem;font-weight:700;letter-spacing:.04em}
+.st.gn{background:#dcfce7;color:#166534}
+.st.og{background:#fef3c7;color:#92400e}
+.st.rd{background:#fee2e2;color:#991b1b}
+.st.bl{background:#dbeafe;color:#1d4ed8}
+.st.gy{background:#f1f5f9;color:var(--ts)}
+
+.flt{display:flex;gap:.7rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.flt select,.flt input{
+  padding:.5rem .9rem;border:1.5px solid var(--bd);border-radius:8px;
+  font-size:.82rem;color:var(--tx);background:var(--w);transition:border .2s;
+}
+.flt input{flex:1;min-width:180px}
+.flt select:focus,.flt input:focus{border-color:var(--pl)}
+
+.btn-ed{padding:.28rem .65rem;border-radius:6px;border:none;font-size:.76rem;font-weight:600;transition:all .2s;margin-right:.2rem;cursor:pointer;background:#eff6ff;color:#1d4ed8}
+.btn-ed:hover{background:#1d4ed8;color:#fff}
+.btn-dl{padding:.28rem .65rem;border-radius:6px;border:none;font-size:.76rem;font-weight:600;transition:all .2s;cursor:pointer;background:#fee2e2;color:#dc2626}
+.btn-dl:hover{background:#dc2626;color:#fff}
+
+/* ================================================
+   CARDS PORTFOLIO
+   ================================================ */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem}
+.cc{background:var(--w);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);border:1px solid var(--bd);transition:all .2s}
+.cc:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.cc img{width:100%;height:130px;object-fit:cover}
+.cc-b{padding:.9rem}
+.tg-ct{font-size:.63rem;font-weight:700;text-transform:uppercase;background:#eff6ff;color:var(--pl);padding:.17rem .55rem;border-radius:4px;letter-spacing:.05em}
+.cc-b h3{font-size:.88rem;font-weight:700;margin:.45rem 0 .7rem;color:var(--p)}
+.cc-b .acts{display:flex;gap:.4rem}
+.cc-add{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;border:2px dashed var(--bd);cursor:pointer;color:var(--ts);transition:all .2s;background:#fafbfc;border-radius:var(--r)}
+.cc-add:hover{border-color:var(--pl);color:var(--pl);background:#eff6ff}
+.cc-add i{font-size:2rem;margin-bottom:.5rem;opacity:.35}
+.cc-add:hover i{opacity:1}
+
+/* ================================================
+   MEDIA
+   ================================================ */
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
+.mi{background:var(--w);border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);cursor:pointer;transition:all .2s}
+.mi:hover{border-color:var(--pl);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.mi img{width:100%;height:100px;object-fit:cover}
+.mi span{display:block;padding:.35rem .55rem;font-size:.68rem;color:var(--ts);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ================================================
+   SEO FORM
+   ================================================ */
+.sf{background:var(--w);border-radius:var(--r);padding:2rem;box-shadow:var(--sh);border:1px solid var(--bd);max-width:680px}
+.fg{margin-bottom:1.1rem}
+.fg label{display:block;font-size:.78rem;font-weight:600;color:var(--tx);margin-bottom:.38rem}
+.fg input,.fg textarea{width:100%;padding:.65rem .9rem;border:1.5px solid var(--bd);border-radius:8px;font-size:.85rem;color:var(--tx);background:var(--w);resize:vertical;transition:border .2s}
+.fg input:focus,.fg textarea:focus{border-color:var(--pl)}
+
+/* ================================================
+   DEPT TAGS + AVATAR
+   ================================================ */
+.td-ad{background:#eff6ff;color:#1d4ed8;font-size:.68rem;font-weight:700;padding:.22rem .6rem;border-radius:20px}
+.td-tr{background:#fef9c3;color:#854d0e;font-size:.68rem;font-weight:700;padding:.22rem .6rem;border-radius:20px}
+.td-qh{background:#f0fdf4;color:#166534;font-size:.68rem;font-weight:700;padding:.22rem .6rem;border-radius:20px}
+.avsm{width:30px;height:30px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.68rem}
+
+/* ================================================
+   MODAL
+   ================================================ */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:1rem}
+.modal.on{display:flex}
+.mc{background:var(--w);border-radius:var(--r);width:95%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;border-bottom:1px solid var(--bd)}
+.mh h3{font-size:.95rem;font-weight:700;color:var(--p)}
+.mx{background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--ts);line-height:1;transition:color .2s}
+.mx:hover{color:var(--p)}
+.mb{padding:1.4rem}
+.mf{padding:.9rem 1.4rem;border-top:1px solid var(--bd);display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.mf select{padding:.45rem .75rem;border:1px solid var(--bd);border-radius:6px;font-size:.8rem}
+.dr{display:flex;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
+.dl{font-size:.7rem;font-weight:700;text-transform:uppercase;color:var(--ts);min-width:110px;padding-top:.1rem}
+.dv{font-size:.86rem;color:var(--tx);flex:1}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media(max-width:1280px){.kpi{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1024px){.kpi{grid-template-columns:repeat(2,1fr)}.tb-sub{display:none}}
+@media(max-width:768px){.sb{display:none}.main{margin-left:0;width:100%;padding:1rem}.tb-c{display:none}.kpi{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.kpi{grid-template-columns:1fr}.tb{padding:0 1rem}}
+</style>
 </head>
 <body>
 
-<!-- ============ TOPBAR ============ -->
-<div class="topbar">
-    <div class="topbar-left">
-        <div class="topbar-logo">
-            <img src="../logo-dyg-btp.png" alt="DYG-BTP">
-        </div>
-        <div class="topbar-brand">
-            <span class="brand-name">DYG-BTP</span>
-            <span class="brand-tag">BACK-OFFICE</span>
-            <span class="brand-sub">Plateforme d'administration & gestion</span>
-        </div>
+<!-- TOPBAR -->
+<div class="tb">
+  <div class="tb-l">
+    <img class="tb-logo" src="../logo-dyg-btp.png" alt="DYG-BTP">
+    <div>
+      <span class="tb-name">DYG-BTP</span>
+      <span class="tb-tag">BACK-OFFICE</span>
+      <div class="tb-sub">Plateforme d'administration & gestion</div>
     </div>
-    <div class="topbar-center">
-        <span class="role-label">Rôle actif :</span>
-        <button class="role-btn active">Administrateur</button>
-        <button class="role-btn">Éditeur</button>
-    </div>
-    <div class="topbar-right">
-        <button class="btn-sync" onclick="syncData()">
-            <i class="fas fa-sync-alt"></i> Sync Données
-        </button>
-        <a href="../index.html" class="btn-site" target="_blank">
-            <i class="fas fa-external-link-alt"></i> Voir le site
-        </a>
-        <div class="topbar-avatar">AD</div>
-    </div>
+  </div>
+  <div class="tb-c">
+    <span class="rl">Rôle actif :</span>
+    <button class="rb on">Administrateur</button>
+    <button class="rb">Éditeur</button>
+  </div>
+  <div class="tb-r">
+    <button class="btn-sync" onclick="syncData()"><i class="fas fa-sync-alt"></i> Sync Données</button>
+    <a href="../index.html" class="btn-site" target="_blank"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+    <div class="av">AD</div>
+  </div>
 </div>
 
-<div class="admin-layout">
+<!-- LAYOUT -->
+<div class="layout">
 
-    <!-- ============ SIDEBAR ============ -->
-    <div class="sidebar">
-        <nav class="sidebar-nav">
+  <!-- SIDEBAR -->
+  <div class="sb">
+    <div class="sb-nav">
+      <span class="sec-ttl">1. GÉNÉRAL (CONTENU)</span>
+      <button class="ni on" onclick="go('dashboard')"><i class="fas fa-chart-bar"></i> Tableau de bord</button>
+      <button class="ni" onclick="go('pages')"><i class="fas fa-file-alt"></i> Pages statiques</button>
+      <button class="ni" onclick="go('realisations')"><i class="fas fa-images"></i> Réalisations (Portfolio)</button>
+      <button class="ni" onclick="go('services')"><i class="fas fa-cog"></i> Services <span class="bdg">6</span></button>
+      <button class="ni" onclick="go('temoignages')"><i class="fas fa-star"></i> Témoignages</button>
+      <button class="ni" onclick="go('equipes')"><i class="fas fa-users"></i> Équipes</button>
+      <button class="ni" onclick="go('mediatheque')"><i class="fas fa-photo-video"></i> Médiathèque</button>
 
-            <div class="nav-section-title">1. GÉNÉRAL (CONTENU)</div>
+      <span class="sec-ttl">2. RELATION CLIENT</span>
+      <button class="ni" onclick="go('devis')"><i class="fas fa-file-invoice"></i> Demandes de devis <span class="bdg o" id="bdg-d">0</span></button>
+      <button class="ni" onclick="go('messages')"><i class="fas fa-envelope"></i> Messages <span class="bdg r" id="bdg-m">0</span></button>
+      <button class="ni" onclick="go('candidatures')"><i class="fas fa-user-graduate"></i> Candidatures <span class="bdg b" id="bdg-c">0</span></button>
 
-            <a href="#dashboard" class="nav-item active" onclick="showPage('dashboard')">
-                <i class="fas fa-chart-bar"></i> Tableau de bord
-            </a>
-            <a href="#pages" class="nav-item" onclick="showPage('pages')">
-                <i class="fas fa-file-alt"></i> Pages statiques
-            </a>
-            <a href="#realisations" class="nav-item" onclick="showPage('realisations')">
-                <i class="fas fa-images"></i> Réalisations (Portfolio)
-            </a>
-            <a href="#services" class="nav-item" onclick="showPage('services')">
-                <i class="fas fa-cog"></i> Services <span class="badge">6</span>
-            </a>
-            <a href="#temoignages" class="nav-item" onclick="showPage('temoignages')">
-                <i class="fas fa-star"></i> Témoignages
-            </a>
-            <a href="#equipes" class="nav-item" onclick="showPage('equipes')">
-                <i class="fas fa-users"></i> Équipes
-            </a>
-            <a href="#mediatheque" class="nav-item" onclick="showPage('mediatheque')">
-                <i class="fas fa-photo-video"></i> Médiathèque
-            </a>
-
-            <div class="nav-section-title">2. RELATION CLIENT</div>
-
-            <a href="#devis" class="nav-item" onclick="showPage('devis')">
-                <i class="fas fa-file-invoice"></i> Demandes de devis
-                <span class="badge badge-orange" id="badge-devis">0</span>
-            </a>
-            <a href="#messages" class="nav-item" onclick="showPage('messages')">
-                <i class="fas fa-envelope"></i> Messages de contact
-                <span class="badge badge-red" id="badge-messages">0</span>
-            </a>
-            <a href="#candidatures" class="nav-item" onclick="showPage('candidatures')">
-                <i class="fas fa-user-graduate"></i> Candidatures / Stages
-                <span class="badge badge-blue" id="badge-candidatures">0</span>
-            </a>
-
-            <div class="nav-section-title">3. SYSTÈME</div>
-
-            <a href="#seo" class="nav-item" onclick="showPage('seo')">
-                <i class="fas fa-globe"></i> SEO & Paramètres
-            </a>
-            <a href="#journal" class="nav-item" onclick="showPage('journal')">
-                <i class="fas fa-shield-alt"></i> Journal de sécurité
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <div class="user-info">
-                <div class="user-avatar">AD</div>
-                <div>
-                    <div class="user-name">Administrateur</div>
-                    <div class="user-status"><span class="dot-green"></span> Connecté</div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end sidebar -->
-
-    <!-- ============ MAIN CONTENT ============ -->
-    <div class="main-content">
-
-        <!-- PAGE: DASHBOARD -->
-        <div id="page-dashboard" class="page active">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-chart-bar"></i> Tableau de bord général</h1>
-                    <p class="page-sub">Supervision en temps réel des activités commerciales et du contenu du site institutionnel</p>
-                </div>
-                <button class="btn-refresh" onclick="refreshDashboard()">
-                    <i class="fas fa-clock"></i> Actualisé à l'instant
-                </button>
-            </div>
-
-            <!-- KPI Cards -->
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-top">
-                        <span class="kpi-label">DEVIS EN ATTENTE</span>
-                        <i class="fas fa-file-invoice" style="color:#f59e0b"></i>
-                    </div>
-                    <div class="kpi-num" id="kpi-devis">0</div>
-                    <div class="kpi-note orange">⬤ Traitement requis sous 24h</div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-top">
-                        <span class="kpi-label">MESSAGES NON LUS</span>
-                        <i class="fas fa-envelope" style="color:#3b82f6"></i>
-                    </div>
-                    <div class="kpi-num" id="kpi-messages">0</div>
-                    <div class="kpi-note blue">✉ Formulaire de contact public</div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-top">
-                        <span class="kpi-label">NOUVELLES DEMANDES DE SERVICES</span>
-                        <i class="fas fa-tools" style="color:#10b981"></i>
-                    </div>
-                    <div class="kpi-num" id="kpi-services">0</div>
-                    <div class="kpi-note green">⚠ Demandes en attente de traitement</div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-top">
-                        <span class="kpi-label">NOUVELLES CANDIDATURES</span>
-                        <i class="fas fa-user-graduate" style="color:#8b5cf6"></i>
-                    </div>
-                    <div class="kpi-num" id="kpi-candidatures">0</div>
-                    <div class="kpi-note gray">☐ Statut non traité</div>
-                </div>
-
-                <div class="kpi-card">
-                    <div class="kpi-top">
-                        <span class="kpi-label">VISITEURS CE MOIS</span>
-                        <i class="fas fa-chart-line" style="color:#ec4899"></i>
-                    </div>
-                    <div class="kpi-num" id="kpi-visiteurs">0</div>
-                    <div class="kpi-note gray">📊 +0% vs mois dernier</div>
-                </div>
-            </div>
-
-            <!-- Dernières demandes de devis -->
-            <div class="table-section">
-                <div class="table-header">
-                    <h2><i class="fas fa-file-invoice"></i> Dernières demandes de devis reçues</h2>
-                    <span class="table-sub">Demandes soumises via le formulaire institutionnel</span>
-                    <a href="#devis" class="voir-tout" onclick="showPage('devis')">Voir toutes les demandes →</a>
-                </div>
-                <div class="table-wrap">
-                    <table id="table-devis">
-                        <thead>
-                            <tr>
-                                <th>RÉF.</th>
-                                <th>NOM</th>
-                                <th>CONTACT / EMAIL</th>
-                                <th>PRESTATION</th>
-                                <th>DATE</th>
-                                <th>STATUT</th>
-                                <th>ACTIONS</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-devis">
-                            <tr>
-                                <td colspan="7" class="empty-state">
-                                    <i class="fas fa-inbox"></i>
-                                    <p>Aucune demande de devis pour le moment</p>
-                                    <small>Les demandes soumises via le formulaire apparaîtront ici</small>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Messages récents -->
-            <div class="table-section">
-                <div class="table-header">
-                    <h2><i class="fas fa-envelope"></i> Messages de contact récents</h2>
-                    <span class="table-sub">Messages reçus via le formulaire de contact</span>
-                    <a href="#messages" class="voir-tout" onclick="showPage('messages')">Voir tous les messages →</a>
-                </div>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>NOM</th>
-                                <th>EMAIL</th>
-                                <th>SUJET</th>
-                                <th>DATE</th>
-                                <th>STATUT</th>
-                                <th>ACTIONS</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-messages">
-                            <tr>
-                                <td colspan="6" class="empty-state">
-                                    <i class="fas fa-envelope-open"></i>
-                                    <p>Aucun message pour le moment</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE: DEVIS -->
-        <div id="page-devis" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-file-invoice"></i> Demandes de devis</h1>
-                    <p class="page-sub">Toutes les demandes reçues via le formulaire de contact</p>
-                </div>
-                <button class="btn-export" onclick="exportData('devis')">
-                    <i class="fas fa-download"></i> Exporter CSV
-                </button>
-            </div>
-
-            <div class="filters">
-                <select id="filter-statut" onchange="filterDevis()">
-                    <option value="">Tous les statuts</option>
-                    <option value="nouveau">Nouveau</option>
-                    <option value="en-cours">En cours</option>
-                    <option value="traite">Traité</option>
-                    <option value="archive">Archivé</option>
-                </select>
-                <input type="text" id="filter-search" placeholder="Rechercher..." oninput="filterDevis()">
-            </div>
-
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>RÉF.</th>
-                            <th>NOM</th>
-                            <th>EMAIL</th>
-                            <th>TÉLÉPHONE</th>
-                            <th>PRESTATION</th>
-                            <th>DOMAINE</th>
-                            <th>DATE</th>
-                            <th>STATUT</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-devis-full">
-                        <tr>
-                            <td colspan="9" class="empty-state">
-                                <i class="fas fa-inbox"></i>
-                                <p>Aucune demande de devis</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- PAGE: MESSAGES -->
-        <div id="page-messages" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-envelope"></i> Messages de contact</h1>
-                    <p class="page-sub">Messages reçus via le formulaire public</p>
-                </div>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>NOM</th>
-                            <th>EMAIL</th>
-                            <th>MESSAGE</th>
-                            <th>DATE</th>
-                            <th>STATUT</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6" class="empty-state">
-                                <i class="fas fa-envelope-open"></i>
-                                <p>Aucun message</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- PAGE: RÉALISATIONS -->
-        <div id="page-realisations" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-images"></i> Réalisations (Portfolio)</h1>
-                    <p class="page-sub">Gestion des projets affichés sur le site</p>
-                </div>
-                <button class="btn-add">
-                    <i class="fas fa-plus"></i> Ajouter un projet
-                </button>
-            </div>
-            <div class="cards-grid">
-                <div class="content-card">
-                    <img src="../images/projet-pont.jfif" alt="Pont Autoroutier">
-                    <div class="content-card-body">
-                        <span class="tag-cat">Infrastructure</span>
-                        <h3>Pont Autoroutier</h3>
-                        <div class="content-card-actions">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Modifier</button>
-                            <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <img src="../images/projet-immeuble.jfif" alt="Immeuble Commercial">
-                    <div class="content-card-body">
-                        <span class="tag-cat">Bâtiment</span>
-                        <h3>Immeuble Commercial</h3>
-                        <div class="content-card-actions">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Modifier</button>
-                            <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <img src="../images/projet-autoroute.jfif" alt="Autoroute Urbaine">
-                    <div class="content-card-body">
-                        <span class="tag-cat">Route</span>
-                        <h3>Autoroute Urbaine</h3>
-                        <div class="content-card-actions">
-                            <button class="btn-edit"><i class="fas fa-edit"></i> Modifier</button>
-                            <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-card content-card-add" onclick="addProject()">
-                    <div class="add-icon"><i class="fas fa-plus"></i></div>
-                    <p>Ajouter un projet</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE: TÉMOIGNAGES -->
-        <div id="page-temoignages" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-star"></i> Témoignages</h1>
-                    <p class="page-sub">Gestion des avis clients affichés sur le site</p>
-                </div>
-                <button class="btn-add" onclick="addTemoignage()">
-                    <i class="fas fa-plus"></i> Ajouter un témoignage
-                </button>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>NOM</th>
-                            <th>RÔLE</th>
-                            <th>TÉMOIGNAGE</th>
-                            <th>NOTE</th>
-                            <th>STATUT</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Kofi Mensah</td>
-                            <td>Promoteur immobilier, Lomé</td>
-                            <td>DYG-BTP a réalisé notre immeuble commercial dans les délais...</td>
-                            <td><i class="fas fa-star" style="color:#f59e0b"></i> 5/5</td>
-                            <td><span class="badge-status green">Publié</span></td>
-                            <td>
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Afi Dossou</td>
-                            <td>Responsable Travaux, Mairie d'Agoe</td>
-                            <td>DYG-BTP pour la réhabilitation d'une route communale...</td>
-                            <td><i class="fas fa-star" style="color:#f59e0b"></i> 5/5</td>
-                            <td><span class="badge-status green">Publié</span></td>
-                            <td>
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- PAGE: SERVICES -->
-        <div id="page-services" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-cog"></i> Services</h1>
-                    <p class="page-sub">Gestion des services affichés sur le site</p>
-                </div>
-                <button class="btn-add"><i class="fas fa-plus"></i> Ajouter un service</button>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>ICÔNE</th>
-                            <th>NOM DU SERVICE</th>
-                            <th>DESCRIPTION</th>
-                            <th>STATUT</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td><i class="fas fa-building"></i></td><td>Construction de Bâtiments</td><td>Infrastructures modernes et durables...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr><td>2</td><td><i class="fas fa-road"></i></td><td>Travaux Publics</td><td>Routes, ponts, réseaux d'assainissement...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr><td>3</td><td><i class="fas fa-drafting-compass"></i></td><td>Conception Architecturale</td><td>Plans et solutions architecturales...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr><td>4</td><td><i class="fas fa-ruler-combined"></i></td><td>Études et Réalisation</td><td>Prise en charge complète des projets...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr><td>5</td><td><i class="fas fa-truck-moving"></i></td><td>Location d'Engins</td><td>Pelles, bulldozers, compacteurs...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr><td>6</td><td><i class="fas fa-map-marked-alt"></i></td><td>Topographie</td><td>Relevés topographiques de précision...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- PAGE: ÉQUIPES -->
-        <div id="page-equipes" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-users"></i> Équipes</h1>
-                    <p class="page-sub">Gestion des membres d'équipe affichés sur le site</p>
-                </div>
-                <button class="btn-add"><i class="fas fa-plus"></i> Ajouter un membre</button>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>PHOTO</th>
-                            <th>NOM</th>
-                            <th>POSTE</th>
-                            <th>DÉPARTEMENT</th>
-                            <th>EMAIL</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="avatar-sm">DG</div></td>
-                            <td>Directeur Général</td>
-                            <td>Direction Générale</td>
-                            <td><span class="tag-dept admin">Administration</span></td>
-                            <td>contact@dyg-btp.com</td>
-                            <td><button class="btn-edit"><i class="fas fa-edit"></i></button> <button class="btn-delete"><i class="fas fa-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td><div class="avatar-sm">TC</div></td>
-                            <td>Chef des Travaux</td>
-                            <td>Direction Technique</td>
-                            <td><span class="tag-dept travaux">Travaux</span></td>
-                            <td>travaux@dyg-btp.com</td>
-                            <td><button class="btn-edit"><i class="fas fa-edit"></i></button> <button class="btn-delete"><i class="fas fa-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td><div class="avatar-sm">QH</div></td>
-                            <td>Responsable QHSE</td>
-                            <td>Qualité & Sécurité</td>
-                            <td><span class="tag-dept qhse">QHSE</span></td>
-                            <td>qhse@dyg-btp.com</td>
-                            <td><button class="btn-edit"><i class="fas fa-edit"></i></button> <button class="btn-delete"><i class="fas fa-trash"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- PAGE: MÉDIATHÈQUE -->
-        <div id="page-mediatheque" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-photo-video"></i> Médiathèque</h1>
-                    <p class="page-sub">Gestion des images et fichiers du site</p>
-                </div>
-                <button class="btn-add"><i class="fas fa-upload"></i> Uploader</button>
-            </div>
-            <div class="media-grid">
-                <div class="media-item"><img src="../images/projet-pont.jfif" alt=""><span>projet-pont.jfif</span></div>
-                <div class="media-item"><img src="../images/projet-immeuble.jfif" alt=""><span>projet-immeuble.jfif</span></div>
-                <div class="media-item"><img src="../images/projet-autoroute.jfif" alt=""><span>projet-autoroute.jfif</span></div>
-                <div class="media-item"><img src="../images/domaine-batiments.jfif" alt=""><span>domaine-batiments.jfif</span></div>
-                <div class="media-item"><img src="../images/domaine-routes.jfif" alt=""><span>domaine-routes.jfif</span></div>
-                <div class="media-item"><img src="../images/domaine-topographie.jfif" alt=""><span>domaine-topographie.jfif</span></div>
-                <div class="media-item"><img src="../images/hero-route.jfif" alt=""><span>hero-route.jfif</span></div>
-                <div class="media-item"><img src="../images/hero-batiment.jfif" alt=""><span>hero-batiment.jfif</span></div>
-            </div>
-        </div>
-
-        <!-- PAGE: SEO -->
-        <div id="page-seo" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-globe"></i> SEO & Paramètres</h1>
-                    <p class="page-sub">Paramètres de référencement et informations du site</p>
-                </div>
-            </div>
-            <div class="seo-form">
-                <div class="form-group">
-                    <label>Titre du site</label>
-                    <input type="text" value="DYG-BTP — Ingénieurs Conseils & Experts · Génie Civil & Infrastructure">
-                </div>
-                <div class="form-group">
-                    <label>Description meta</label>
-                    <textarea rows="3">DYG-BTP, ingénieurs-conseils agréés par l'État. Depuis 2020 : études et contrôle technique en bâtiments, infrastructures routières, topographie et assainissement.</textarea>
-                </div>
-                <div class="form-group">
-                    <label>URL du site</label>
-                    <input type="text" value="https://dyg-btp.vercel.app">
-                </div>
-                <div class="form-group">
-                    <label>Téléphone principal</label>
-                    <input type="text" value="+228 99 33 96 58">
-                </div>
-                <div class="form-group">
-                    <label>Email principal</label>
-                    <input type="text" value="contact@dyg-btp.com">
-                </div>
-                <div class="form-group">
-                    <label>Adresse</label>
-                    <input type="text" value="VAKPOSSITO, Rue AGOE NYIVE, Lomé, Togo">
-                </div>
-                <button class="btn-save"><i class="fas fa-save"></i> Enregistrer les paramètres</button>
-            </div>
-        </div>
-
-        <!-- PAGE: JOURNAL -->
-        <div id="page-journal" class="page">
-            <div class="page-header">
-                <div>
-                    <h1><i class="fas fa-shield-alt"></i> Journal de sécurité</h1>
-                    <p class="page-sub">Historique des actions administratives</p>
-                </div>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>DATE</th>
-                            <th>ACTION</th>
-                            <th>UTILISATEUR</th>
-                            <th>IP</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-journal">
-                        <tr>
-                            <td id="log-date"></td>
-                            <td>Connexion au back-office</td>
-                            <td>Administrateur</td>
-                            <td>127.0.0.1</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div><!-- end main-content -->
-</div><!-- end admin-layout -->
-
-<!-- Modal Détails Devis -->
-<div id="modal-devis" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="modal-title">Détails de la demande</h3>
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-        </div>
-        <div class="modal-body" id="modal-body"></div>
-        <div class="modal-footer">
-            <select id="modal-statut">
-                <option value="nouveau">Nouveau</option>
-                <option value="en-cours">En cours</option>
-                <option value="traite">Traité</option>
-                <option value="archive">Archivé</option>
-            </select>
-            <button class="btn-save" onclick="saveStatut()">Enregistrer</button>
-            <button class="btn-cancel" onclick="closeModal()">Fermer</button>
-        </div>
+      <span class="sec-ttl">3. SYSTÈME</span>
+      <button class="ni" onclick="go('seo')"><i class="fas fa-globe"></i> SEO & Paramètres</button>
+      <button class="ni" onclick="go('journal')"><i class="fas fa-shield-alt"></i> Journal de sécurité</button>
     </div>
+    <div class="sb-ft">
+      <div class="u-inf">
+        <div class="u-av">AD</div>
+        <div>
+          <div class="u-nm">Administrateur</div>
+          <div class="u-st"><span class="dot"></span> Connecté</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="pg-dashboard" class="pg on">
+      <div class="ph">
+        <div>
+          <h1><i class="fas fa-chart-bar"></i> Tableau de bord général</h1>
+          <div class="ph-sub">Supervision en temps réel des activités commerciales et du contenu du site</div>
+        </div>
+        <button class="btn-r" onclick="refresh()"><i class="fas fa-clock"></i> Actualisé à l'instant</button>
+      </div>
+      <div class="kpi">
+        <div class="kpi-c">
+          <div class="kpi-t"><span class="kpi-l">DEVIS EN ATTENTE</span><i class="fas fa-file-invoice" style="color:#f59e0b"></i></div>
+          <div class="kpi-n" id="kn-d">0</div>
+          <div class="kpi-m o">⬤ Traitement requis sous 24h</div>
+        </div>
+        <div class="kpi-c">
+          <div class="kpi-t"><span class="kpi-l">MESSAGES NON LUS</span><i class="fas fa-envelope" style="color:#3b82f6"></i></div>
+          <div class="kpi-n" id="kn-m">0</div>
+          <div class="kpi-m b">✉ Formulaire de contact</div>
+        </div>
+        <div class="kpi-c">
+          <div class="kpi-t"><span class="kpi-l">NOUVELLES DEMANDES</span><i class="fas fa-tools" style="color:#10b981"></i></div>
+          <div class="kpi-n" id="kn-s">0</div>
+          <div class="kpi-m g">⚠ En attente de traitement</div>
+        </div>
+        <div class="kpi-c">
+          <div class="kpi-t"><span class="kpi-l">CANDIDATURES</span><i class="fas fa-user-graduate" style="color:#8b5cf6"></i></div>
+          <div class="kpi-n" id="kn-c">0</div>
+          <div class="kpi-m gr">☐ Statut non traité</div>
+        </div>
+        <div class="kpi-c">
+          <div class="kpi-t"><span class="kpi-l">VISITEURS CE MOIS</span><i class="fas fa-chart-line" style="color:#ec4899"></i></div>
+          <div class="kpi-n" id="kn-v">—</div>
+          <div class="kpi-m gr">📊 Analytics</div>
+        </div>
+      </div>
+      <div class="ts-wrap">
+        <div class="ts-h">
+          <h2><i class="fas fa-file-invoice"></i> Dernières demandes de devis</h2>
+          <span class="ts-sub">Soumises via le formulaire institutionnel</span>
+          <span class="ts-lnk" onclick="go('devis')">Voir toutes les demandes →</span>
+        </div>
+        <div class="tw"><table>
+          <thead><tr><th>RÉF.</th><th>NOM</th><th>EMAIL</th><th>PRESTATION</th><th>DATE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+          <tbody id="tb-d"><tr><td colspan="7" class="es"><i class="fas fa-inbox"></i><p>Aucune demande pour le moment</p><small>Les soumissions du formulaire apparaîtront ici</small></td></tr></tbody>
+        </table></div>
+      </div>
+      <div class="ts-wrap">
+        <div class="ts-h">
+          <h2><i class="fas fa-envelope"></i> Messages récents</h2>
+          <span class="ts-sub">Via le formulaire de contact</span>
+          <span class="ts-lnk" onclick="go('messages')">Voir tous les messages →</span>
+        </div>
+        <div class="tw"><table>
+          <thead><tr><th>NOM</th><th>EMAIL</th><th>MESSAGE</th><th>DATE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+          <tbody id="tb-m"><tr><td colspan="6" class="es"><i class="fas fa-envelope-open"></i><p>Aucun message pour le moment</p></td></tr></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- DEVIS -->
+    <div id="pg-devis" class="pg">
+      <div class="ph">
+        <div><h1><i class="fas fa-file-invoice"></i> Demandes de devis</h1><div class="ph-sub">Toutes les demandes reçues via le formulaire</div></div>
+        <button class="btn-e" onclick="exportCSV('devis')"><i class="fas fa-download"></i> Exporter CSV</button>
+      </div>
+      <div class="flt">
+        <select id="flt-st" onchange="filterDevis()"><option value="">Tous les statuts</option><option value="nouveau">Nouveau</option><option value="en-cours">En cours</option><option value="traite">Traité</option><option value="archive">Archivé</option></select>
+        <input type="text" id="flt-sr" placeholder="Rechercher..." oninput="filterDevis()">
+      </div>
+      <div class="tw"><table>
+        <thead><tr><th>RÉF.</th><th>NOM</th><th>EMAIL</th><th>TÉLÉPHONE</th><th>PRESTATION</th><th>DOMAINE</th><th>DATE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <tbody id="tb-d2"><tr><td colspan="9" class="es"><i class="fas fa-inbox"></i><p>Aucune demande de devis</p></td></tr></tbody>
+      </table></div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div id="pg-messages" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-envelope"></i> Messages de contact</h1><div class="ph-sub">Messages reçus via le formulaire public</div></div></div>
+      <div class="tw"><table>
+        <thead><tr><th>NOM</th><th>EMAIL</th><th>MESSAGE</th><th>DATE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <tbody><tr><td colspan="6" class="es"><i class="fas fa-envelope-open"></i><p>Aucun message</p></td></tr></tbody>
+      </table></div>
+    </div>
+
+    <!-- RÉALISATIONS -->
+    <div id="pg-realisations" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-images"></i> Réalisations (Portfolio)</h1><div class="ph-sub">Gestion des projets affichés sur le site</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+      <div class="cg">
+        <div class="cc"><img src="../images/projet-pont.jfif" alt=""><div class="cc-b"><span class="tg-ct">Infrastructure</span><h3>Pont Autoroutier</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/projet-immeuble.jfif" alt=""><div class="cc-b"><span class="tg-ct">Bâtiment</span><h3>Immeuble Commercial</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc"><img src="../images/projet-autoroute.jfif" alt=""><div class="cc-b"><span class="tg-ct">Route</span><h3>Autoroute Urbaine</h3><div class="acts"><button class="btn-ed"><i class="fas fa-edit"></i> Modifier</button><button class="btn-dl"><i class="fas fa-trash"></i></button></div></div></div>
+        <div class="cc-add" onclick="alert('Ajouter un projet')"><i class="fas fa-plus"></i><p>Ajouter un projet</p></div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div id="pg-services" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-cog"></i> Services</h1><div class="ph-sub">Gestion des services affichés sur le site</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>ICÔNE</th><th>SERVICE</th><th>DESCRIPTION</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><i class="fas fa-building"></i></td><td>Construction de Bâtiments</td><td>Infrastructures modernes et durables...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+          <tr><td>2</td><td><i class="fas fa-road"></i></td><td>Travaux Publics</td><td>Routes, ponts, réseaux d'assainissement...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+          <tr><td>3</td><td><i class="fas fa-drafting-compass"></i></td><td>Conception Architecturale</td><td>Plans et solutions architecturales...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+          <tr><td>4</td><td><i class="fas fa-ruler-combined"></i></td><td>Études et Réalisation</td><td>Prise en charge complète des projets...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+          <tr><td>5</td><td><i class="fas fa-truck-moving"></i></td><td>Location d'Engins</td><td>Pelles, bulldozers, compacteurs...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+          <tr><td>6</td><td><i class="fas fa-map-marked-alt"></i></td><td>Topographie</td><td>Relevés topographiques de précision...</td><td><span class="st gn">Actif</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- TÉMOIGNAGES -->
+    <div id="pg-temoignages" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-star"></i> Témoignages</h1><div class="ph-sub">Gestion des avis clients</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+      <div class="tw"><table>
+        <thead><tr><th>NOM</th><th>RÔLE</th><th>TÉMOIGNAGE</th><th>NOTE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <tbody>
+          <tr><td>Kofi Mensah</td><td>Promoteur immobilier</td><td>DYG-BTP a réalisé notre immeuble dans les délais...</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Afi Dossou</td><td>Mairie d'Agoe</td><td>DYG-BTP pour la réhabilitation d'une route...</td><td>⭐ 5/5</td><td><span class="st gn">Publié</span></td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- ÉQUIPES -->
+    <div id="pg-equipes" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-users"></i> Équipes</h1><div class="ph-sub">Membres affichés sur le site</div></div><button class="btn-a"><i class="fas fa-plus"></i> Ajouter</button></div>
+      <div class="tw"><table>
+        <thead><tr><th>PHOTO</th><th>NOM</th><th>POSTE</th><th>DÉPARTEMENT</th><th>EMAIL</th><th>ACTIONS</th></tr></thead>
+        <tbody>
+          <tr><td><div class="avsm">DG</div></td><td>Directeur Général</td><td>Direction</td><td><span class="td-ad">Administration</span></td><td>contact@dyg-btp.com</td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td><div class="avsm">TC</div></td><td>Chef des Travaux</td><td>Direction Technique</td><td><span class="td-tr">Travaux</span></td><td>travaux@dyg-btp.com</td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td><div class="avsm">QH</div></td><td>Responsable QHSE</td><td>Qualité & Sécurité</td><td><span class="td-qh">QHSE</span></td><td>qhse@dyg-btp.com</td><td><button class="btn-ed"><i class="fas fa-edit"></i></button><button class="btn-dl"><i class="fas fa-trash"></i></button></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- MÉDIATHÈQUE -->
+    <div id="pg-mediatheque" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-photo-video"></i> Médiathèque</h1><div class="ph-sub">Images et fichiers du site</div></div><button class="btn-a"><i class="fas fa-upload"></i> Uploader</button></div>
+      <div class="mg">
+        <div class="mi"><img src="../images/projet-pont.jfif" alt=""><span>projet-pont.jfif</span></div>
+        <div class="mi"><img src="../images/projet-immeuble.jfif" alt=""><span>projet-immeuble.jfif</span></div>
+        <div class="mi"><img src="../images/domaine-batiments.jfif" alt=""><span>domaine-batiments.jfif</span></div>
+        <div class="mi"><img src="../images/domaine-routes.jfif" alt=""><span>domaine-routes.jfif</span></div>
+        <div class="mi"><img src="../images/hero-route.jfif" alt=""><span>hero-route.jfif</span></div>
+        <div class="mi"><img src="../images/hero-batiment.jfif" alt=""><span>hero-batiment.jfif</span></div>
+        <div class="mi"><img src="../images/equipe-administration.jfif" alt=""><span>equipe-administration.jfif</span></div>
+        <div class="mi"><img src="../images/equipe-travaux.jpeg" alt=""><span>equipe-travaux.jpeg</span></div>
+      </div>
+    </div>
+
+    <!-- CANDIDATURES -->
+    <div id="pg-candidatures" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-user-graduate"></i> Candidatures / Stages</h1><div class="ph-sub">Candidatures reçues</div></div></div>
+      <div class="tw"><table>
+        <thead><tr><th>NOM</th><th>EMAIL</th><th>POSTE</th><th>DATE</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <tbody><tr><td colspan="6" class="es"><i class="fas fa-user-graduate"></i><p>Aucune candidature</p></td></tr></tbody>
+      </table></div>
+    </div>
+
+    <!-- SEO -->
+    <div id="pg-seo" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-globe"></i> SEO & Paramètres</h1><div class="ph-sub">Référencement et informations du site</div></div></div>
+      <div class="sf">
+        <div class="fg"><label>Titre du site</label><input type="text" value="DYG-BTP — Ingénieurs Conseils & Experts · Génie Civil"></div>
+        <div class="fg"><label>Description meta</label><textarea rows="3">DYG-BTP, ingénieurs-conseils agréés. Depuis 2020 : études et contrôle technique en bâtiments, routes, topographie.</textarea></div>
+        <div class="fg"><label>URL du site</label><input type="text" value="https://dyg-btp.vercel.app"></div>
+        <div class="fg"><label>Téléphone</label><input type="text" value="+228 99 33 96 58"></div>
+        <div class="fg"><label>Email</label><input type="text" value="contact@dyg-btp.com"></div>
+        <div class="fg"><label>Adresse</label><input type="text" value="VAKPOSSITO, Rue AGOE NYIVE, Lomé, Togo"></div>
+        <button class="btn-sv"><i class="fas fa-save"></i> Enregistrer</button>
+      </div>
+    </div>
+
+    <!-- JOURNAL -->
+    <div id="pg-journal" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-shield-alt"></i> Journal de sécurité</h1><div class="ph-sub">Historique des actions administratives</div></div></div>
+      <div class="tw"><table>
+        <thead><tr><th>DATE</th><th>ACTION</th><th>UTILISATEUR</th></tr></thead>
+        <tbody id="tb-j">
+          <tr><td id="jd"></td><td>Connexion au back-office</td><td>Administrateur</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- PAGES STATIQUES -->
+    <div id="pg-pages" class="pg">
+      <div class="ph"><div><h1><i class="fas fa-file-alt"></i> Pages statiques</h1><div class="ph-sub">Pages du site institutionnel</div></div></div>
+      <div class="tw"><table>
+        <thead><tr><th>PAGE</th><th>URL</th><th>STATUT</th><th>ACTIONS</th></tr></thead>
+        <tbody>
+          <tr><td>Accueil</td><td>/</td><td><span class="st gn">Publié</span></td><td><a href="../index.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
+          <tr><td>À propos</td><td>/apropos</td><td><span class="st gn">Publié</span></td><td><a href="../apropos.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
+          <tr><td>Équipe Administration</td><td>/equipe-administration</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-administration.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
+          <tr><td>Équipe Travaux</td><td>/equipe-travaux</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-travaux.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
+          <tr><td>Équipe QHSE</td><td>/equipe-qhse</td><td><span class="st gn">Publié</span></td><td><a href="../equipe-qhse.html" target="_blank" class="btn-ed"><i class="fas fa-eye"></i> Voir</a></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+  </div><!-- end main -->
+</div><!-- end layout -->
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="mc">
+    <div class="mh"><h3 id="m-ttl">Détails</h3><button class="mx" onclick="closeModal()">×</button></div>
+    <div class="mb" id="m-body"></div>
+    <div class="mf"><select id="m-st"><option value="nouveau">Nouveau</option><option value="en-cours">En cours</option><option value="traite">Traité</option><option value="archive">Archivé</option></select><button class="btn-sv" onclick="saveStatut()">Enregistrer</button><button class="btn-cn" onclick="closeModal()">Fermer</button></div>
+  </div>
 </div>
 
 <script src="admin.js"></script>

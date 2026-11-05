@@ -1,4 +1,4 @@
-/**
+﻿/**
  * DYG-BTP — Back-Office Admin
  * Gestion des demandes, messages, contenus
  */
@@ -8,18 +8,18 @@
 // NAVIGATION
 // ============================================================
 
-function showPage(page) {
+function go(page) {
     // Cacher toutes les pages
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
 
     // Afficher la page demandée
-    const target = document.getElementById('page-' + page);
-    if (target) target.classList.add('active');
+    const target = document.getElementById('pg-' + page);
+    if (target) target.classList.add('on');
 
     // Activer le lien nav
-    const navLink = document.querySelector(`[onclick="showPage('${page}')"]`);
-    if (navLink) navLink.classList.add('active');
+    const navLink = document.querySelector(`[onclick="go('${page}')"]`);
+    if (navLink) navLink.classList.add('on');
 
     // Logger l'action
     logAction('Navigation vers : ' + page);
@@ -44,7 +44,7 @@ const DB = {
 // DASHBOARD — KPIs
 // ============================================================
 
-function refreshDashboard() {
+function refresh() {
     const devis = DB.get('devis');
     const messages = DB.get('messages');
     const candidatures = DB.get('candidatures');
@@ -174,7 +174,7 @@ function updateStatut(key, index, newStatut) {
     if (arr[index]) {
         arr[index].statut = newStatut;
         DB.set(key, arr);
-        refreshDashboard();
+        refresh();
         logAction(`Statut ${key} mis à jour : ${newStatut}`);
     }
 }
@@ -184,7 +184,7 @@ function deleteDevis(index) {
     const arr = DB.get('devis');
     arr.splice(index, 1);
     DB.set('devis', arr);
-    refreshDashboard();
+    refresh();
     logAction('Demande de devis supprimée');
 }
 
@@ -193,7 +193,7 @@ function deleteMsg(key, index) {
     const arr = DB.get(key);
     arr.splice(index, 1);
     DB.set(key, arr);
-    refreshDashboard();
+    refresh();
 }
 
 function markAsRead(key, index) {
@@ -201,7 +201,7 @@ function markAsRead(key, index) {
     if (arr[index]) {
         arr[index].lu = true;
         DB.set(key, arr);
-        refreshDashboard();
+        refresh();
     }
 }
 
@@ -257,7 +257,7 @@ function captureFormSubmit() {
             } else {
                 DB.add('messages', data);
             }
-            refreshDashboard();
+            refresh();
         }
     });
 }
@@ -277,7 +277,7 @@ function injectFormCapture() {
             DB.add(item.type === 'devis' ? 'devis' : 'messages', item);
         });
         localStorage.removeItem('dyg_pending_submissions');
-        refreshDashboard();
+        refresh();
     }
 }
 
@@ -287,7 +287,7 @@ function injectFormCapture() {
 
 function syncData() {
     injectFormCapture();
-    refreshDashboard();
+    refresh();
     const btn = document.querySelector('.btn-sync');
     if (btn) {
         btn.innerHTML = '<i class="fas fa-check"></i> Synchronisé !';
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sync et refresh
     injectFormCapture();
-    refreshDashboard();
+    refresh();
 
     // Fermer modal en cliquant dehors
     document.querySelectorAll('.modal').forEach(modal => {
@@ -391,3 +391,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('✅ DYG-BTP Back-Office initialisé');
 });
+
