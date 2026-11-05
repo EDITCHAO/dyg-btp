@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYG-BTP — Back-Office</title>
+    <link rel="icon" type="image/png" href="../logo-dyg-btp.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<header class="topbar">
+    <div class="topbar-left">
+        <div class="topbar-logo">
+            <img src="../logo-dyg-btp.png" alt="DYG-BTP">
+        </div>
+        <div class="topbar-brand">
+            <span class="brand-name">DYG-BTP</span>
+            <span class="brand-tag">BACK-OFFICE</span>
+            <span class="brand-sub">Plateforme d'administration & gestion</span>
+        </div>
+    </div>
+    <div class="topbar-center">
+        <span class="role-label">Rôle actif :</span>
+        <button class="role-btn active">Administrateur</button>
+        <button class="role-btn">Éditeur</button>
+    </div>
+    <div class="topbar-right">
+        <button class="btn-sync" onclick="syncData()">
+            <i class="fas fa-sync-alt"></i> Sync Données
+        </button>
+        <a href="../index.html" class="btn-site" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Voir le site
+        </a>
+        <div class="topbar-avatar">AD</div>
+    </div>
+</header>
+
+<div class="admin-layout">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+
+            <div class="nav-section-title">1. GÉNÉRAL (CONTENU)</div>
+
+            <a href="#dashboard" class="nav-item active" onclick="showPage('dashboard')">
+                <i class="fas fa-chart-bar"></i> Tableau de bord
+            </a>
+            <a href="#pages" class="nav-item" onclick="showPage('pages')">
+                <i class="fas fa-file-alt"></i> Pages statiques
+            </a>
+            <a href="#realisations" class="nav-item" onclick="showPage('realisations')">
+                <i class="fas fa-images"></i> Réalisations (Portfolio)
+            </a>
+            <a href="#services" class="nav-item" onclick="showPage('services')">
+                <i class="fas fa-cog"></i> Services <span class="badge">6</span>
+            </a>
+            <a href="#temoignages" class="nav-item" onclick="showPage('temoignages')">
+                <i class="fas fa-star"></i> Témoignages
+            </a>
+            <a href="#equipes" class="nav-item" onclick="showPage('equipes')">
+                <i class="fas fa-users"></i> Équipes
+            </a>
+            <a href="#mediatheque" class="nav-item" onclick="showPage('mediatheque')">
+                <i class="fas fa-photo-video"></i> Médiathèque
+            </a>
+
+            <div class="nav-section-title">2. RELATION CLIENT</div>
+
+            <a href="#devis" class="nav-item" onclick="showPage('devis')">
+                <i class="fas fa-file-invoice"></i> Demandes de devis
+                <span class="badge badge-orange" id="badge-devis">0</span>
+            </a>
+            <a href="#messages" class="nav-item" onclick="showPage('messages')">
+                <i class="fas fa-envelope"></i> Messages de contact
+                <span class="badge badge-red" id="badge-messages">0</span>
+            </a>
+            <a href="#candidatures" class="nav-item" onclick="showPage('candidatures')">
+                <i class="fas fa-user-graduate"></i> Candidatures / Stages
+                <span class="badge badge-blue" id="badge-candidatures">0</span>
+            </a>
+
+            <div class="nav-section-title">3. SYSTÈME</div>
+
+            <a href="#seo" class="nav-item" onclick="showPage('seo')">
+                <i class="fas fa-globe"></i> SEO & Paramètres
+            </a>
+            <a href="#journal" class="nav-item" onclick="showPage('journal')">
+                <i class="fas fa-shield-alt"></i> Journal de sécurité
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">AD</div>
+                <div>
+                    <div class="user-name">Administrateur</div>
+                    <div class="user-status"><span class="dot-green"></span> Connecté</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <main class="main-content">
+
+        <!-- PAGE: DASHBOARD -->
+        <div id="page-dashboard" class="page active">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-chart-bar"></i> Tableau de bord général</h1>
+                    <p class="page-sub">Supervision en temps réel des activités commerciales et du contenu du site institutionnel</p>
+                </div>
+                <button class="btn-refresh" onclick="refreshDashboard()">
+                    <i class="fas fa-clock"></i> Actualisé à l'instant
+                </button>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">DEVIS EN ATTENTE</span>
+                        <i class="fas fa-file-invoice" style="color:#f59e0b"></i>
+                    </div>
+                    <div class="kpi-num" id="kpi-devis">0</div>
+                    <div class="kpi-note orange">⬤ Traitement requis sous 24h</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">MESSAGES NON LUS</span>
+                        <i class="fas fa-envelope" style="color:#3b82f6"></i>
+                    </div>
+                    <div class="kpi-num" id="kpi-messages">0</div>
+                    <div class="kpi-note blue">✉ Formulaire de contact public</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">NOUVELLES DEMANDES DE SERVICES</span>
+                        <i class="fas fa-tools" style="color:#10b981"></i>
+                    </div>
+                    <div class="kpi-num" id="kpi-services">0</div>
+                    <div class="kpi-note green">⚠ Demandes en attente de traitement</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">NOUVELLES CANDIDATURES</span>
+                        <i class="fas fa-user-graduate" style="color:#8b5cf6"></i>
+                    </div>
+                    <div class="kpi-num" id="kpi-candidatures">0</div>
+                    <div class="kpi-note gray">☐ Statut non traité</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-top">
+                        <span class="kpi-label">VISITEURS CE MOIS</span>
+                        <i class="fas fa-chart-line" style="color:#ec4899"></i>
+                    </div>
+                    <div class="kpi-num" id="kpi-visiteurs">0</div>
+                    <div class="kpi-note gray">📊 +0% vs mois dernier</div>
+                </div>
+            </div>
+
+            <!-- Dernières demandes de devis -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h2><i class="fas fa-file-invoice"></i> Dernières demandes de devis reçues</h2>
+                    <span class="table-sub">Demandes soumises via le formulaire institutionnel</span>
+                    <a href="#devis" class="voir-tout" onclick="showPage('devis')">Voir toutes les demandes →</a>
+                </div>
+                <div class="table-wrap">
+                    <table id="table-devis">
+                        <thead>
+                            <tr>
+                                <th>RÉF.</th>
+                                <th>NOM</th>
+                                <th>CONTACT / EMAIL</th>
+                                <th>PRESTATION</th>
+                                <th>DATE</th>
+                                <th>STATUT</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-devis">
+                            <tr>
+                                <td colspan="7" class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>Aucune demande de devis pour le moment</p>
+                                    <small>Les demandes soumises via le formulaire apparaîtront ici</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Messages récents -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h2><i class="fas fa-envelope"></i> Messages de contact récents</h2>
+                    <span class="table-sub">Messages reçus via le formulaire de contact</span>
+                    <a href="#messages" class="voir-tout" onclick="showPage('messages')">Voir tous les messages →</a>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>NOM</th>
+                                <th>EMAIL</th>
+                                <th>SUJET</th>
+                                <th>DATE</th>
+                                <th>STATUT</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-messages">
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    <i class="fas fa-envelope-open"></i>
+                                    <p>Aucun message pour le moment</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: DEVIS -->
+        <div id="page-devis" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-file-invoice"></i> Demandes de devis</h1>
+                    <p class="page-sub">Toutes les demandes reçues via le formulaire de contact</p>
+                </div>
+                <button class="btn-export" onclick="exportData('devis')">
+                    <i class="fas fa-download"></i> Exporter CSV
+                </button>
+            </div>
+
+            <div class="filters">
+                <select id="filter-statut" onchange="filterDevis()">
+                    <option value="">Tous les statuts</option>
+                    <option value="nouveau">Nouveau</option>
+                    <option value="en-cours">En cours</option>
+                    <option value="traite">Traité</option>
+                    <option value="archive">Archivé</option>
+                </select>
+                <input type="text" id="filter-search" placeholder="Rechercher..." oninput="filterDevis()">
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>RÉF.</th>
+                            <th>NOM</th>
+                            <th>EMAIL</th>
+                            <th>TÉLÉPHONE</th>
+                            <th>PRESTATION</th>
+                            <th>DOMAINE</th>
+                            <th>DATE</th>
+                            <th>STATUT</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-devis-full">
+                        <tr>
+                            <td colspan="9" class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>Aucune demande de devis</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE: MESSAGES -->
+        <div id="page-messages" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-envelope"></i> Messages de contact</h1>
+                    <p class="page-sub">Messages reçus via le formulaire public</p>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NOM</th>
+                            <th>EMAIL</th>
+                            <th>MESSAGE</th>
+                            <th>DATE</th>
+                            <th>STATUT</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <i class="fas fa-envelope-open"></i>
+                                <p>Aucun message</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE: RÉALISATIONS -->
+        <div id="page-realisations" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-images"></i> Réalisations (Portfolio)</h1>
+                    <p class="page-sub">Gestion des projets affichés sur le site</p>
+                </div>
+                <button class="btn-add">
+                    <i class="fas fa-plus"></i> Ajouter un projet
+                </button>
+            </div>
+            <div class="cards-grid">
+                <div class="content-card">
+                    <img src="../images/projet-pont.jfif" alt="Pont Autoroutier">
+                    <div class="content-card-body">
+                        <span class="tag-cat">Infrastructure</span>
+                        <h3>Pont Autoroutier</h3>
+                        <div class="content-card-actions">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Modifier</button>
+                            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <img src="../images/projet-immeuble.jfif" alt="Immeuble Commercial">
+                    <div class="content-card-body">
+                        <span class="tag-cat">Bâtiment</span>
+                        <h3>Immeuble Commercial</h3>
+                        <div class="content-card-actions">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Modifier</button>
+                            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <img src="../images/projet-autoroute.jfif" alt="Autoroute Urbaine">
+                    <div class="content-card-body">
+                        <span class="tag-cat">Route</span>
+                        <h3>Autoroute Urbaine</h3>
+                        <div class="content-card-actions">
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Modifier</button>
+                            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card content-card-add" onclick="addProject()">
+                    <div class="add-icon"><i class="fas fa-plus"></i></div>
+                    <p>Ajouter un projet</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: TÉMOIGNAGES -->
+        <div id="page-temoignages" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-star"></i> Témoignages</h1>
+                    <p class="page-sub">Gestion des avis clients affichés sur le site</p>
+                </div>
+                <button class="btn-add" onclick="addTemoignage()">
+                    <i class="fas fa-plus"></i> Ajouter un témoignage
+                </button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NOM</th>
+                            <th>RÔLE</th>
+                            <th>TÉMOIGNAGE</th>
+                            <th>NOTE</th>
+                            <th>STATUT</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kofi Mensah</td>
+                            <td>Promoteur immobilier, Lomé</td>
+                            <td>DYG-BTP a réalisé notre immeuble commercial dans les délais...</td>
+                            <td><i class="fas fa-star" style="color:#f59e0b"></i> 5/5</td>
+                            <td><span class="badge-status green">Publié</span></td>
+                            <td>
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Afi Dossou</td>
+                            <td>Responsable Travaux, Mairie d'Agoe</td>
+                            <td>DYG-BTP pour la réhabilitation d'une route communale...</td>
+                            <td><i class="fas fa-star" style="color:#f59e0b"></i> 5/5</td>
+                            <td><span class="badge-status green">Publié</span></td>
+                            <td>
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE: SERVICES -->
+        <div id="page-services" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-cog"></i> Services</h1>
+                    <p class="page-sub">Gestion des services affichés sur le site</p>
+                </div>
+                <button class="btn-add"><i class="fas fa-plus"></i> Ajouter un service</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ICÔNE</th>
+                            <th>NOM DU SERVICE</th>
+                            <th>DESCRIPTION</th>
+                            <th>STATUT</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><i class="fas fa-building"></i></td><td>Construction de Bâtiments</td><td>Infrastructures modernes et durables...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr><td>2</td><td><i class="fas fa-road"></i></td><td>Travaux Publics</td><td>Routes, ponts, réseaux d'assainissement...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr><td>3</td><td><i class="fas fa-drafting-compass"></i></td><td>Conception Architecturale</td><td>Plans et solutions architecturales...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr><td>4</td><td><i class="fas fa-ruler-combined"></i></td><td>Études et Réalisation</td><td>Prise en charge complète des projets...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr><td>5</td><td><i class="fas fa-truck-moving"></i></td><td>Location d'Engins</td><td>Pelles, bulldozers, compacteurs...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr><td>6</td><td><i class="fas fa-map-marked-alt"></i></td><td>Topographie</td><td>Relevés topographiques de précision...</td><td><span class="badge-status green">Actif</span></td><td><button class="btn-edit"><i class="fas fa-edit"></i></button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE: ÉQUIPES -->
+        <div id="page-equipes" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-users"></i> Équipes</h1>
+                    <p class="page-sub">Gestion des membres d'équipe affichés sur le site</p>
+                </div>
+                <button class="btn-add"><i class="fas fa-plus"></i> Ajouter un membre</button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PHOTO</th>
+                            <th>NOM</th>
+                            <th>POSTE</th>
+                            <th>DÉPARTEMENT</th>
+                            <th>EMAIL</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="avatar-sm">DG</div></td>
+                            <td>Directeur Général</td>
+                            <td>Direction Générale</td>
+                            <td><span class="tag-dept admin">Administration</span></td>
+                            <td>contact@dyg-btp.com</td>
+                            <td><button class="btn-edit"><i class="fas fa-edit"></i></button> <button class="btn-delete"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td><div class="avatar-sm">TC</div></td>
+                            <td>Chef des Travaux</td>
+                            <td>Direction Technique</td>
+                            <td><span class="tag-dept travaux">Travaux</span></td>
+                            <td>travaux@dyg-btp.com</td>
+                            <td><button class="btn-edit"><i class="fas fa-edit"></i></button> <button class="btn-delete"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td><div class="avatar-sm">QH</div></td>
+                            <td>Responsable QHSE</td>
+                            <td>Qualité & Sécurité</td>
+                            <td><span class="tag-dept qhse">QHSE</span></td>
+                            <td>qhse@dyg-btp.com</td>
+                            <td><button class="btn-edit"><i class="fas fa-edit"></i></button> <button class="btn-delete"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PAGE: MÉDIATHÈQUE -->
+        <div id="page-mediatheque" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-photo-video"></i> Médiathèque</h1>
+                    <p class="page-sub">Gestion des images et fichiers du site</p>
+                </div>
+                <button class="btn-add"><i class="fas fa-upload"></i> Uploader</button>
+            </div>
+            <div class="media-grid">
+                <div class="media-item"><img src="../images/projet-pont.jfif" alt=""><span>projet-pont.jfif</span></div>
+                <div class="media-item"><img src="../images/projet-immeuble.jfif" alt=""><span>projet-immeuble.jfif</span></div>
+                <div class="media-item"><img src="../images/projet-autoroute.jfif" alt=""><span>projet-autoroute.jfif</span></div>
+                <div class="media-item"><img src="../images/domaine-batiments.jfif" alt=""><span>domaine-batiments.jfif</span></div>
+                <div class="media-item"><img src="../images/domaine-routes.jfif" alt=""><span>domaine-routes.jfif</span></div>
+                <div class="media-item"><img src="../images/domaine-topographie.jfif" alt=""><span>domaine-topographie.jfif</span></div>
+                <div class="media-item"><img src="../images/hero-route.jfif" alt=""><span>hero-route.jfif</span></div>
+                <div class="media-item"><img src="../images/hero-batiment.jfif" alt=""><span>hero-batiment.jfif</span></div>
+            </div>
+        </div>
+
+        <!-- PAGE: SEO -->
+        <div id="page-seo" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-globe"></i> SEO & Paramètres</h1>
+                    <p class="page-sub">Paramètres de référencement et informations du site</p>
+                </div>
+            </div>
+            <div class="seo-form">
+                <div class="form-group">
+                    <label>Titre du site</label>
+                    <input type="text" value="DYG-BTP — Ingénieurs Conseils & Experts · Génie Civil & Infrastructure">
+                </div>
+                <div class="form-group">
+                    <label>Description meta</label>
+                    <textarea rows="3">DYG-BTP, ingénieurs-conseils agréés par l'État. Depuis 2020 : études et contrôle technique en bâtiments, infrastructures routières, topographie et assainissement.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>URL du site</label>
+                    <input type="text" value="https://dyg-btp.vercel.app">
+                </div>
+                <div class="form-group">
+                    <label>Téléphone principal</label>
+                    <input type="text" value="+228 99 33 96 58">
+                </div>
+                <div class="form-group">
+                    <label>Email principal</label>
+                    <input type="text" value="contact@dyg-btp.com">
+                </div>
+                <div class="form-group">
+                    <label>Adresse</label>
+                    <input type="text" value="VAKPOSSITO, Rue AGOE NYIVE, Lomé, Togo">
+                </div>
+                <button class="btn-save"><i class="fas fa-save"></i> Enregistrer les paramètres</button>
+            </div>
+        </div>
+
+        <!-- PAGE: JOURNAL -->
+        <div id="page-journal" class="page">
+            <div class="page-header">
+                <div>
+                    <h1><i class="fas fa-shield-alt"></i> Journal de sécurité</h1>
+                    <p class="page-sub">Historique des actions administratives</p>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>ACTION</th>
+                            <th>UTILISATEUR</th>
+                            <th>IP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-journal">
+                        <tr>
+                            <td id="log-date"></td>
+                            <td>Connexion au back-office</td>
+                            <td>Administrateur</td>
+                            <td>127.0.0.1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Modal Détails Devis -->
+<div id="modal-devis" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-title">Détails de la demande</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer">
+            <select id="modal-statut">
+                <option value="nouveau">Nouveau</option>
+                <option value="en-cours">En cours</option>
+                <option value="traite">Traité</option>
+                <option value="archive">Archivé</option>
+            </select>
+            <button class="btn-save" onclick="saveStatut()">Enregistrer</button>
+            <button class="btn-cancel" onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
